@@ -34,7 +34,7 @@ Documentation cleanup on docs/developer-onboarding: replace chat-dependent guida
 
 ## Next actions, in order
 
-1. Review/merge documentation cleanup after CI.
+1. Documentation PR #1 is merged and issue #2 is closed. Continue secure staging issue #3.
 2. Design a minimal provisioning access policy against official Medplum docs. Test the allowed operations and denied unrelated operations. Do not change credentials or security configuration without explicit review.
 3. Configure staging environment secrets with the restricted identity; enable workflow; run plan and verify owner approval gate.
 4. Decide market-assignment representation, program mapping, and patient authorization before introducing patient workflows.
@@ -57,3 +57,15 @@ Keep responses concise. Do not navigate browser autonomously. Use official local
 - PR #1: https://github.com/kiyengar27/helix/pull/1 — onboarding and documentation cleanup; CI passed before the issue-first guidance update.
 - Issue #2: https://github.com/kiyengar27/helix/issues/2 — establish issue-first work tracking; implemented in the documentation PR, pending merge.
 - All subsequent implementation starts with a GitHub issue; check existing issues before creating another.
+
+## Secure staging checkpoint
+
+Issue #3: https://github.com/kiyengar27/helix/issues/3. Branch: feat/3-secure-staging. Proposed identifier-scoped read/search/create policy is in code/config/security/provisioning-policy.json. Owner instructions: docs/staging-access-setup.md. Await owner application to the provisioning client membership, then fresh-login verification. No policy applied, secrets uploaded, or workflow enabled yet.
+
+Owner checkpoint clarification: the client-membership link redirected to sign-in; policy application has not been confirmed. Updated docs/staging-access-setup.md with authentication, Project → Clients fallback, identity checks, and not-found handling. Resume by waiting for owner confirmation, then verify fresh-login effective permissions.
+
+## Restricted policy verified
+
+Owner confirmed policy application. Fresh client login on October 16 confirmed the expected identifier-scoped read/search/create rules, without wildcard clinical access; Medplum also adds read-only SearchParameter/StructureDefinition access. All 14 foundation resources passed server validation and matched configuration. Searches for Patient, ProjectMembership, and ClientApplication each returned 403. No writes or destructive denial tests were performed; create/transaction behavior under the new policy still awaits deployment verification.
+
+Next owner step: add MEDPLUM_CLIENT_ID and MEDPLUM_CLIENT_SECRET to GitHub staging environment secrets. Keep STAGING_ENABLED unset until the security-check implementation and PR are ready. Do not claim hosted pipeline completion yet. Earlier references to the client still being broadly privileged are historical and superseded by this checkpoint.

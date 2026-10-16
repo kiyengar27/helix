@@ -1,0 +1,33 @@
+{
+  "resourceType": "AccessPolicy",
+  "name": "Helix Staging Foundation Provisioning",
+  "resource": [
+    {
+      "resourceType": "Organization",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "Organization?identifier=urn:helix:staging:foundation|helix-medical-group"
+    },
+    {
+      "resourceType": "Location",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "Location?identifier=urn:helix:staging:foundation|market-north-bay-ca,urn:helix:staging:foundation|market-south-bay-ca,urn:helix:staging:foundation|market-austin-metro,urn:helix:staging:foundation|market-dallas-north,urn:helix:staging:foundation|market-dallas-south"
+    },
+    {
+      "resourceType": "HealthcareService",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "HealthcareService?identifier=urn:helix:staging:foundation|service-primary-care,urn:helix:staging:foundation|service-acute-care,urn:helix:staging:foundation|service-cardiology,urn:helix:staging:foundation|service-urology,urn:helix:staging:foundation|service-rheumatology,urn:helix:staging:foundation|service-infusion-therapy,urn:helix:staging:foundation|service-transitions-of-care,urn:helix:staging:foundation|service-complex-care"
+    }
+  ]
+}
