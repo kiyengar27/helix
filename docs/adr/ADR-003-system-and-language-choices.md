@@ -117,3 +117,9 @@ Use Git and a private GitHub repository. GitHub Actions runs `make build` for pu
 Staging initially uses a manually dispatched main-branch workflow, serialized per environment. It rebuilds the selected commit, validates/plans before writes, and verifies after deployment. Deployment requires an explicit deploy selection and a repository enablement variable; this manual launch is not an independent approval. Configure GitHub environment protection where supported by the account plan. Separate environment secrets from repository code; do not upload developer .env files. Restrict the deployment identity before enabling unattended use.
 
 No production workflow is included. Environment configuration, branch protections and secret provisioning require repository administration. GitHub environment availability and reviewer protection depend on plan and repository visibility. Do not make the repository public to obtain protection features.
+
+## CI/CD implementation checkpoint — October 16, 2026
+
+Make provides local build/test/preview and authenticated plan/verify/deploy entry points. Local build type-checks and runs two invariant tests; it emits no distributable. GitHub CI uses Node 24 and npm ci without Medplum credentials.
+
+Staging uses an identifier-scoped client policy, staging environment secrets, main-only deployment, owner review, disabled admin bypass and serialized manual runs. Run/job names distinguish PLAN without resource writes from DEPLOY with writes allowed. The owner reviews the plan before authorizing deployment. Both hosted plan and repeated apply/verify passed; links and limits are maintained in docs/deployment.md. These are staging controls, not a production-readiness claim.

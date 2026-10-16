@@ -31,6 +31,7 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 - Never expose or commit secrets, .env files, patient data, node_modules, reports, or medplum-link.
 - Public CI runs without credentials. Never execute untrusted contribution code with deployment secrets.
 - Work on branches and use pull requests; run `make build` from code/. Do not bypass main protection.
+- Present the resource plan before deployment; obtain authorization to dispatch apply/deploy, then leave GitHub environment approval to the owner. Present a cleanup plan before deleting merged branches.
 - `make plan` is authenticated but does not persist clinical resources; `make deploy` writes. Verify authorization, environment, and project before writes.
 - Update ADR-003 for system/language/tooling decisions rather than creating an ADR per tool. Update ADR-002 for deployment semantics.
 - Update docs/STATUS.md at meaningful checkpoints: completed work, evidence, pending work, constraints, and exact next action. Do not record secrets or depend on chat-only context.

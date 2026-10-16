@@ -42,6 +42,6 @@ These steps require no Medplum credentials and make no Medplum API calls. npm do
 
 JSON describes resources; TypeScript deploys through the Medplum SDK. The tool creates missing resources by stable identifiers, retains existing matches, and blocks on differences in managed fields. It does not update, delete, or automatically roll back resources. See [ADR-002](docs/adr/ADR-002-declarative-json-configuration.md).
 
-The initial foundation is deployed and verified in the owner's Helix staging project. Hosted deployment remains disabled pending a restricted provisioning identity and environment secrets. Other developers must use their own synthetic project and update its target configuration intentionally.
+The initial foundation is deployed and verified in the owner's Helix staging project. Owner-approved hosted plan and deployment are enabled and verified with restricted environment credentials. Other developers must use their own synthetic project and update its target configuration intentionally.
 
 Public visibility permits inspection and forks; it does not grant deployment access. No software license has been selected yet.
