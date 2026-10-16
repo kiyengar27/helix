@@ -35,3 +35,12 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 - Update ADR-003 for system/language/tooling decisions rather than creating an ADR per tool. Update ADR-002 for deployment semantics.
 - Update docs/STATUS.md at meaningful checkpoints: completed work, evidence, pending work, constraints, and exact next action. Do not record secrets or depend on chat-only context.
 - Keep generated operational artifacts under ignored code/reports/. Documentation belongs in docs/; do not carry chat-specific output-directory conventions into this repository.
+
+## Issue-first work tracking
+
+- Before implementing any new change, create a GitHub issue or select an existing issue that covers it. This includes documentation, configuration, code, and deployment work.
+- Record the problem, scope, acceptance criteria, and validation expectations in the issue. Do not include credentials or patient data.
+- Reference the issue in branch names for new branches and in every implementation PR. Use `Closes #N` only when that PR satisfies the issue completely; otherwise use `Refs #N` and identify remaining work.
+- Update the issue with meaningful progress, blockers, and verification evidence. Close it when the work is actually complete, preferably through the merged PR.
+- Preserve active issue/PR references in docs/STATUS.md so another developer or resumed agent can continue without chat history.
+- User requests authorize creating the corresponding issues; do not ask for repeated confirmation for ordinary issue tracking within this repository.

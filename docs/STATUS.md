@@ -51,3 +51,9 @@ Keep responses concise. Do not navigate browser autonomously. Use official local
 ## Suggested resume prompt
 
 > Read AGENTS.md and docs/STATUS.md. Inspect repository and CI state, then continue the next incomplete action. Use official Medplum references, keep responses concise, and do not navigate the browser. Never print credentials.
+
+## Active tracking
+
+- PR #1: https://github.com/kiyengar27/helix/pull/1 — onboarding and documentation cleanup; CI passed before the issue-first guidance update.
+- Issue #2: https://github.com/kiyengar27/helix/issues/2 — establish issue-first work tracking; implemented in the documentation PR, pending merge.
+- All subsequent implementation starts with a GitHub issue; check existing issues before creating another.
