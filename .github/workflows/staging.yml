@@ -1,9 +1,10 @@
-name: Staging deployment
+name: Staging plan or deployment
+run-name: "Staging · ${{ inputs.operation == 'deploy' && 'DEPLOY · Apply and verify (writes allowed)' || 'PLAN · Validate only (no resource writes)' }} · @${{ github.actor }}"
 on:
   workflow_dispatch:
     inputs:
       operation:
-        description: Staging operation
+        description: Choose plan (validate only) or deploy (apply and verify)
         required: true
         default: plan
         type: choice
@@ -15,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   staging:
+    name: ${{ inputs.operation == 'deploy' && 'Approve staging deployment — resource writes allowed' || 'Approve staging validation — no resource writes' }}
     if: github.ref == 'refs/heads/main' && vars.STAGING_ENABLED == 'true'
     environment: staging
     runs-on: ubuntu-latest
