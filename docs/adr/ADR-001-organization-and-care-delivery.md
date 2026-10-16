@@ -1,7 +1,7 @@
 # ADR-001: Separate practice, geography, offerings, and patient care responsibility
 
-Status: Proposed  
-Date: October 16, 2026  
+Status: Proposed
+Date: October 16, 2026
 Product requirements: [PRD-001](../PRD-001-organization-and-care-delivery.md)
 
 ## Context

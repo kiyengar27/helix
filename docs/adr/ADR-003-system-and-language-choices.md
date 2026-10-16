@@ -1,7 +1,7 @@
 # ADR-003: System and language choices
 
-Status: Accepted; living decision record  
-Created: October 16, 2026  
+Status: Accepted; living decision record
+Created: October 16, 2026
 Last updated: October 16, 2026
 
 ## Purpose and maintenance

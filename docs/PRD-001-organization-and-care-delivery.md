@@ -1,7 +1,7 @@
 # PRD-001: Helix organization and care delivery
 
-Status: Draft for review  
-Date: October 16, 2026  
+Status: Draft for review
+Date: October 16, 2026
 Supporting decision: [ADR-001](adr/ADR-001-organization-and-care-delivery.md)
 
 ## Purpose
