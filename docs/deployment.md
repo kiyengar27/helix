@@ -46,3 +46,14 @@ Successful transaction submission is atomic at the FHIR transaction boundary. A 
 ## Incident and recovery
 
 Disable STAGING_ENABLED to stop new gated runs; cancel an active run separately if appropriate. Preserve commit/run IDs and reports. Inspect state and dependencies before corrections. Never automatically delete clinical resources or assume rerunning an old JSON file restores prior values. Rotate exposed credentials and review audit history. Removing a committed secret does not invalidate it.
+
+## Recognizing approval requests
+
+The run title and job label explicitly identify the selected operation:
+
+| Operation | Run title | Approval job |
+|---|---|---|
+| plan | Staging · PLAN · Validate only (no resource writes) | Approve staging validation — no resource writes |
+| deploy | Staging · DEPLOY · Apply and verify (writes allowed) | Approve staging deployment — resource writes allowed |
+
+The run title also identifies the initiating actor. GitHub's environment badge remains staging, and its approval button wording is controlled by GitHub. Review the run title, job, commit, and selected operation before approving. Each run requires a separate approval. A deploy can create missing resources even if a previous plan found none.
