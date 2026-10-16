@@ -10,12 +10,21 @@ The identifier criteria are an operational scope, not a tamper-proof identity bo
 
 ## Manual application
 
-1. Keep your human administrator signed in. Do not attach this policy to your own human membership.
-2. Create an AccessPolicy named **Helix Staging Foundation Provisioning**, using the JSON in this repository through the editor's JSON mode.
-3. In the project membership for **Helix Staging Provisioning** (the client identity), assign this AccessPolicy. Where multiple access-policy entries exist, ensure no broad policy remains alongside it; combined access can retain broader permissions. Do not change the client secret.
-4. Tell the implementation agent when saved. Do not send credentials or patient records.
+1. Sign in to [Medplum](https://app.medplum.com/) with your **human administrator account** and select the Helix project. Do not attach this policy to your own human membership.
+2. Create an AccessPolicy named **Helix Staging Foundation Provisioning**, using [the proposed JSON](../code/config/security/provisioning-policy.json) through the editor's JSON mode. If already created, reuse it.
+3. Open [the provisioning client's ProjectMembership](https://app.medplum.com/ProjectMembership/f99bac0a-7313-49c6-80c9-e4baeb1798b2). If redirected to sign-in, finish signing in and reopen the link. This ID was previously verified for the owner's Helix project; it does not apply to other projects.
+4. Alternatively, open **Project → Clients** and open the membership row for **Helix Staging Provisioning**. Medplum's client administration listing represents ProjectMembership records. The ClientApplication resource page itself is not the membership editor.
+5. Confirm the membership's **Profile** references the ClientApplication named **Helix Staging Provisioning**. Choose **Edit**, set **Access Policy** to **Helix Staging Foundation Provisioning**, and save. Where multiple access-policy entries exist, ensure no broad policy remains alongside it; combined access can retain broader permissions. Do not change the client secret.
+6. Tell the implementation agent when saved. Do not send credentials or patient records.
 
-Medplum stores authorization on the client's ProjectMembership; assigning a policy to an unrelated resource does not restrict the client. UI labels may differ. If you cannot find the client membership/access field, report the field labels rather than guessing.
+Medplum stores authorization on the client's ProjectMembership; assigning a policy to an unrelated resource does not restrict the client. UI labels may differ.
+
+### If you cannot find the membership or field
+
+- A sign-in page is an authentication checkpoint, not proof that the membership is missing. Complete sign-in first.
+- If the record is still not found after sign-in, verify the selected project is Helix. Ask the implementation agent to recheck the membership ID through a fresh client login before trying another record.
+- If the membership opens but **Access Policy** or **Edit** is absent, report the visible field labels and check that your human account is an administrator. Do not edit a different membership or create a duplicate client as a workaround.
+- Keep the provisioning policy unapplied until the client identity is confirmed; do not weaken human administrator access.
 
 ## Verification after application
 

@@ -61,3 +61,5 @@ Keep responses concise. Do not navigate browser autonomously. Use official local
 ## Secure staging checkpoint
 
 Issue #3: https://github.com/kiyengar27/helix/issues/3. Branch: feat/3-secure-staging. Proposed identifier-scoped read/search/create policy is in code/config/security/provisioning-policy.json. Owner instructions: docs/staging-access-setup.md. Await owner application to the provisioning client membership, then fresh-login verification. No policy applied, secrets uploaded, or workflow enabled yet.
+
+Owner checkpoint clarification: the client-membership link redirected to sign-in; policy application has not been confirmed. Updated docs/staging-access-setup.md with authentication, Project → Clients fallback, identity checks, and not-found handling. Resume by waiting for owner confirmation, then verify fresh-login effective permissions.
