@@ -1,0 +1,27 @@
+{
+  "name": "helix-provisioning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "preview": "tsx scripts/provision-foundation.ts",
+    "apply": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --apply",
+    "plan": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --plan",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "build": "npm run typecheck && npm test",
+    "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --verify"
+  },
+  "dependencies": {
+    "@medplum/core": "^5.2.5",
+    "@medplum/fhirtypes": "^5.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=24.2.0 <25"
+  }
+}

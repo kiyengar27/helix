@@ -1,0 +1,304 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42",
+      "resource": {
+        "resourceType": "Organization",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "helix-medical-group"
+          }
+        ],
+        "active": true,
+        "name": "Helix Medical Group"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "resource": {
+        "resourceType": "Location",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "market-north-bay-ca"
+          }
+        ],
+        "status": "active",
+        "mode": "instance",
+        "name": "North Bay CA",
+        "description": "Operational market; boundaries and coverage pending configuration.",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "area",
+              "display": "Area"
+            }
+          ]
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+      "resource": {
+        "resourceType": "Location",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "market-south-bay-ca"
+          }
+        ],
+        "status": "active",
+        "mode": "instance",
+        "name": "South Bay CA",
+        "description": "Operational market; boundaries and coverage pending configuration.",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "area",
+              "display": "Area"
+            }
+          ]
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+      "resource": {
+        "resourceType": "Location",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "market-austin-metro"
+          }
+        ],
+        "status": "active",
+        "mode": "instance",
+        "name": "Austin Metro",
+        "description": "Operational market; boundaries and coverage pending configuration.",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "area",
+              "display": "Area"
+            }
+          ]
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+      "resource": {
+        "resourceType": "Location",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "market-dallas-north"
+          }
+        ],
+        "status": "active",
+        "mode": "instance",
+        "name": "Dallas North",
+        "description": "Operational market; boundaries and coverage pending configuration.",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "area",
+              "display": "Area"
+            }
+          ]
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb",
+      "resource": {
+        "resourceType": "Location",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "market-dallas-south"
+          }
+        ],
+        "status": "active",
+        "mode": "instance",
+        "name": "Dallas South",
+        "description": "Operational market; boundaries and coverage pending configuration.",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "area",
+              "display": "Area"
+            }
+          ]
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-primary-care"
+          }
+        ],
+        "active": true,
+        "name": "Primary Care",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7c2324ea-ed1d-4202-913d-7ec4b2a68633",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-acute-care"
+          }
+        ],
+        "active": true,
+        "name": "Acute Care",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a5ce8a4b-0de6-4150-9a89-5162a9fa04e7",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-cardiology"
+          }
+        ],
+        "active": true,
+        "name": "Cardiology",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:06daf608-0bb8-442b-a47c-c13aa7e82f9f",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-urology"
+          }
+        ],
+        "active": true,
+        "name": "Urology",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fe6fb9f1-6600-4abd-a0d7-3feb6d46731d",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-rheumatology"
+          }
+        ],
+        "active": true,
+        "name": "Rheumatology",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-infusion-therapy"
+          }
+        ],
+        "active": true,
+        "name": "Infusion Therapy",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-transitions-of-care"
+          }
+        ],
+        "active": true,
+        "name": "Transitions of Care",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:foundation",
+            "value": "service-complex-care"
+          }
+        ],
+        "active": true,
+        "name": "Complex Care",
+        "providedBy": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "comment": "Staging catalog entry. Coverage, delivery modes and schedules are not configured."
+      }
+    }
+  ]
+}

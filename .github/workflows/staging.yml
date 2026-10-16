@@ -1,0 +1,58 @@
+name: Staging deployment
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Staging operation
+        required: true
+        default: plan
+        type: choice
+        options: [plan, deploy]
+permissions:
+  contents: read
+concurrency:
+  group: helix-staging
+  cancel-in-progress: false
+jobs:
+  staging:
+    if: github.ref == 'refs/heads/main' && vars.STAGING_ENABLED == 'true'
+    environment: staging
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: code/package-lock.json
+      - run: npm ci
+      - run: make build
+      - name: Validate and plan staging
+        env:
+          MEDPLUM_CLIENT_ID: ${{ secrets.MEDPLUM_CLIENT_ID }}
+          MEDPLUM_CLIENT_SECRET: ${{ secrets.MEDPLUM_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          test -n "$MEDPLUM_CLIENT_ID"
+          test -n "$MEDPLUM_CLIENT_SECRET"
+          mkdir -p reports
+          npm run plan 2>&1 | tee reports/plan.log
+      - name: Deploy and verify staging
+        if: inputs.operation == 'deploy'
+        env:
+          MEDPLUM_CLIENT_ID: ${{ secrets.MEDPLUM_CLIENT_ID }}
+          MEDPLUM_CLIENT_SECRET: ${{ secrets.MEDPLUM_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          npm run apply 2>&1 | tee reports/apply.log
+          npm run verify 2>&1 | tee reports/verify.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: staging-${{ github.sha }}-${{ github.run_id }}
+          path: code/reports/
+          retention-days: 14
