@@ -1,7 +1,7 @@
 # ADR-002: Declarative FHIR JSON configuration with a thin deployment layer
 
-Status: Accepted  
-Date: October 16, 2026  
+Status: Accepted
+Date: October 16, 2026
 Related: [ADR-001: Organization and care delivery](ADR-001-organization-and-care-delivery.md)
 
 ## Context
