@@ -43,7 +43,8 @@
           "Grace"
         ],
         "family": "Chen"
-      }
+      },
+      "birthSex": "M"
     },
     {
       "key": "age-12-parent",
@@ -64,7 +65,8 @@
           "Anita"
         ],
         "family": "Patel"
-      }
+      },
+      "birthSex": "F"
     },
     {
       "key": "age-13-guardian",
@@ -85,7 +87,8 @@
           "Rachel"
         ],
         "family": "Turner"
-      }
+      },
+      "birthSex": "M"
     },
     {
       "key": "adolescent-parent",
@@ -106,7 +109,8 @@
           "Elena"
         ],
         "family": "Martinez"
-      }
+      },
+      "birthSex": "F"
     },
     {
       "key": "independent-adult",

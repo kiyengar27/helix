@@ -125,3 +125,5 @@ Model encounters independently of patient affiliation, with actual visit Locatio
 ## Explicit synthetic birth sex for Photon
 
 Declare Daniel M and Eleanor F as explicit synthetic sex-at-birth fixtures. Use the published US Core 6.1 FHIR R4 birthsex extension (valueCode M/F), separately from administrative Patient.gender. Do not infer either from names. This introduces no patient market extension and makes no claim of full US Core conformance. Source and mapping rationale are recorded in photon-feedback.md. Keep test messaging destinations separate until owner selection and sandbox behavior review.
+
+The subsequent owner requirement makes explicit birthSex mandatory across all six synthetic patient fixtures and at the integration mapping boundary. Do not silently fill missing values or infer from administrative gender. This requirement does not make sex mandatory in the FHIR R4 base Patient schema or arbitrary server writes.
