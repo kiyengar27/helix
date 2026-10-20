@@ -111,3 +111,7 @@ An interrupted apply may leave an intentional test change; there is no automatic
 ### Completed acceptance evidence — October 20, 2026
 
 PR #21 merged at 2b83f9165e46d369cfa8bde7df471065a0785a0f. Owner configured the two scoped clients and approved the five-write apply after read-only plan review. All 41 tests passed; live apply confirmed read isolation, denied clinical writes, rejected stale edits, proxy lifecycle behavior and restoration of original business fields. Fresh independent verification passed all 11 enrollment and 45 care-delivery records. Evidence is recorded in closed issue #8. Age-band boundaries were tested locally; no human login or durable grant registry was deployed. Replan before another acceptance run because successful writes advanced versions.
+
+## Photon demographic preparation — issue #10
+
+The follow-up branch declares Daniel M and Eleanor F as explicit synthetic birth-sex values using the standard US Core birthsex extension. Patient.gender is not inferred or filled. The enrollment-profile plan permits only this owned extension, names and synthetic tags; unrelated extensions remain intact. Expected first plan: two updates, nine retained, no creates/deletes. Existing resource-level policy does not change. Phone selection and Photon patient creation are later reviewed steps. See photon-feedback.md; no demographic changes have been applied by preparation/validation.

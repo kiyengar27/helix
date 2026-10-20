@@ -1,3 +1,4 @@
+import {birthSexExtension} from './patient-demographics.js';
 import type { AccessPolicy, Patient, RelatedPerson } from '@medplum/fhirtypes';
 import scenarios from '../config/enrollment/scenarios.json' with { type: 'json' };
 import { syntheticMeta } from './synthetic-data.js';
@@ -22,6 +23,7 @@ export function compileEnrollmentFixtures(context:EnrollmentReferences):Enrollme
     const patient:Patient={
       resourceType:'Patient',identifier:[{system:patientIdentifierSystem,value:scenario.key}],active:true,
       name:[scenario.patientName],birthDate,meta:syntheticMeta(),
+      ...(scenario.birthSex?{extension:[birthSexExtension(scenario.birthSex)]}:{}),
       address:[{state:scenario.residenceState,country:'US'}],managingOrganization:{reference:context.organization},
       ...(scenario.assignPcp?{generalPractitioner:[{reference:context.pcpRole}]}:{}),
     };

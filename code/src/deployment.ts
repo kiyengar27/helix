@@ -1,3 +1,4 @@
+import {birthSexUrl,ownedBirthSex,mergeBirthSex} from './patient-demographics.js';
 import { ownedTags, mergeSyntheticMeta } from './synthetic-data.js';
 import { createHash } from 'node:crypto';
 import type { AccessPolicy, Bundle, Resource, Schedule, HealthcareService } from '@medplum/fhirtypes';
@@ -7,7 +8,7 @@ import operations from '../config/proposals/care-delivery.operations.json' with 
 import coverage from '../config/proposals/care-delivery.coverage.json' with { type: 'json' };
 import { clinicReferences, clinicLifecycle } from './clinic-lifecycle.js';
 
-export type UpdateScope = 'care-delivery' | 'enrollment-display';
+export type UpdateScope = 'care-delivery' | 'enrollment-display' | 'enrollment-profile';
 export interface ManagedEntry { fullUrl: string; resource: Resource }
 export interface PlannedChange {
   fullUrl: string; resourceType: Resource['resourceType']; identifier: string;
@@ -87,6 +88,7 @@ export function compileDelivery(asOf: string): ManagedEntry[] {
   return entries;
 }
 export function updateFields(entry: ManagedEntry, scope:UpdateScope='care-delivery'): string[] {
+  if(scope==='enrollment-profile') return entry.resource.resourceType==='Patient'?['name','meta.tag','extension:birthSex']:entry.resource.resourceType==='RelatedPerson'?['name','meta.tag']:[];
   if(scope==='enrollment-display') return ['Patient','RelatedPerson'].includes(entry.resource.resourceType)?['name','meta.tag']:[];
   if(entry.resource.resourceType==='HealthcareService') return ['location','coverageArea'];
   if(entry.resource.resourceType==='Location' && clinicReferences.includes(entry.fullUrl)) return ['status'];
@@ -123,8 +125,10 @@ export function buildPlan(entries:ManagedEntry[], current:Map<string,Resource>, 
   const changes:PlannedChange[]=entries.map(entry=>{
     const existing=current.get(entry.fullUrl);
     const desired=rewrite(entry.resource,refs);
-    const fields=existing?Object.keys(desired).filter(k=>!(updateScope==='enrollment-display'&&k==='meta')).filter(k=>canonical((desired as unknown as Record<string,unknown>)[k])!==canonical((existing as unknown as Record<string,unknown>)[k])):[];
-    if(existing && updateScope==='enrollment-display' && canonical(ownedTags(desired.meta))!==canonical(ownedTags(existing.meta)))fields.push('meta.tag');
+    if(updateScope==='enrollment-profile'&&desired.resourceType==='Patient'&&desired.extension?.some(e=>e.url!==birthSexUrl))throw Error('Unmanaged desired enrollment extension');
+    const fields=existing?Object.keys(desired).filter(k=>!(['enrollment-display','enrollment-profile'].includes(updateScope)&&k==='meta')&&!(updateScope==='enrollment-profile'&&desired.resourceType==='Patient'&&k==='extension')).filter(k=>canonical((desired as unknown as Record<string,unknown>)[k])!==canonical((existing as unknown as Record<string,unknown>)[k])):[];
+    if(existing && ['enrollment-display','enrollment-profile'].includes(updateScope) && canonical(ownedTags(desired.meta))!==canonical(ownedTags(existing.meta)))fields.push('meta.tag');
+    if(existing&&updateScope==='enrollment-profile'&&desired.resourceType==='Patient'&&existing.resourceType==='Patient'&&ownedBirthSex(desired.extension).length&&canonical(ownedBirthSex(desired.extension))!==canonical(ownedBirthSex(existing.extension)))fields.push('extension:birthSex');
     const allowed=updateFields(entry,updateScope);
     if(fields.some(f=>!allowed.includes(f))) throw new Error(`Unmanaged drift on ${entry.resource.resourceType}: ${fields.join(',')}`);
     if(existing && (!existing.id || !existing.meta?.versionId)) throw new Error('Versioned current resource required');
@@ -156,7 +160,11 @@ export function transactionFor(entries:ManagedEntry[],current:Map<string,Resourc
     const desired=rewrite(entry.resource,refs) as unknown as Record<string,unknown>;
     for(const field of change.fields){
       if(!updateFields(entry,plan.updateScope).includes(field))throw new Error('Field outside reviewed update scope');
-      if(field==='meta.tag')resource.meta=mergeSyntheticMeta(resource.meta,entry.resource.meta);
+      if(field==='extension:birthSex'){
+        if(resource.resourceType!=='Patient'||entry.resource.resourceType!=='Patient')throw Error('Patient-only birth-sex update');
+        resource.extension=mergeBirthSex(resource.extension,entry.resource.extension);
+      }
+      else if(field==='meta.tag')resource.meta=mergeSyntheticMeta(resource.meta,entry.resource.meta);
       else target[field]=desired[field];
     }
     return {fullUrl:entry.fullUrl,resource,request:{method:'PUT' as const,url:`${resource.resourceType}/${resource.id}`,ifMatch:`W/"${change.version}"`}};
