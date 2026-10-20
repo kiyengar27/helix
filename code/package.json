@@ -29,7 +29,10 @@
     "verify:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --verify",
     "flow-plan:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --flow-plan",
     "flow-apply:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --flow-apply",
-    "verify:encounter-access": "node --env-file-if-exists=.env --import tsx scripts/verify-encounter-access.ts"
+    "verify:encounter-access": "node --env-file-if-exists=.env --import tsx scripts/verify-encounter-access.ts",
+    "plan:photon-patient": "node --env-file-if-exists=.env --import tsx scripts/photon-patient-sync.ts --plan",
+    "apply:photon-patient": "node --env-file-if-exists=.env --import tsx scripts/photon-patient-sync.ts --apply",
+    "verify:photon-patient": "node --env-file-if-exists=.env --import tsx scripts/photon-patient-sync.ts --verify"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",

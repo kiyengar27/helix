@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "environment": "neutron",
+  "patientCase": "independent-adult",
+  "includePrivateTestPhone": true,
+  "maxPatientPages": 20,
+  "pageSize": 50,
+  "planLifetimeHours": 24,
+  "mutation": "createPatient",
+  "allowPatientUpdates": false,
+  "allowOrders": false
+}

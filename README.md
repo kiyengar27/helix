@@ -8,6 +8,7 @@ The repository is public. It contains no patient data or deployment credentials.
 
 - [Developer setup](docs/development.md): clone, install, build, and preview without credentials.
 - [Deployment runbook](docs/deployment.md): staging checks, GitHub controls, and recovery.
+- [Photon patient sync](docs/photon-patient-sync.md): reviewed local Neutron patient creation and reconciliation.
 - [Encounter deployment](docs/encounter-deployment.md): scoped setup, plan/deploy and live lifecycle acceptance.
 - [Project handoff](docs/STATUS.md): current state, next work, and session-resume instructions.
 - [Product requirements](docs/PRD-001-organization-and-care-delivery.md).
