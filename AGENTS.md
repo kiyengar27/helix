@@ -19,6 +19,7 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 ## Implementation
 
 - Use FHIR R4 and explicit @medplum/fhirtypes types; reuse @medplum/core and official examples.
+- All setup must be reproducible through versioned declarative configuration and deployment code, including policy definitions and reference linking. Manual work is limited to documented account/bootstrap requirements, secrets and approvals.
 - JSON configuration is authoritative for foundation definitions. TypeScript manages deployment mechanics.
 - Keep stable identifiers. Use conditional creation and transaction Bundles with resolvable urn:uuid references. Do not implement search-then-create.
 - Current deployment is create-only; drift blocks writes. Updates/deletions need a separately reviewed design.

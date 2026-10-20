@@ -1,0 +1,882 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3",
+      "resource": {
+        "resourceType": "Location",
+        "name": "California \u2014 Synthetic Eligibility Area",
+        "status": "active",
+        "mode": "instance",
+        "physicalType": {
+          "text": "Jurisdiction area"
+        },
+        "address": {
+          "state": "CA",
+          "country": "US"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic service eligibility jurisdiction; not a clinic or verified license.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "jurisdiction-ca"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Texas \u2014 Synthetic Eligibility Area",
+        "status": "active",
+        "mode": "instance",
+        "physicalType": {
+          "text": "Jurisdiction area"
+        },
+        "address": {
+          "state": "TX",
+          "country": "US"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic service eligibility jurisdiction; not a clinic or verified license.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "jurisdiction-tx"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix North Bay CA Clinic",
+        "status": "active",
+        "mode": "instance",
+        "partOf": {
+          "reference": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+        },
+        "address": {
+          "state": "CA",
+          "country": "US"
+        },
+        "physicalType": {
+          "text": "Clinic site"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic clinic; no real address, operating hours or scheduling configured.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "clinic-north-bay-ca"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix South Bay CA Clinic",
+        "status": "active",
+        "mode": "instance",
+        "partOf": {
+          "reference": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+        },
+        "address": {
+          "state": "CA",
+          "country": "US"
+        },
+        "physicalType": {
+          "text": "Clinic site"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic clinic; no real address, operating hours or scheduling configured.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "clinic-south-bay-ca"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix Austin Metro Clinic",
+        "status": "active",
+        "mode": "instance",
+        "partOf": {
+          "reference": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+        },
+        "address": {
+          "state": "TX",
+          "country": "US"
+        },
+        "physicalType": {
+          "text": "Clinic site"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic clinic; no real address, operating hours or scheduling configured.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "clinic-austin-metro"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix Dallas North Clinic",
+        "status": "active",
+        "mode": "instance",
+        "partOf": {
+          "reference": "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+        },
+        "address": {
+          "state": "TX",
+          "country": "US"
+        },
+        "physicalType": {
+          "text": "Clinic site"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic clinic; no real address, operating hours or scheduling configured.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "clinic-dallas-north"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix Dallas South Clinic",
+        "status": "active",
+        "mode": "instance",
+        "partOf": {
+          "reference": "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+        },
+        "address": {
+          "state": "TX",
+          "country": "US"
+        },
+        "physicalType": {
+          "text": "Clinic site"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Synthetic clinic; no real address, operating hours or scheduling configured.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "clinic-dallas-south"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix Virtual Care \u2014 CA",
+        "status": "active",
+        "mode": "instance",
+        "physicalType": {
+          "text": "Virtual care location"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Logical virtual delivery location for CA; no real endpoint or meeting URL.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "virtual-ca"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+      "resource": {
+        "resourceType": "Location",
+        "name": "Helix Virtual Care \u2014 TX",
+        "status": "active",
+        "mode": "instance",
+        "physicalType": {
+          "text": "Virtual care location"
+        },
+        "managingOrganization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "description": "Logical virtual delivery location for TX; no real endpoint or meeting URL.",
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "virtual-tx"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:616a1313-8de5-56f5-88ab-3a937d99ad23",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Alex"
+            ],
+            "family": "Morgan"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-alex-morgan"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bbf9d04e-12d6-594c-9643-1777b7151f1f",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:616a1313-8de5-56f5-88ab-3a937d99ad23"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Primary Care"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-alex-morgan-primary-care"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f6f6502c-3ff3-5ead-9cfe-329a7dbc83e3",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:616a1313-8de5-56f5-88ab-3a937d99ad23"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:7c2324ea-ed1d-4202-913d-7ec4b2a68633"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Acute Care"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-alex-morgan-acute-care"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0c3bea97-52dc-57eb-b6f6-4540269127a9",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Jordan"
+            ],
+            "family": "Lee"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-jordan-lee"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6fc3a54c-43ad-514c-8b84-aba4ffa16632",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:0c3bea97-52dc-57eb-b6f6-4540269127a9"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Primary Care"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-jordan-lee-primary-care"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d8ea855a-366e-59e7-8deb-d6ae0ba80720",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Casey"
+            ],
+            "family": "Patel"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-casey-patel"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:d8ea855a-366e-59e7-8deb-d6ae0ba80720"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:a5ce8a4b-0de6-4150-9a89-5162a9fa04e7"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Cardiology"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-casey-patel-cardiology"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a61b13e3-bc77-526d-9b30-68dafc1405da",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Riley"
+            ],
+            "family": "Chen"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-riley-chen"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f32810d0-9fe6-51ee-bf69-0fc2f19c39bc",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:a61b13e3-bc77-526d-9b30-68dafc1405da"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:06daf608-0bb8-442b-a47c-c13aa7e82f9f"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Urology"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-riley-chen-urology"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bb372c08-7f6e-5ea7-8147-cdae427eb21a",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Avery"
+            ],
+            "family": "Shah"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-avery-shah"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7480a2c-b614-52f2-86f4-8b7f5ff78da5",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:bb372c08-7f6e-5ea7-8147-cdae427eb21a"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:fe6fb9f1-6600-4abd-a0d7-3feb6d46731d"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Physician (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Rheumatology"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-avery-shah-rheumatology"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4f8aecf2-6932-5465-838b-9e14d743df4a",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Quinn"
+            ],
+            "family": "Rivera"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-quinn-rivera"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:89a98fca-e0cc-5837-ae20-3aa2797a1d69",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:4f8aecf2-6932-5465-838b-9e14d743df4a"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          }
+        ],
+        "code": [
+          {
+            "text": "Infusion nurse (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Infusion Therapy"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-quinn-rivera-infusion-therapy"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a8af8f70-93ba-55b9-8c9e-7b8d8869070a",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Taylor"
+            ],
+            "family": "Brooks"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-taylor-brooks"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d9680f80-6a7e-53e0-a6a6-e62b25e72e48",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:a8af8f70-93ba-55b9-8c9e-7b8d8869070a"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Infusion nurse (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Infusion Therapy"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-taylor-brooks-infusion-therapy"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:777068a6-0ae3-56d0-a0ba-fca3603b6a8b",
+      "resource": {
+        "resourceType": "Practitioner",
+        "active": true,
+        "name": [
+          {
+            "given": [
+              "Morgan"
+            ],
+            "family": "Reed"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "Synthetic test clinician \u2014 credentials not verified"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "practitioner-morgan-reed"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:777068a6-0ae3-56d0-a0ba-fca3603b6a8b"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Care manager (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Transitions Of Care"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-morgan-reed-transitions-of-care"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "active": true,
+        "practitioner": {
+          "reference": "urn:uuid:777068a6-0ae3-56d0-a0ba-fca3603b6a8b"
+        },
+        "organization": {
+          "reference": "urn:uuid:97f9d79f-d342-45a0-a523-5b51c7bb6c42"
+        },
+        "healthcareService": [
+          {
+            "reference": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba"
+          }
+        ],
+        "location": [
+          {
+            "reference": "urn:uuid:0fdd075b-69ec-5f50-bafc-199e1e848ce3"
+          },
+          {
+            "reference": "urn:uuid:a8a27936-f2da-56a7-bd9b-7d5c8be57181"
+          }
+        ],
+        "code": [
+          {
+            "text": "Care manager (synthetic)"
+          }
+        ],
+        "specialty": [
+          {
+            "text": "Complex Care"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:helix:staging:care-delivery",
+            "value": "role-morgan-reed-complex-care"
+          }
+        ]
+      }
+    }
+  ]
+}

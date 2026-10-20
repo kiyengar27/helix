@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "clinics": [
+    {
+      "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+      "events": [
+        {
+          "state": "active",
+          "effectiveAt": "2026-10-20T00:00:00Z",
+          "reason": "Initial synthetic clinic activation proposal"
+        }
+      ]
+    },
+    {
+      "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+      "events": [
+        {
+          "state": "active",
+          "effectiveAt": "2026-10-20T00:00:00Z",
+          "reason": "Initial synthetic clinic activation proposal"
+        }
+      ]
+    },
+    {
+      "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+      "events": [
+        {
+          "state": "active",
+          "effectiveAt": "2026-10-20T00:00:00Z",
+          "reason": "Initial synthetic clinic activation proposal"
+        }
+      ]
+    },
+    {
+      "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+      "events": [
+        {
+          "state": "active",
+          "effectiveAt": "2026-10-20T00:00:00Z",
+          "reason": "Initial synthetic clinic activation proposal"
+        }
+      ]
+    },
+    {
+      "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+      "events": [
+        {
+          "state": "active",
+          "effectiveAt": "2026-10-20T00:00:00Z",
+          "reason": "Initial synthetic clinic activation proposal"
+        }
+      ]
+    }
+  ]
+}

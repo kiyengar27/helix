@@ -71,3 +71,31 @@ Production launch, real patient data, billing implementation, automated legal cr
 ## Success measures
 
 Initial staging demonstrates the six journeys above; no duplicate patient/provider identities are introduced by rerunning provisioning; all five markets and initial services are discoverable; unresolved representation choices are resolved before dependent implementation.
+
+## Stage 1 implementation proposal — October 20, 2026
+
+[Issue #6 proposal](care-delivery-proposal.md) provides the reviewable clinic roster, service/mode/market matrix, synthetic clinicians, and jurisdiction-role examples. Proposed inputs are versioned under code/config/proposals/; they are isolated from the live foundation deployment.
+
+- Five clinics, two virtual delivery locations and two jurisdiction areas.
+- Eight synthetic clinicians with ten service-specific roles, including CA/TX and single-state examples.
+- Primary/acute and specialty care at all five clinics by scheduled session; infusion examples in North Bay and Austin; virtual services as specified in the coverage matrix.
+- No schedules, patient records or verified credentials are included.
+
+All setup must be reproducible from declarative files and deployment code, including reference linking and permission definitions. Credentials remain external. Manual actions are limited to unavoidable account/bootstrap, secret entry, and owner approvals; they must be documented rather than become undocumented setup dependencies.
+
+The proposal is not accepted coverage or a deployment authorization. Next gate is owner review, then a controlled-update design for existing service fields and a resource-level deployment/permission plan.
+
+## Market participation and delivery requirements — October 20, 2026
+
+- Provider participation is market-wide and may cover multiple markets; clinic preference is optional. Schedules govern physical/virtual sessions and rotations.
+- Most clinicians should support virtual delivery, with an eventual all-50-states target and explicit state-limited exceptions. Actual eligibility remains service/jurisdiction-specific; no blanket target grants authority.
+- Specialists can serve both modes and rotate between clinics, including North Bay CA and South Bay CA.
+- Add clinics within an existing market without duplicating practitioners or patients. Infusion remains physical-only.
+- Transitions/complex care carry separate market responsibility even when personnel and service definitions are shared.
+- Future dietitian/behavioral-health resources may span markets; a mental-health clinic partnership is external referral coordination with explicitly scoped sharing.
+
+The detailed declarative operating model and current fixture limitations are in care-delivery-proposal.md.
+
+## Clinic lifecycle requirements
+
+Clinic setup must support adding sites and planned, active, suspended and closed states with effective dates and reasons. Nonactive sites cannot accept new routed care. Preserve historical identity and references; inspect future appointments/open work and produce an impact plan before live closure. Configuration removal must not silently delete or offboard a clinic. Details and current deployment limits are in clinic-lifecycle.md (issue #15). Physician offboarding remains deferred in issue #14.
