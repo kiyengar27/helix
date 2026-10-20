@@ -39,7 +39,7 @@ async function main(){
     };
     for(const e of entries){const outcome=await m.validateResource(e.resource);if(outcome.issue?.some(i=>['fatal','error'].includes(i.severity)))throw Error('Validation failed');}
     const current=await snapshot(),asOf=saved?.asOf??new Date().toISOString();
-    const plan=buildPlan(entries,current,commit,asOf,undefined,'enrollment-display');
+    const plan=buildPlan(entries,current,commit,asOf,undefined,'enrollment-profile');
     if(mode==='--plan'){
       const path=get('--out','reports/enrollment/plan.json');mkdirSync(dirname(path),{recursive:true});writeFileSync(path,JSON.stringify(plan,null,2)+'\n');
       console.log(JSON.stringify({projectId:expectedProjectId,counts:plan.changes.reduce<Record<string,number>>((a,c)=>(a[c.action]=(a[c.action]??0)+1,a),{}),digest:plan.digest,...enrollmentSummary()}));return;
@@ -52,7 +52,7 @@ async function main(){
       if(result.type!=='transaction-response'||result.entry?.length!==tx.entry!.length||result.entry.some(e=>!e.response?.status?.startsWith('2')))throw Error('Transaction failed');
       console.log(JSON.stringify({submitted:tx.entry!.length,created:result.entry.filter(e=>e.response?.status==='201').length,updated:result.entry.filter(e=>e.response?.status==='200').length}));
     }
-    const verified=buildPlan(entries,await snapshot(),commit,asOf,undefined,'enrollment-display');
+    const verified=buildPlan(entries,await snapshot(),commit,asOf,undefined,'enrollment-profile');
     if(verified.changes.some(c=>c.action!=='retain'))throw Error('Post-deployment verification differs');
     console.log(JSON.stringify({verified:entries.length,...enrollmentSummary()}));
   }finally{m.clear();}

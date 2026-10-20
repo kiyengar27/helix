@@ -21,7 +21,8 @@
           "Laura"
         ],
         "family": "Bennett"
-      }
+      },
+      "birthSex": "F"
     },
     {
       "key": "child-parent",
@@ -119,7 +120,8 @@
           "Daniel"
         ],
         "family": "Wilson"
-      }
+      },
+      "birthSex": "M"
     }
   ]
 }

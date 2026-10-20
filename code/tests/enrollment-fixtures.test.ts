@@ -1,3 +1,4 @@
+import {birthSexUrl} from '../src/patient-demographics.js';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {compileEnrollmentFixtures,enrollmentServicePolicy,enrollmentSummary} from '../src/enrollment-fixtures.js';
@@ -12,7 +13,7 @@ test('synthetic enrollment compilation is stable, practice-scoped and does not a
   for(const {resource} of fixtures){
     if(resource.resourceType==='Patient'){
       assert.equal(resource.managingOrganization!.reference,context.organization);
-      assert.equal(resource.extension,undefined);
+      assert.ok((resource.extension??[]).every(e=>e.url===birthSexUrl));
       if(resource.generalPractitioner)assert.equal(resource.generalPractitioner[0].reference,context.pcpRole);
     }else assert.ok(fixtures.some(f=>f.fullUrl===resource.patient.reference&&f.resource.resourceType==='Patient'));
   }

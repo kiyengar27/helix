@@ -121,3 +121,7 @@ Proxy relationships do not grant access. A trusted review creates an explicit pa
 ## Stage 3 proposed encounter and medication-intent boundary
 
 Model encounters independently of patient affiliation, with actual visit Location/jurisdiction and eligible PractitionerRole. Optional RelatedPerson participation does not make the caregiver the medication subject or grant clinical/SMS access. Use a draft MedicationRequest with intent=proposal for incomplete prescribing intent, linked to the Encounter, and a draft plan Task for review. Do not convert to an active order implicitly. Initial scenarios contrast caregiver-assisted infection assessment and independent-adult GLP-1 financial review. Product/regimen selection, clinical evidence, financial eligibility, authenticated transitions and Photon transmission remain later gates. See ../encounter-prescribing-proposal.md; owner review pending.
+
+## Explicit synthetic birth sex for Photon
+
+Declare Daniel M and Eleanor F as explicit synthetic sex-at-birth fixtures. Use the published US Core 6.1 FHIR R4 birthsex extension (valueCode M/F), separately from administrative Patient.gender. Do not infer either from names. This introduces no patient market extension and makes no claim of full US Core conformance. Source and mapping rationale are recorded in photon-feedback.md. Keep test messaging destinations separate until owner selection and sandbox behavior review.
