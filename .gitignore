@@ -7,3 +7,4 @@ dist/
 medplum-link
 .vscode/
 code/reports/
+code/reviewed/

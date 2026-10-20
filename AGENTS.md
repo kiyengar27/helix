@@ -22,7 +22,7 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 - All setup must be reproducible through versioned declarative configuration and deployment code, including policy definitions and reference linking. Manual work is limited to documented account/bootstrap requirements, secrets and approvals.
 - JSON configuration is authoritative for foundation definitions. TypeScript manages deployment mechanics.
 - Keep stable identifiers. Use conditional creation and transaction Bundles with resolvable urn:uuid references. Do not implement search-then-create.
-- Current deployment is create-only; drift blocks writes. Updates/deletions need a separately reviewed design.
+- Follow ADR-002 and docs/care-delivery-deployment.md for bounded updates and reviewed-plan deployment. Unmanaged drift blocks writes; no delete reconciliation. Clinic live closure is not enabled.
 - Do not invent clinical codes, resource fields, search parameters, or operations.
 - Scheduling availability does not enforce licensure. Access policies enforce permissions independently of routing, organization, market, and care-team relationships.
 - Read relevant scheduling guidance before changing availability; Medplum uses implicit availability rather than precreated open Slots.

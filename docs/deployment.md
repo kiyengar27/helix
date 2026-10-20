@@ -68,3 +68,7 @@ The run title also identifies the initiating actor. GitHub's environment badge r
 This verifies the existing-resource transaction path. First-time creation under the restricted policy, update/delete denial through attempted mutations, future identifiers, and new resource types were not exercised. Do not infer them from this run.
 
 For every future change: show the plan first, obtain approval before dispatching deploy, then wait for the separate GitHub environment approval. Do not approve the owner's deployment review on their behalf.
+
+## Care-delivery expansion
+
+The care-delivery deployment supersedes the original foundation-only invocation described above. Read [the reviewed-plan contract](care-delivery-deployment.md): PLAN generates a same-commit artifact; DEPLOY requires its run ID and checks versions/digests before bounded updates. The generated expanded AccessPolicy must be reviewed and applied by the owner before authoritative planning. Foundation validation evidence above remains historical, not proof of the expanded deployment.

@@ -68,3 +68,13 @@ Issue #14 is deferred physician offboarding (not implemented). Issue #15 covers 
 ## PR #13 review closeout
 
 Owner requested review and merge of the declarative structure/lifecycle proposal. Review checks passed: local type-check and 14 tests, timestamped 41-resource collection preview, operating-model references, documentation links, and unchanged active foundation configuration/deployer/workflow. No blocking findings for this isolated proposal capability. Issue #15 closes with merge; issue #6 remains open for the deployment compiler, controlled updates, policy diff and live validation/deployment. No proposal resources have been deployed. Branch deletion requires a separate cleanup plan/approval.
+
+## Care-delivery deployment implementation in progress
+
+Issue #6 continues on feat/6-reviewed-deployment after merged PR #13. The compiler prepares 45 resources including four Schedules; expected baseline is 31 creates, eight coverage updates and six retained. New entry point provisions care delivery with exact policy preflight, server validation, saved-plan integrity/version checks, allowlisted optimistic updates and post-transaction verification. GitHub deploy requires a successful same-commit PLAN run ID. Generated policy is code/config/security/care-delivery-policy.json. No policy changes or resource writes occurred.
+
+Next: finish code/CI review and real-server validation, merge implementation, then owner reviews/applies generated policy. Run authoritative PLAN, review it, and only then request DEPLOY approval. The old policy cannot search new resource types, so a complete authoritative plan is blocked until owner updates access. Do not mistake a baseline estimate for a live plan.
+
+Deployment compiler validation checkpoint: Medplum $validate accepted all 45 compiled resources without persistence. Authenticated authoritative PLAN intentionally stops at effective-policy mismatch under the old policy. Local concurrency/integrity/round-trip tests and workflow YAML parsing pass. Owner has not changed policy yet; initial 31/8/6 counts remain a baseline estimate until full authorized search.
+
+Implementation PR #16: https://github.com/kiyengar27/helix/pull/16. All 45 compiled resources plus generated AccessPolicy passed Medplum $validate with no persistence. Next owner checkpoint is reviewing PR and expanded generated policy; do not apply either automatically. Saved-plan artifact transfer and first expanded transaction still require main merge and owner-approved runs.
