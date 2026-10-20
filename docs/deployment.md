@@ -29,7 +29,7 @@ GitHub settings are external state; verify them before relying on them. Owners c
 5. Actions → Staging deployment → Run workflow → main → plan.
 6. Approve the environment job, review plan and validation output, then deliberately run deploy when ready.
 
-The initial setup stopped before secret upload and enablement. No production workflow exists.
+The owner completed policy assignment and environment-secret setup, and STAGING_ENABLED is true. Hosted plan and deploy/verify succeeded. The checklist remains the procedure for new environments or credential replacement. No production workflow exists.
 
 ## Deploy and verify
 
@@ -57,3 +57,14 @@ The run title and job label explicitly identify the selected operation:
 | deploy | Staging · DEPLOY · Apply and verify (writes allowed) | Approve staging deployment — resource writes allowed |
 
 The run title also identifies the initiating actor. GitHub's environment badge remains staging, and its approval button wording is controlled by GitHub. Review the run title, job, commit, and selected operation before approving. Each run requires a separate approval. A deploy can create missing resources even if a previous plan found none.
+
+## Verified staging evidence — October 16, 2026
+
+- [PLAN run 38928287615](https://github.com/kiyengar27/helix/actions/runs/38928287615): build and server validation passed; all 14 resources retained, no drift, deploy skipped.
+- [DEPLOY run 38928472739](https://github.com/kiyengar27/helix/actions/runs/38928472739): owner approved; transaction returned 200 for all 14 existing resources; post-deploy verification passed without duplicates or drift.
+- Both used main commit eabc55833c1aabd0232a14d0304fd11f4c1204ad. Reports are attached to the runs, subject to 14-day retention.
+- Fresh local authentication confirmed the identifier-scoped policy. Patient, ProjectMembership and ClientApplication searches returned 403; Medplum adds read-only schema metadata rules.
+
+This verifies the existing-resource transaction path. First-time creation under the restricted policy, update/delete denial through attempted mutations, future identifiers, and new resource types were not exercised. Do not infer them from this run.
+
+For every future change: show the plan first, obtain approval before dispatching deploy, then wait for the separate GitHub environment approval. Do not approve the owner's deployment review on their behalf.

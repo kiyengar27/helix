@@ -84,7 +84,7 @@ Conditional creation is a deployment behavior, not an inherent property of JSON.
 
 ## Verification at decision time
 
-The foundation contains one organization, five markets, and eight offerings. Type-checking and local preview checks passed, including stable references and conditional-create request generation. No foundation resources have been submitted to Medplum; server-side validation and repeat-run verification remain pending.
+The foundation contains one organization, five markets, and eight offerings. Type-checking and local preview checks passed, including stable references and conditional-create request generation. At the original decision checkpoint no foundation resources had been submitted. Subsequent server validation, initial deployment, and repeat runs passed; hosted restricted-credential evidence is recorded in docs/deployment.md.
 
 ## Revisit when
 
@@ -95,3 +95,9 @@ We need controlled updates, drift detection, multiple environment overlays, freq
 - [Medplum: Building with AI Coding Assistants](https://www.medplum.com/docs/building-with-ai-coding-assistants)
 - Official Medplum SDK implementation: `medplum-link/packages/core/src/client.ts`, including conditional creation and transaction execution.
 - Helix implementation: `code/config/`, `code/src/foundation.ts`, and `code/scripts/provision-foundation.ts`.
+
+## Deployment safeguards added October 16, 2026
+
+The implementation now supports an authenticated plan with FHIR server validation, identifier lookup, create/retain reporting and managed-field comparison. Drift blocks apply; extra unmanaged fields remain untouched. Verification requires all expected resources to exist and match. Comparison is order-sensitive and is not full FHIR semantic equivalence.
+
+Plan is presented before deployment; deploy still requires an explicit owner decision and a separate GitHub approval. There is no saved-plan binding: apply recomputes checks against the selected commit and current server state. No automatic updates/deletions or rollback were added. Hosted repeat apply retained all 14 resources; first-time creation under restricted permissions remains untested.

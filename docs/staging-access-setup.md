@@ -1,6 +1,6 @@
 # Owner checkpoint: restrict staging provisioning
 
-Tracking: GitHub issue #3. This is a proposed policy pending owner application and live verification; it is not an assertion of completed least privilege.
+Tracking: GitHub issue #3. The owner applied this policy and its effective scope was verified. See docs/deployment.md for evidence and untested paths.
 
 ## Policy
 

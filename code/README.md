@@ -10,4 +10,4 @@ Requires Node.js major 24 (24.2+). Run `npm ci` here, then `make build` and `mak
 - `scripts/provision-foundation.ts`: plan, validate, apply, and verify.
 - `tests/`: local inventory/relationship invariants.
 
-The initial 14-resource foundation has passed server validation, deployment, drift checks, and repeated apply without duplicates. Hosted deployment remains disabled pending restricted credentials. The tool does not update or delete resources; see ADR-002 for semantics and the runbook for recovery.
+The initial 14-resource foundation has passed server validation, deployment, drift checks, and repeated apply without duplicates. Hosted staging plan and deploy/verify have also passed with restricted credentials and owner approval. The tool does not update or delete resources; see ADR-002 for semantics and the runbook for recovery.
