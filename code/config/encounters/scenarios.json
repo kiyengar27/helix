@@ -1,0 +1,48 @@
+{
+  "classification": "synthetic-test-only",
+  "authoredAt": "2026-10-20T16:00:00Z",
+  "encounterClass": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "AMB",
+    "display": "ambulatory"
+  },
+  "cases": [
+    {
+      "key": "caregiver-infection",
+      "patientCase": "older-adult-caregiver",
+      "relatedPersonCase": "older-adult-caregiver",
+      "role": "role-alex-morgan-acute-care",
+      "market": "market-north-bay-ca",
+      "location": "clinic-north-bay-ca",
+      "mode": "in-clinic",
+      "visitJurisdiction": "CA",
+      "reason": "Synthetic infection assessment; confirm diagnostic evidence and allergy review before any prescription",
+      "medication": "Amoxicillin \u2014 draft concept, product and regimen not selected",
+      "followUp": "Review infection assessment, allergies and caregiver communication authorization",
+      "financialScenario": "standard-generic",
+      "fullUrls": {
+        "encounter": "urn:uuid:2af1a50c-2ff1-513d-b34d-f424062cba88",
+        "medicationRequest": "urn:uuid:4106624a-ebd9-5906-a581-563e744a5469",
+        "task": "urn:uuid:e51db40a-e334-5d69-8acb-1eefc21a6f06"
+      }
+    },
+    {
+      "key": "adult-glp1",
+      "patientCase": "independent-adult",
+      "role": "role-alex-morgan-primary-care",
+      "market": "market-austin-metro",
+      "location": "virtual-tx",
+      "mode": "virtual",
+      "visitJurisdiction": "TX",
+      "reason": "Synthetic weight-management assessment; clinical eligibility not established",
+      "medication": "Wegovy (semaglutide injection) \u2014 draft concept, product and regimen not selected",
+      "followUp": "Review clinical eligibility, coverage, prior authorization and potential patient savings",
+      "financialScenario": "commercial-coverage-pa-and-savings-review",
+      "fullUrls": {
+        "encounter": "urn:uuid:d58c17d4-f83d-5464-a60d-b2d717e30f0a",
+        "medicationRequest": "urn:uuid:002fb154-87d5-5b63-9ac7-7d6a6d7640da",
+        "task": "urn:uuid:1e352e7f-ce23-5a0c-8131-8a6fdc8bee18"
+      }
+    }
+  ]
+}

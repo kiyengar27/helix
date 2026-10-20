@@ -20,7 +20,9 @@
     "apply:enrollment": "node --env-file-if-exists=.env --import tsx scripts/provision-enrollment.ts --apply",
     "verify:enrollment": "node --env-file-if-exists=.env --import tsx scripts/provision-enrollment.ts --verify",
     "prepare:enrollment-access": "node --env-file-if-exists=.env --import tsx scripts/prepare-enrollment-access.ts",
-    "acceptance:enrollment": "node --env-file-if-exists=.env --import tsx scripts/acceptance-enrollment.ts"
+    "acceptance:enrollment": "node --env-file-if-exists=.env --import tsx scripts/acceptance-enrollment.ts",
+    "preview:encounters": "tsx scripts/preview-encounters.ts",
+    "validate:encounters": "node --env-file-if-exists=.env --import tsx scripts/validate-encounters.ts"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",
