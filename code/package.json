@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "preview": "tsx scripts/provision-foundation.ts",
-    "apply": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --apply",
-    "plan": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --plan",
+    "preview": "tsx scripts/provision-care-delivery.ts --preview",
+    "apply": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --apply",
+    "plan": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --plan",
     "test": "node --import tsx --test tests/*.test.ts",
     "build": "npm run typecheck && npm test",
-    "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --verify",
-    "preview:care-delivery": "tsx scripts/preview-care-delivery.ts"
+    "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --verify",
+    "preview:care-delivery": "tsx scripts/preview-care-delivery.ts",
+    "policy": "tsx scripts/provision-care-delivery.ts --policy",
+    "validate:server": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --validate-only"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",

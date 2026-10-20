@@ -374,7 +374,8 @@
       "day": "mon",
       "start": "09:00",
       "end": "12:00",
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "durationMinutes": 30
     },
     {
       "key": "casey-tue",
@@ -385,7 +386,8 @@
       "day": "tue",
       "start": "09:00",
       "end": "12:00",
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "durationMinutes": 30
     },
     {
       "key": "casey-thu",
@@ -396,7 +398,8 @@
       "day": "thu",
       "start": "09:00",
       "end": "12:00",
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "durationMinutes": 30
     },
     {
       "key": "casey-fri",
@@ -407,7 +410,8 @@
       "day": "fri",
       "start": "09:00",
       "end": "12:00",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "durationMinutes": 30
     }
   ],
   "futureSharedServices": [

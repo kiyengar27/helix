@@ -60,3 +60,7 @@ Skip creation if files already exist. Fill credentials locally; never paste them
 ## Care-delivery and lifecycle preview
 
 `npm run preview:care-delivery -- 2026-10-20T00:00:00Z` (from code/) renders the proposed resource collection and operating/lifecycle manifests at an explicit UTC timestamp, including configuration impacts. It is local-only and is not consumed by foundation deployment. See [clinic lifecycle](clinic-lifecycle.md) before changing physical site status.
+
+## Reviewed care-delivery deployment
+
+The main npm/Make preview, plan, apply and verify commands now use the care-delivery compiler; see [the deployment contract](care-delivery-deployment.md). Apply requires reports/plan.json (or --plan-file), not automatic planning. Commit configuration before authenticated checks. The original provision-foundation.ts remains a legacy reference and is not called by the staging workflow.

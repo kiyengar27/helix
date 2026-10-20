@@ -1,0 +1,72 @@
+{
+  "resourceType": "AccessPolicy",
+  "name": "Helix Staging Foundation Provisioning",
+  "resource": [
+    {
+      "resourceType": "Organization",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "Organization?identifier=urn:helix:staging:foundation|helix-medical-group"
+    },
+    {
+      "resourceType": "Location",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "Location?identifier=urn:helix:staging:care-delivery|jurisdiction-ca,urn:helix:staging:care-delivery|jurisdiction-tx,urn:helix:staging:care-delivery|virtual-ca,urn:helix:staging:care-delivery|virtual-tx,urn:helix:staging:foundation|market-austin-metro,urn:helix:staging:foundation|market-dallas-north,urn:helix:staging:foundation|market-dallas-south,urn:helix:staging:foundation|market-north-bay-ca,urn:helix:staging:foundation|market-south-bay-ca"
+    },
+    {
+      "resourceType": "HealthcareService",
+      "interaction": [
+        "read",
+        "search",
+        "create",
+        "update"
+      ],
+      "criteria": "HealthcareService?identifier=urn:helix:staging:foundation|service-acute-care,urn:helix:staging:foundation|service-cardiology,urn:helix:staging:foundation|service-complex-care,urn:helix:staging:foundation|service-infusion-therapy,urn:helix:staging:foundation|service-primary-care,urn:helix:staging:foundation|service-rheumatology,urn:helix:staging:foundation|service-transitions-of-care,urn:helix:staging:foundation|service-urology"
+    },
+    {
+      "resourceType": "Location",
+      "interaction": [
+        "read",
+        "search",
+        "create",
+        "update"
+      ],
+      "criteria": "Location?identifier=urn:helix:staging:care-delivery|clinic-austin-metro,urn:helix:staging:care-delivery|clinic-dallas-north,urn:helix:staging:care-delivery|clinic-dallas-south,urn:helix:staging:care-delivery|clinic-north-bay-ca,urn:helix:staging:care-delivery|clinic-south-bay-ca"
+    },
+    {
+      "resourceType": "Practitioner",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "Practitioner?identifier=urn:helix:staging:care-delivery|practitioner-alex-morgan,urn:helix:staging:care-delivery|practitioner-avery-shah,urn:helix:staging:care-delivery|practitioner-casey-patel,urn:helix:staging:care-delivery|practitioner-jordan-lee,urn:helix:staging:care-delivery|practitioner-morgan-reed,urn:helix:staging:care-delivery|practitioner-quinn-rivera,urn:helix:staging:care-delivery|practitioner-riley-chen,urn:helix:staging:care-delivery|practitioner-taylor-brooks"
+    },
+    {
+      "resourceType": "PractitionerRole",
+      "interaction": [
+        "read",
+        "search",
+        "create"
+      ],
+      "criteria": "PractitionerRole?identifier=urn:helix:staging:care-delivery|role-alex-morgan-acute-care,urn:helix:staging:care-delivery|role-alex-morgan-primary-care,urn:helix:staging:care-delivery|role-avery-shah-rheumatology,urn:helix:staging:care-delivery|role-casey-patel-cardiology,urn:helix:staging:care-delivery|role-jordan-lee-primary-care,urn:helix:staging:care-delivery|role-morgan-reed-complex-care,urn:helix:staging:care-delivery|role-morgan-reed-transitions-of-care,urn:helix:staging:care-delivery|role-quinn-rivera-infusion-therapy,urn:helix:staging:care-delivery|role-riley-chen-urology,urn:helix:staging:care-delivery|role-taylor-brooks-infusion-therapy"
+    },
+    {
+      "resourceType": "Schedule",
+      "interaction": [
+        "read",
+        "search",
+        "create",
+        "update"
+      ],
+      "criteria": "Schedule?identifier=urn:helix:staging:care-delivery|schedule-casey-fri,urn:helix:staging:care-delivery|schedule-casey-mon,urn:helix:staging:care-delivery|schedule-casey-thu,urn:helix:staging:care-delivery|schedule-casey-tue"
+    }
+  ]
+}

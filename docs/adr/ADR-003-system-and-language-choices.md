@@ -123,3 +123,7 @@ No production workflow is included. Environment configuration, branch protection
 Make provides local build/test/preview and authenticated plan/verify/deploy entry points. Local build type-checks and runs two invariant tests; it emits no distributable. GitHub CI uses Node 24 and npm ci without Medplum credentials.
 
 Staging uses an identifier-scoped client policy, staging environment secrets, main-only deployment, owner review, disabled admin bypass and serialized manual runs. Run/job names distinguish PLAN without resource writes from DEPLOY with writes allowed. The owner reviews the plan before authorizing deployment. Both hosted plan and repeated apply/verify passed; links and limits are maintained in docs/deployment.md. These are staging controls, not a production-readiness claim.
+
+## Artifact-bound workflow update — October 20, 2026
+
+Staging DEPLOY now takes plan_run_id, verifies a successful main PLAN run for the same commit/workflow, downloads its immutable artifact through actions/download-artifact, and validates its content/digest against current state. The workflow token adds actions:read for this read-only artifact lookup; no repository-write permission is added. Only successful PLAN runs publish the named plan artifact. Explicit run/job labels and owner environment approval remain.
