@@ -23,7 +23,7 @@ export function compileEnrollmentFixtures(context:EnrollmentReferences):Enrollme
     const patient:Patient={
       resourceType:'Patient',identifier:[{system:patientIdentifierSystem,value:scenario.key}],active:true,
       name:[scenario.patientName],birthDate,meta:syntheticMeta(),
-      ...(scenario.birthSex?{extension:[birthSexExtension(scenario.birthSex)]}:{}),
+      extension:[birthSexExtension(scenario.birthSex)],
       address:[{state:scenario.residenceState,country:'US'}],managingOrganization:{reference:context.organization},
       ...(scenario.assignPcp?{generalPractitioner:[{reference:context.pcpRole}]}:{}),
     };

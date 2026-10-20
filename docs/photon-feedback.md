@@ -10,7 +10,7 @@ Progress slowly, one reviewed step at a time. No patient has been sent to Photon
 
 ## Current preparation
 
-Declare explicit synthetic birth-sex values for the two integration patients: Daniel M, Eleanor F. Store using the published FHIR R4 US Core birthsex extension, not Patient.gender. Keep identities, unrelated extensions, demographics and encounters. No phone number is added at this step. Expected reviewed enrollment plan: two extension updates, nine retained resources; no policy expansion, creates or deletes. Code/validation success does not mean deployed.
+Require explicit synthetic birth-sex values for every patient fixture: Daniel M, Eleanor F, Oliver M, Maya F, Ethan M and Sofia F. Missing, blank, unsupported or duplicate values fail validation; no value is inferred from names/gender. Store using the published FHIR R4 US Core birthsex extension, not Patient.gender. Keep identities, unrelated extensions, demographics and encounters. No phone number is added at this step. Expected reviewed enrollment plan: six extension updates, five retained resources; no policy expansion, creates or deletes. Code/validation success does not mean deployed.
 
 ## SMS findings and questions
 
@@ -25,3 +25,5 @@ Ask Photon: Is there a supported no-delivery test number or sandbox inbox, what 
 - [Photon self-serve sandbox SMS example](https://photonhealth.com/blog/introducing-photon-self-serve)
 - [Mailosaur dedicated test numbers](https://mailosaur.com/docs/sms-testing/phone-numbers)
 - [US Core 6.1 birthsex extension, FHIR R4](https://hl7.org/fhir/us/core/STU6.1/StructureDefinition-us-core-birthsex.html). Published standard extension, not a custom Helix field or a declaration of full US Core conformance.
+
+The earlier two-patient PLAN 39488477407 was cancelled before execution after the mandatory-field decision. Use a new plan after merge. This requirement is enforced by Helix fixture compilation and the explicit patient-to-integration mapping validator; it does not change the base FHIR Patient schema or enforce manual edits by arbitrary Medplum clients. UNK is an explicit HL7 value, not a default; its handling by the current Photon schema remains to be verified before sync.

@@ -115,3 +115,7 @@ PR #21 merged at 2b83f9165e46d369cfa8bde7df471065a0785a0f. Owner configured the 
 ## Photon demographic preparation — issue #10
 
 The follow-up branch declares Daniel M and Eleanor F as explicit synthetic birth-sex values using the standard US Core birthsex extension. Patient.gender is not inferred or filled. The enrollment-profile plan permits only this owned extension, names and synthetic tags; unrelated extensions remain intact. Expected first plan: two updates, nine retained, no creates/deletes. Existing resource-level policy does not change. Phone selection and Photon patient creation are later reviewed steps. See photon-feedback.md; no demographic changes have been applied by preparation/validation.
+
+### Required birth sex
+
+All six synthetic Patient definitions must declare birthSex explicitly. Missing/blank/invalid values block compilation. The integration mapping boundary requires exactly one standard birthsex extension and never substitutes Patient.gender or a name-derived value. Explicit fixture assignments: Eleanor F, Oliver M, Maya F, Ethan M, Sofia F, Daniel M. UNK is allowed explicitly by the selected HL7 extension, but is not silently assigned and is not assumed compatible with Photon. This is Helix configuration/mapping validation, not a change to the FHIR base schema or a global Medplum UI constraint. Expected initial migration: six extension updates/five retains; reviewed plan and deployment still required.
