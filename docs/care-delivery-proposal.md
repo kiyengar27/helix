@@ -22,7 +22,7 @@ One synthetic clinic in each market; virtual delivery locations for CA and TX. T
 | Infusion Therapy | None | North Bay CA and Austin Metro |
 | Transitions / Complex Care | Separate operational programs in each of the five markets | Not initially configured |
 
-This is catalog coverage, not a claim of appointment availability or adequate staffing. Traveling to an infusion site does not change the patient's home market. Referral arrangements for patients outside the site's initial coverage require a later explicit decision.
+This is catalog coverage, not a claim of appointment availability or adequate staffing. Traveling to an infusion site does not change the patient's Helix practice affiliation; no patient home-market field is required. Referral arrangements for patients outside the site's initial coverage require a later explicit decision.
 
 ## Synthetic roster
 
@@ -71,7 +71,7 @@ Rotation templates are included for design review, but compiling them to Medplum
 
 `npm run preview:care-delivery` from code/ renders the combined resource collection and application manifests without credentials or API calls. `src/care-delivery.ts` supplies a delivery-scope checker over those inputs. It requires market participation, service/mode coverage, location, and explicit visit-jurisdiction eligibility; preferred clinic and nationwide target cannot override a denial.
 
-This checker is an executable design scenario, not verified credential evaluation, access control, or appointment availability. Its market input is the market delivering the service, not an automatic substitution for the patient's home market. Travel/home-market routing needs a separate policy. Production use also requires credential validity, exceptions and live session/booking checks. JSON graph tests and typed field projections do not replace full FHIR validation.
+This checker is an executable design scenario, not verified credential evaluation, access control, or appointment availability. Its market input is the market delivering the service, not a patient-level market assignment. Travel routing uses actual visit jurisdiction and service scope. Production use also requires credential validity, exceptions and live session/booking checks. JSON graph tests and typed field projections do not replace full FHIR validation.
 
 The four sample recurring sessions rotate Casey Patel between North Bay clinic (Monday), South Bay clinic (Tuesday), CA virtual care (Thursday) and TX virtual care (Friday), 09:00–12:00 in each session's explicit IANA timezone. These are synthetic templates, not appointments or asserted clinician working hours. They have no effective dates and are not deployed.
 

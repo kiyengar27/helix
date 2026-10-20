@@ -11,7 +11,7 @@ Read AGENTS.md, README.md, this file and relevant PRD/ADRs. Inspect current bran
 - Repository: https://github.com/kiyengar27/helix. Owner checkout: ~/development/helix; implementation under code/.
 - Medplum project Helix is synthetic staging; target is pinned in code/config/staging.json. No production environment, patients or provider logins are provisioned.
 - FHIR R4 JSON + application manifests, TypeScript compiler/deployment, Node 24, npm lockfile and Make checks.
-- One patient identity, optional PCP, one home market and separate visit jurisdiction remain agreed future concepts, not implemented patient workflows.
+- One patient identity, optional PCP and separate visit jurisdiction remain agreed future concepts. Patient home-market ownership/history is deferred to #19.
 
 ## Completed milestones
 
@@ -49,7 +49,7 @@ Controlled updates only: service location/coverage, clinic status and Schedule.a
 
 ## Next milestone
 
-[Issue #8](https://github.com/kiyengar27/helix/issues/8): patient enrollment, market history and access. Start with a concise proposed enrollment representation and access matrix for owner review. Do not add patient fixtures or change permissions before that review. Early Photon sandbox prerequisites can be investigated under #10 without starting integration implementation.
+[Issue #8](https://github.com/kiyengar27/helix/issues/8): patient enrollment, caregivers/guardians and access. Start with a concise proposed enrollment representation and access matrix for owner review. Do not add patient fixtures or change permissions before that review. Early Photon sandbox prerequisites can be investigated under #10 without starting integration implementation.
 
 Then #9 minimal headless encounter/prescribing intent; #10 Photon/pharmacy sandbox; #11 broader care workflows; #12 application experience. Stages through #11 remain headless. #14 physician offboarding is backlog, not a blocker.
 
@@ -60,3 +60,13 @@ Concise communication; no autonomous browser navigation. One sizeable GitHub iss
 ## Resume prompt
 
 > Read AGENTS.md and docs/STATUS.md. Check live Git/CI state. Continue issue #8 with a concise design plan before implementation. Do not navigate the browser, print credentials or apply changes without reviewed plans and owner approval.
+
+## Active stage 2 work
+
+Issue #8 on feat/8-enrollment-contract, draft PR #18: standard practice affiliation/optional PCP and typed RelatedPerson/proxy-review helpers. Scope includes older-adult caregiver, under-12 parent, ages 12/13 and 14–17, with no automatic access or capacity assumption. Patient home-market extension/history was removed before deployment and is deferred to issue #19. Do not reintroduce a custom patient market field during enrollment work.
+
+Local anonymous contract tests only; no patient fixtures, writes, profiles, policies or identities created. Existing provisioning client remains patient-denied. Next gate: review the reduced enrollment and caregiver access matrix, then implement separate enrollment identity/policies and synthetic headless scenarios.
+
+## Stage 2 fixture preparation
+
+Draft PR #18 now prepares six synthetic Patients and five RelatedPersons, with a separate generated enrollment policy and pinned deployed group/PCP references. All payloads/policy passed server validation without saving resources. Separate plan/apply/verify commands and gated enrollment.yml use only new MEDPLUM_ENROLLMENT credentials; ENROLLMENT_ENABLED remains unset. Foundation permissions unchanged. Next checkpoint: owner reviews PR, then creates the new scoped enrollment policy/client (instructions in docs/patient-enrollment.md). No Patient/RelatedPerson records, staff logins or proxy grants exist yet. Demographic updates and real authorization acceptance tests remain open under #8.
