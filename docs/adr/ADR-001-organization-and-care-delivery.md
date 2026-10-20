@@ -105,3 +105,11 @@ Keep inactive clinic references and expose configuration impacts before changes.
 ## Stage 1 implementation evidence — October 20, 2026
 
 The reviewed organization/location/service/provider structure is deployed in staging: 45 managed resources, including four concrete recurring rotation Schedules. Authoritative PLAN and DEPLOY runs are linked in care-delivery-deployment.md; independent verification passed. This accepts the stage 1 structural slice, not unresolved patient history, legal structure, program enrollment, clinical access or booking behavior. Keep this ADR's broader proposal status until those decisions are resolved.
+
+## Stage 2 enrollment and proxy contract — proposed October 20, 2026
+
+Propose a single Patient home-market-history complex extension with market references and half-open effectiveFrom/effectiveUntil instants, preserving one patient identity through moves. Define and validate its profile before deployment. Keep managingOrganization for custody and generalPractitioner optional; neither substitutes for enrollment history or clinical authorization.
+
+Use RelatedPerson for adult caregivers and parent/guardian relationships. Separate relationship data from verified identity/authority, consent evidence and enforced access. Product age bands under-12, 12–13, 14–17 and adult identify review scenarios; they do not define legal consent thresholds or grant access. Older age does not infer incapacity. No proxy access is enabled by the initial assessment helper. See ../patient-enrollment.md for the proposed matrix and review gate.
+
+Compared with EpisodeOfCare for every market change, the extension keeps administrative home-market assignment independent of clinical episodes. Compared with Patient.address, it captures operational assignment and transfer history without confusing residence with service geography. If native server search/reporting or multi-practice enrollment requirements dominate, revisit an independently identifiable enrollment resource before freezing this extension contract.

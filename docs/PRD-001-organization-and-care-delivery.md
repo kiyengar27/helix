@@ -99,3 +99,7 @@ The detailed declarative operating model and current fixture limitations are in 
 ## Clinic lifecycle requirements
 
 Clinic setup must support adding sites and planned, active, suspended and closed states with effective dates and reasons. Nonactive sites cannot accept new routed care. Preserve historical identity and references; inspect future appointments/open work and produce an impact plan before live closure. Configuration removal must not silently delete or offboard a clinic. Details and current deployment limits are in clinic-lifecycle.md (issue #15). Physician offboarding remains deferred in issue #14.
+
+## Stage 2 caregiver and guardian scope
+
+Add explicit adult-caregiver, parent of under-12 child, and parent/guardian of a 14–17-year-old scenarios. Handle ages 12 and 13 explicitly as a conservative review band. Relationships must not automatically create portal permission or imply adult incapacity. Support authority/identity review, scoped authorization, expiration/revocation and age-boundary reassessment in the eventual access service. See patient-enrollment.md for the initial contract and approval gate.

@@ -60,3 +60,7 @@ Concise communication; no autonomous browser navigation. One sizeable GitHub iss
 ## Resume prompt
 
 > Read AGENTS.md and docs/STATUS.md. Check live Git/CI state. Continue issue #8 with a concise design plan before implementation. Do not navigate the browser, print credentials or apply changes without reviewed plans and owner approval.
+
+## Active stage 2 work
+
+Issue #8 started on feat/8-enrollment-contract. Proposed contract in docs/patient-enrollment.md and code/config/enrollment/contract.json; pure typed market-history/transfer and RelatedPerson/proxy-review functions in src/enrollment.ts. Scope includes older-adult caregiver, under-12 parent, ages 12/13 and 14–17, with no automatic access or capacity assumption. Local contract tests only; no patient fixtures, live writes, profile registration, access policies or identities created. Existing provisioning client remains patient-denied. Next gate: owner reviews market-history representation and access matrix, then implement profile, separate enrollment identity/policies and synthetic headless scenarios.
