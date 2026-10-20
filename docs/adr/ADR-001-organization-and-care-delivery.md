@@ -101,3 +101,7 @@ Nationwide is an onboarding target, not a licensed-jurisdiction shortcut. CA/TX 
 Use an application lifecycle manifest for effective-dated planned/active/suspended/closed clinic history. Project to FHIR R4 Location.status: inactive/active/suspended/inactive respectively; retain the richer business history in configuration rather than inventing Location status codes. Closed is terminal initially; temporary closures use suspended. Runtime scope checks must consult effective history for new care. Static Location.status alone will not apply future events; no background synchronization is implemented yet.
 
 Keep inactive clinic references and expose configuration impacts before changes. Do not auto-delete coverage, appointments or historical resources. Removal from the manifest is rejected. A live controlled update requires a reviewed dependency audit and owner approval; the local impact report does not query live bookings. See ../clinic-lifecycle.md.
+
+## Stage 1 implementation evidence — October 20, 2026
+
+The reviewed organization/location/service/provider structure is deployed in staging: 45 managed resources, including four concrete recurring rotation Schedules. Authoritative PLAN and DEPLOY runs are linked in care-delivery-deployment.md; independent verification passed. This accepts the stage 1 structural slice, not unresolved patient history, legal structure, program enrollment, clinical access or booking behavior. Keep this ADR's broader proposal status until those decisions are resolved.

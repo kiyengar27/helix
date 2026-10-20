@@ -1,6 +1,6 @@
 # Helix
 
-Helix is a synthetic-data prototype of a multispecialty medical group on Medplum. It models one practice, five operational markets, and eight clinical offerings using FHIR R4.
+Helix is a synthetic-data prototype of a multispecialty medical group on Medplum. It models one practice, five operational markets, eight clinical offerings, synthetic clinicians and recurring rotations using FHIR R4.
 
 The repository is public. It contains no patient data or deployment credentials. Production deployment is not configured.
 
@@ -40,8 +40,8 @@ These steps require no Medplum credentials and make no Medplum API calls. npm do
 
 ## Deployment semantics
 
-JSON describes resources; TypeScript deploys through the Medplum SDK. The tool creates missing resources by stable identifiers, retains existing matches, and blocks on differences in managed fields. It does not update, delete, or automatically roll back resources. See [ADR-002](docs/adr/ADR-002-declarative-json-configuration.md).
+JSON describes resources; TypeScript compiles and deploys them through the Medplum SDK. Stable identifiers prevent duplicate creation. Only declared coverage/status fields support version-checked updates; unmanaged drift blocks writes. No automatic deletion or rollback exists. Apply requires a reviewed same-commit plan. See [ADR-002](docs/adr/ADR-002-declarative-json-configuration.md) and the [care-delivery deployment runbook](docs/care-delivery-deployment.md).
 
-The initial foundation is deployed and verified in the owner's Helix staging project. Owner-approved hosted plan and deployment are enabled and verified with restricted environment credentials. Other developers must use their own synthetic project and update its target configuration intentionally.
+**Staging is deployed and verified:** 45 managed resources, including five clinics, two virtual sites, eight synthetic clinicians, ten roles and four rotation Schedules. The owner-approved pipeline has executed the expanded deployment successfully. Patient enrollment and clinical access are next under [issue #8](https://github.com/kiyengar27/helix/issues/8). Other developers need their own synthetic project and intentionally updated target configuration.
 
 Public visibility permits inspection and forks; it does not grant deployment access. No software license has been selected yet.
