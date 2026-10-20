@@ -1,6 +1,6 @@
 # Patient enrollment and related people
 
-Status: Six synthetic Patients and five RelatedPersons are deployed in staging under issue #8. No patient/proxy logins or access grants exist. A display-name update is prepared for review; it has not been applied.
+Status: Issue #8 is closed after live synthetic acceptance. Six Patients and five RelatedPersons, including realistic names and synthetic tags, are deployed and independently verified. No patient/proxy logins or durable access grants exist.
 
 ## Initial design
 
@@ -107,3 +107,7 @@ Create each policy from its JSON, then create a non-admin ClientApplication assi
 3. Run `npm run verify:enrollment` independently and record results on #8. Repeated planning resolves the same IDs and never creates resources. Local tests cover the minor/adult review boundaries and other grant checks.
 
 An interrupted apply may leave an intentional test change; there is no automatic rollback. Inspect the two synthetic resources and prepare a reviewed restoration using the authoritative fixture JSON and current versions before retrying. Snapshots and errors must not expose raw demographics. Do not close #8 merely because local tests pass: the owner must complete these live acceptance gates. Distinguish these scoped synthetic machine identities from future authenticated human staff/proxy accounts.
+
+### Completed acceptance evidence — October 20, 2026
+
+PR #21 merged at 2b83f9165e46d369cfa8bde7df471065a0785a0f. Owner configured the two scoped clients and approved the five-write apply after read-only plan review. All 41 tests passed; live apply confirmed read isolation, denied clinical writes, rejected stale edits, proxy lifecycle behavior and restoration of original business fields. Fresh independent verification passed all 11 enrollment and 45 care-delivery records. Evidence is recorded in closed issue #8. Age-band boundaries were tested locally; no human login or durable grant registry was deployed. Replan before another acceptance run because successful writes advanced versions.
