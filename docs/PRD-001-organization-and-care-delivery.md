@@ -84,3 +84,14 @@ Initial staging demonstrates the six journeys above; no duplicate patient/provid
 All setup must be reproducible from declarative files and deployment code, including reference linking and permission definitions. Credentials remain external. Manual actions are limited to unavoidable account/bootstrap, secret entry, and owner approvals; they must be documented rather than become undocumented setup dependencies.
 
 The proposal is not accepted coverage or a deployment authorization. Next gate is owner review, then a controlled-update design for existing service fields and a resource-level deployment/permission plan.
+
+## Market participation and delivery requirements — October 20, 2026
+
+- Provider participation is market-wide and may cover multiple markets; clinic preference is optional. Schedules govern physical/virtual sessions and rotations.
+- Most clinicians should support virtual delivery, with an eventual all-50-states target and explicit state-limited exceptions. Actual eligibility remains service/jurisdiction-specific; no blanket target grants authority.
+- Specialists can serve both modes and rotate between clinics, including North Bay CA and South Bay CA.
+- Add clinics within an existing market without duplicating practitioners or patients. Infusion remains physical-only.
+- Transitions/complex care carry separate market responsibility even when personnel and service definitions are shared.
+- Future dietitian/behavioral-health resources may span markets; a mental-health clinic partnership is external referral coordination with explicitly scoped sharing.
+
+The detailed declarative operating model and current fixture limitations are in care-delivery-proposal.md.

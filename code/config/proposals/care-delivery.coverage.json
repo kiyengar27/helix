@@ -152,6 +152,27 @@
           "markets": [
             "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
           ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+          "markets": [
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+          "markets": [
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+          "markets": [
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
         }
       ]
     },
@@ -189,6 +210,27 @@
           "markets": [
             "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
           ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+          "markets": [
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+          "markets": [
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+          "markets": [
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
         }
       ]
     },
@@ -225,6 +267,27 @@
           "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
           "markets": [
             "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+          "markets": [
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+          "markets": [
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+          "markets": [
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
           ]
         }
       ]

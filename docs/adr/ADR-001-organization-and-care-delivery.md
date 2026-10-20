@@ -89,3 +89,9 @@ Use HealthcareService.location for sites and coverageArea for geographic coverag
 Virtual Location.mode is instance; delivery mode is not an invented FHIR enum. Text-only physical types and specialty descriptions are provisional and require profile/terminology review. Synthetic eligibility is scenario data, not evidence of actual licensing or prescribing authority.
 
 The proposal references existing stable fullUrls and must be compiled with the foundation or resolved against verified IDs before submission. Existing service resources require controlled field updates, which create-only provisioning does not support. Keep this material outside deployed configuration until the update/permission plan is accepted. ADR-002 governs reconciliation changes.
+
+## Market-wide participation, clinic preferences and rotation
+
+The operating-model manifest records market participation independently of PractitionerRole service/jurisdiction eligibility. Preferred clinics are nonexclusive hints; planned sessions name their role, site, market, mode and timezone. Do not mix state areas and clinic sites in PractitionerRole.location for this convention. Compile accepted rotation templates to the supported Medplum Schedule/SchedulingParameters model before calling scheduling operations; no precreated open Slots.
+
+Nationwide is an onboarding target, not a licensed-jurisdiction shortcut. CA/TX fixtures remain the only explicitly eligible states. Market-specific transitions and complex-care assignments reuse service definitions but preserve separate responsibility; future cross-market offerings and external mental-health referrals must not collapse these boundaries or confer data access. No extra FHIR extension or implicit authorization is introduced by the application manifests.

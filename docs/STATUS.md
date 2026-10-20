@@ -30,7 +30,7 @@ Issue #3 is closed. Documentation closeout PR #7 is merged, its branch was remov
 
 ## Current work and next gate
 
-Issue #6 on feat/6-care-delivery-design: proposed 27 additional resources and coverage matrix under code/config/proposals/, with docs/care-delivery-proposal.md and PRD/ADR-001 updates. These are review drafts, not consumed by deployment. No Medplum resources or permissions changed.
+Issue #6 on feat/6-care-delivery-design: proposed 27 additional resources, coverage matrix and operating-model manifest under code/config/proposals/, with docs/care-delivery-proposal.md and PRD/ADR-001 updates. These are review drafts, not consumed by deployment. No Medplum resources or permissions changed.
 
 Next: owner reviews roster and coverage, then implement validated declarative compilation and controlled updates for existing HealthcareService location/coverage fields. Present the resource and permission plan before apply. Do not route proposal JSON through the current create-only deployer.
 
@@ -56,3 +56,7 @@ Concise communication. No autonomous browser navigation. One sizeable issue per 
 ## Resume prompt
 
 > Read AGENTS.md and docs/STATUS.md. Inspect repository and CI state. Continue the next incomplete milestone from its issue, starting with a concise plan. Do not navigate the browser or print credentials. Show the plan before any deployment.
+
+## Current proposal revision
+
+PR #13 now includes whole-market provider participation, preferred clinics, role-specific modes/jurisdictions, nationwide virtual targets without blanket eligibility, ten market-program responsibility entries, and sample Bay Area rotation templates. Specialists support clinic delivery in all five markets; infusion remains physical-only at the two initial sites. Disabled future shared offerings and an external mental-health referral partnership are explicitly recorded. Local delivery-scope logic and preview are available; this is not scheduling or authorization enforcement. Run make build (nine tests) and npm run preview:care-delivery from code/. No deployment or permission changes. Next gate remains review before compiler/controlled-update implementation and server-side checks.

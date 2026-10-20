@@ -10,7 +10,8 @@
     "plan": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --plan",
     "test": "node --import tsx --test tests/*.test.ts",
     "build": "npm run typecheck && npm test",
-    "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --verify"
+    "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-foundation.ts --verify",
+    "preview:care-delivery": "tsx scripts/preview-care-delivery.ts"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",

@@ -1,0 +1,435 @@
+{
+  "status": "proposed",
+  "schemaVersion": 1,
+  "description": "Helix application configuration, not a FHIR payload. Synthetic participation and rotation scenarios; target scope never grants eligibility.",
+  "markets": [
+    {
+      "market": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "jurisdiction": "CA",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "market": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+      "jurisdiction": "CA",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "market": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+      "jurisdiction": "TX",
+      "timezone": "America/Chicago"
+    },
+    {
+      "market": "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+      "jurisdiction": "TX",
+      "timezone": "America/Chicago"
+    },
+    {
+      "market": "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb",
+      "jurisdiction": "TX",
+      "timezone": "America/Chicago"
+    }
+  ],
+  "providers": [
+    {
+      "practitioner": "urn:uuid:616a1313-8de5-56f5-88ab-3a937d99ad23",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:bbf9d04e-12d6-594c-9643-1777b7151f1f",
+          "service": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        },
+        {
+          "role": "urn:uuid:f6f6502c-3ff3-5ead-9cfe-329a7dbc83e3",
+          "service": "urn:uuid:7c2324ea-ed1d-4202-913d-7ec4b2a68633",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "all-50-states",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:0c3bea97-52dc-57eb-b6f6-4540269127a9",
+      "markets": [
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:6fc3a54c-43ad-514c-8b84-aba4ffa16632",
+          "service": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "current-jurisdictions",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:d8ea855a-366e-59e7-8deb-d6ae0ba80720",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+        "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+          "service": "urn:uuid:a5ce8a4b-0de6-4150-9a89-5162a9fa04e7",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "all-50-states",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:a61b13e3-bc77-526d-9b30-68dafc1405da",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:f32810d0-9fe6-51ee-bf69-0fc2f19c39bc",
+          "service": "urn:uuid:06daf608-0bb8-442b-a47c-c13aa7e82f9f",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "all-50-states",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:bb372c08-7f6e-5ea7-8147-cdae427eb21a",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:a7480a2c-b614-52f2-86f4-8b7f5ff78da5",
+          "service": "urn:uuid:fe6fb9f1-6600-4abd-a0d7-3feb6d46731d",
+          "modes": [
+            "virtual",
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "all-50-states",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:4f8aecf2-6932-5465-838b-9e14d743df4a",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+      ],
+      "preferredClinics": [
+        "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:89a98fca-e0cc-5837-ae20-3aa2797a1d69",
+          "service": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326",
+          "modes": [
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "CA"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "current-jurisdictions",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:a8af8f70-93ba-55b9-8c9e-7b8d8869070a",
+      "markets": [
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [
+        "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6"
+      ],
+      "roles": [
+        {
+          "role": "urn:uuid:d9680f80-6a7e-53e0-a6a6-e62b25e72e48",
+          "service": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326",
+          "modes": [
+            "in-clinic"
+          ],
+          "eligibleJurisdictions": [
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "current-jurisdictions",
+      "credentialEvidence": "synthetic-scenario-only"
+    },
+    {
+      "practitioner": "urn:uuid:777068a6-0ae3-56d0-a0ba-fca3603b6a8b",
+      "markets": [
+        "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+        "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+        "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+        "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+        "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+      ],
+      "preferredClinics": [],
+      "roles": [
+        {
+          "role": "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311",
+          "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+          "modes": [
+            "virtual"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        },
+        {
+          "role": "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95",
+          "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+          "modes": [
+            "virtual"
+          ],
+          "eligibleJurisdictions": [
+            "CA",
+            "TX"
+          ]
+        }
+      ],
+      "virtualEligibilityTarget": "all-50-states",
+      "credentialEvidence": "synthetic-scenario-only"
+    }
+  ],
+  "marketPrograms": [
+    {
+      "key": "transitions-of-care-north-bay-ca",
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "market": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "staffRoles": [
+        "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "transitions-of-care-south-bay-ca",
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "market": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+      "staffRoles": [
+        "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "transitions-of-care-austin-metro",
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "market": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+      "staffRoles": [
+        "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "transitions-of-care-dallas-north",
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "market": "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+      "staffRoles": [
+        "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "transitions-of-care-dallas-south",
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "market": "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb",
+      "staffRoles": [
+        "urn:uuid:091b668e-ce7c-5d5e-a94e-b97089df4311"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "complex-care-north-bay-ca",
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "market": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "staffRoles": [
+        "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "complex-care-south-bay-ca",
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "market": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+      "staffRoles": [
+        "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "complex-care-austin-metro",
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "market": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+      "staffRoles": [
+        "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "complex-care-dallas-north",
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "market": "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+      "staffRoles": [
+        "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95"
+      ],
+      "scope": "market"
+    },
+    {
+      "key": "complex-care-dallas-south",
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "market": "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb",
+      "staffRoles": [
+        "urn:uuid:143cf4de-7251-5d26-8d1d-068b7dd0cf95"
+      ],
+      "scope": "market"
+    }
+  ],
+  "rotationTemplates": [
+    {
+      "key": "casey-mon",
+      "role": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+      "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+      "mode": "in-clinic",
+      "market": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "day": "mon",
+      "start": "09:00",
+      "end": "12:00",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "key": "casey-tue",
+      "role": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+      "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+      "mode": "in-clinic",
+      "market": "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d",
+      "day": "tue",
+      "start": "09:00",
+      "end": "12:00",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "key": "casey-thu",
+      "role": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+      "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+      "mode": "virtual",
+      "market": "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+      "day": "thu",
+      "start": "09:00",
+      "end": "12:00",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "key": "casey-fri",
+      "role": "urn:uuid:b58e7a60-3101-523b-9629-53c4c2ccb340",
+      "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+      "mode": "virtual",
+      "market": "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+      "day": "fri",
+      "start": "09:00",
+      "end": "12:00",
+      "timezone": "America/Chicago"
+    }
+  ],
+  "futureSharedServices": [
+    {
+      "name": "Dietitian",
+      "scope": "cross-market",
+      "jurisdictionTarget": "all-50-states",
+      "enabled": false
+    },
+    {
+      "name": "Behavioral Health",
+      "scope": "cross-market",
+      "jurisdictionTarget": "all-50-states",
+      "enabled": false
+    }
+  ],
+  "futurePartners": [
+    {
+      "key": "mental-health-referral-partner",
+      "relationship": "external-referral",
+      "enabled": false,
+      "sharing": "no-access-granted"
+    }
+  ]
+}

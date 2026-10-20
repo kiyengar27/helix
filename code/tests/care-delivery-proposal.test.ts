@@ -47,3 +47,50 @@ test('service-specific roles use jurisdiction areas rather than clinic sites', (
     for (const location of resource.location) assert.ok(resources.get(location.reference)?.identifier[0].value.startsWith('jurisdiction-'));
   }
 });
+
+// Ground-rule scenarios: market participation, licensure, preferences and schedules stay distinct.
+import operations from '../config/proposals/care-delivery.operations.json' with { type: 'json' };
+import { isDeliveryEligible, previewCareDelivery } from '../src/care-delivery.js';
+const reference = (key: string): string => {
+  const entry = [...foundation.entry, ...proposal.entry].find(e => e.resource.identifier[0].value === key);
+  assert.ok(entry, key);
+  return entry.fullUrl;
+};
+const casey = reference('role-casey-patel-cardiology');
+
+test('one specialist can rotate between both California markets and serve non-preferred clinics', () => {
+  for (const market of ['north-bay-ca', 'south-bay-ca', 'dallas-north']) {
+    assert.equal(isDeliveryEligible({role: casey, market: reference(`market-${market}`), visitJurisdiction: market.includes('bay') ? 'CA' : 'TX', location: reference(`clinic-${market}`), mode: 'in-clinic'}), true);
+  }
+  const clinics = operations.providers.find(p => p.roles.some(r => r.role === casey))!.preferredClinics;
+  assert.ok(!clinics.includes(reference('clinic-dallas-north')), 'Scenario must exercise a non-preferred clinic');
+});
+
+test('nationwide target is not permission; single-state and wrong-visit-state requests fail', () => {
+  assert.equal(isDeliveryEligible({role: casey, market: reference('market-north-bay-ca'), visitJurisdiction:'NY', location:reference('virtual-ca'), mode:'virtual'}), false);
+  assert.equal(isDeliveryEligible({role:reference('role-jordan-lee-primary-care'), market:reference('market-north-bay-ca'), visitJurisdiction:'CA',location:reference('virtual-ca'),mode:'virtual'}), false);
+  assert.equal(isDeliveryEligible({role:casey,market:reference('market-north-bay-ca'),visitJurisdiction:'TX',location:reference('clinic-north-bay-ca'),mode:'in-clinic'}), false);
+});
+
+test('infusion is physical and program responsibility is explicit for each market', () => {
+  assert.equal(isDeliveryEligible({role:reference('role-quinn-rivera-infusion-therapy'),market:reference('market-north-bay-ca'),visitJurisdiction:'CA',location:reference('virtual-ca'),mode:'virtual'}), false);
+  assert.equal(operations.marketPrograms.length, 10);
+  for (const program of operations.marketPrograms) {
+    assert.ok(resources.get(program.market)?.identifier[0].value.startsWith('market-'));
+    assert.equal(program.scope, 'market');
+    for (const role of program.staffRoles) assert.equal(resources.get(role)?.resourceType, 'PractitionerRole');
+  }
+  assert.ok(operations.futureSharedServices.every(s => !s.enabled));
+  assert.ok(operations.futurePartners.every(s => !s.enabled && s.sharing === 'no-access-granted'));
+});
+
+test('rotation templates are eligible and span both Bay markets without conflating clinic preference', () => {
+  for (const session of operations.rotationTemplates) {
+    assert.equal(isDeliveryEligible({role:session.role,market:session.market,visitJurisdiction:operations.markets.find(m=>m.market===session.market)!.jurisdiction,location:session.location,mode:session.mode as 'virtual'|'in-clinic'}), true);
+    assert.ok(session.start < session.end);
+    assert.doesNotThrow(() => new Intl.DateTimeFormat('en-US', {timeZone:session.timezone}));
+  }
+  assert.ok(operations.rotationTemplates.some(s=>s.market===reference('market-north-bay-ca')));
+  assert.ok(operations.rotationTemplates.some(s=>s.market===reference('market-south-bay-ca')));
+  assert.equal(previewCareDelivery().resources.type, 'collection');
+});
