@@ -1,4 +1,4 @@
-# Patient enrollment, market history and related people
+# Patient enrollment and related people
 
 Status: Proposed contract for review, issue #8. No patient fixtures, relationships, logins, permissions or live resources are deployed by this change.
 
@@ -6,18 +6,13 @@ Status: Proposed contract for review, issue #8. No patient fixtures, relationshi
 
 - One Patient record belongs to Helix through managingOrganization as record custodian. This does not automatically grant access.
 - Optional generalPractitioner references a PCP independently of practice affiliation and individual visits.
-- Intake may be unassigned. Once assigned, the patient has at most one home market at a time; a permanent move closes the old assignment and starts the next without creating another Patient.
-- Visit jurisdiction is supplied for each visit and does not rewrite home-market history. A trip is not a market transfer.
+- No patient-level home-market field or assignment history is included in this stage.
+- Residence uses the standard address; visits identify their actual location/jurisdiction. Market-specific care teams and program participation carry their own operational context without assigning an exclusive market to the Patient.
+- Patient relocation preserves the existing Helix record. No custom market extension or history profile is required for this version.
 
-## Market history representation
+## Deferred market ownership
 
-Propose a single complex Patient extension at `urn:helix:extension:home-market-history`, with repeating assignment subextensions. Each assignment contains market (valueReference to Location), effectiveFrom (valueInstant) and optional effectiveUntil (valueInstant).
-
-Intervals are explicitly start-inclusive/end-exclusive. These are custom instant elements, not a FHIR Period with altered end semantics. A move uses the same instant to end one assignment and start another. Empty history supports unassigned intake; gaps represent unassigned periods. Reject overlap, invalid timestamps, unknown markets and retroactive overwrites. Historical correction needs a separate reviewed operation.
-
-This URN is a proposed canonical identity, not a registered Medplum feature. Define/validate the extension's StructureDefinition/profile before deployment. A dedicated search parameter or custom compartment is not assumed. Do not use this extension alone as an access-control filter.
-
-`src/enrollment.ts` implements pure typed transforms: validate/read history, assign home market, evaluate home market at time, and preserve patient identity/custodian/PCP/unrelated extensions. Persistence must use a controlled service with authorization, version checking, server validation, safe retries and audit. No API endpoint is enabled here.
+[Issue #19](https://github.com/kiyengar27/helix/issues/19) tracks evaluating explicit home-market ownership/history if a concrete workflow requires it. The earlier extension and canonical URN proposal has been removed from active code and design before deployment. No replacement custom field or FHIR representation is selected.
 
 ## Caregiver and parent model
 
@@ -51,15 +46,15 @@ This matrix needs owner approval and server-side read/search/write tests before 
 
 ## Fast execution sequence
 
-1. Review this contract, age-band handling and minimal matrix.
-2. Define the extension profile, separate enrollment identity/policy, synthetic case catalog and private operational outputs. All setup stays declarative/code-driven.
-3. Implement authorized API/headless persistence and tests: enrollment retry, CA→TX move, optional PCP, older-adult caregiver, under-12 parent, 12/13 review, 14–17 adolescent and birthday/revocation behavior.
+1. Review this contract, age-band handling and minimal matrix without a patient market field.
+2. Define separate enrollment identity/policy, synthetic case catalog and private operational outputs. All setup stays declarative/code-driven; no market-history extension/profile.
+3. Implement authorized API/headless persistence and tests: enrollment retry, address changes without identity duplication, optional PCP, older-adult caregiver, under-12 parent, 12/13 review, 14–17 adolescent and birthday/revocation behavior.
 4. Validate with Medplum, show the resource/permission plan, and use separate owner-approved staging plan/deploy runs.
 
 Tests in this PR are anonymous local contract tests only, not actual patient scenarios or evidence of enforced clinical authorization. Issue #8 stays open through live acceptance checks. No Photon or application UI is included.
 
 ## Official implementation references
 
-- Local Medplum FHIR Patient/RelatedPerson types and extension definitions.
+- Local Medplum FHIR Patient/RelatedPerson types.
 - [Medplum profiles](https://www.medplum.com/docs/fhir-datastore/profiles).
 - [Medplum access policies](https://www.medplum.com/docs/access/access-policies), including writeConstraint and related-resource compartment guidance.

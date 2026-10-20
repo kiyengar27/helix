@@ -6,7 +6,7 @@ Product requirements: [PRD-001](../PRD-001-organization-and-care-delivery.md)
 
 ## Context
 
-Helix needs shared patient identity across primary care, cardiology, urology, rheumatology, infusion, transitions, and complex care. Patients have one current operational home market, while providers may deliver multiple services across jurisdictions. Practice affiliation, PCP continuity, booking eligibility, and data authorization must remain distinct.
+Helix needs shared patient identity across primary care, cardiology, urology, rheumatology, infusion, transitions, and complex care. Patient-level market ownership is deferred; providers may deliver multiple services across jurisdictions. Practice affiliation, PCP continuity, booking eligibility, and data authorization must remain distinct.
 
 ## Decision
 
@@ -31,7 +31,7 @@ Use FHIR R4 resources with the following responsibilities. This ADR proposes the
 
 ## Implementation gates
 
-1. **Home-market history:** Choose and validate an effective-dated assignment representation. FHIR R4 Patient has no native home-market field. Do not overload address, PCP, or managingOrganization. Enforce at most one active assignment, and explicitly handle intake without one. Preserve historical assignments on moves.
+1. **Home-market ownership:** Deferred to issue #19; do not add a patient-level field/history in initial enrollment. Residence, visit location and care-program responsibility remain separate.
 2. **Program identity:** Use a controlled `EpisodeOfCare.type` vocabulary initially to identify programs. Define its mapping to `HealthcareService`; R4 has no dedicated episode-to-service field. Do not insert invented fields. Add a documented extension only if a direct reference becomes necessary.
 3. **Offering availability:** Specify supported markets, physical/virtual locations, eligible roles, and schedules. Geographic coverage and the physical site list are different concepts; do not assume a location hierarchy alone computes service coverage.
 4. **Credentials and booking:** Follow Medplum's service/jurisdiction role pattern, with credential evidence and validity tracked explicitly. Scheduling availability does not enforce licensure. The controlled booking path must select eligible schedules and revalidate before final assignment.
@@ -41,8 +41,8 @@ Use FHIR R4 resources with the following responsibilities. This ADR proposes the
 ## Constraints and invariants
 
 - One Helix patient identity across all initial services and markets.
-- One current home market per enrolled patient; moving changes assignment, not patient identity.
-- Visit location and home market are separate, including temporary travel.
+- Patient identity remains stable across address/care-arrangement changes; no current-home-market invariant is imposed in initial enrollment.
+- Visit location and residence/operational context are separate, including temporary travel.
 - PCP designation is optional and does not prevent eligible providers from treating the patient.
 - Provider identity is not duplicated per state, market, or specialty.
 - Multiple concurrent episodes and teams are allowed.
@@ -62,7 +62,7 @@ Use FHIR R4 resources with the following responsibilities. This ADR proposes the
 
 ## Consequences
 
-The model supports new specialties, markets, treatment offerings, and concurrent programs without changing patient identity. It requires explicit conventions for market history, program mapping, credentials, and authorization. A service resource does not by itself implement enrollment, scheduling, or workflow automation.
+The model supports new specialties, markets, treatment offerings, and concurrent programs without changing patient identity. It requires explicit conventions for program mapping, credentials, and authorization. Patient market history is deferred under #19. A service resource does not by itself implement enrollment, scheduling, or workflow automation.
 
 A future multi-legal-entity structure may require revisiting record custody, affiliation, consent, and project isolation; this ADR does not assume that sharing a brand authorizes cross-entity record access.
 
@@ -108,8 +108,6 @@ The reviewed organization/location/service/provider structure is deployed in sta
 
 ## Stage 2 enrollment and proxy contract — proposed October 20, 2026
 
-Propose a single Patient home-market-history complex extension with market references and half-open effectiveFrom/effectiveUntil instants, preserving one patient identity through moves. Define and validate its profile before deployment. Keep managingOrganization for custody and generalPractitioner optional; neither substitutes for enrollment history or clinical authorization.
+Use standard Patient fields for practice record custody, optional PCP and address; actual visit location is captured by the visit workflow. Do not introduce a patient-level market field or custom history extension in issue #8. The original extension approach was withdrawn before deployment; evaluate it or alternatives only under backlog issue #19 when durable ownership is needed.
 
 Use RelatedPerson for adult caregivers and parent/guardian relationships. Separate relationship data from verified identity/authority, consent evidence and enforced access. Product age bands under-12, 12–13, 14–17 and adult identify review scenarios; they do not define legal consent thresholds or grant access. Older age does not infer incapacity. No proxy access is enabled by the initial assessment helper. See ../patient-enrollment.md for the proposed matrix and review gate.
-
-Compared with EpisodeOfCare for every market change, the extension keeps administrative home-market assignment independent of clinical episodes. Compared with Patient.address, it captures operational assignment and transfer history without confusing residence with service geography. If native server search/reporting or multi-practice enrollment requirements dominate, revisit an independently identifiable enrollment resource before freezing this extension contract.

@@ -33,9 +33,9 @@ Practice administrators maintain the structure and offerings. Clinical operation
 |---|---|
 | ORG-01 | Maintain one initial group-practice identity, distinct from the Medplum project/environment. Support future divisions or affiliated organizations without restructuring patient identity. |
 | PAT-01 | Maintain one patient record across Helix services. PCP designation is optional and does not imply exclusive assignment. |
-| MKT-01 | An enrolled patient has one current home market. Retain effective-dated assignment history and an explicit unassigned state during intake or exception handling. |
-| MKT-02 | A permanent move changes home market without duplicating the patient. Review ongoing episodes, teams, and future bookings for continuity or transfer. |
-| MKT-03 | Temporary travel changes visit location, not automatically home market. Confirm patient location for each virtual visit before checking provider eligibility. |
+| MKT-01 | Patient-level home-market ownership/history is deferred to issue #19. Initial enrollment does not require a market field. |
+| MKT-02 | A permanent move updates applicable address and care arrangements without duplicating the patient. Explicit market-assignment history is deferred. |
+| MKT-03 | Confirm actual patient location for each virtual visit before checking provider eligibility; do not infer it from address or operational market. |
 | SVC-01 | Configure offerings independently of markets. Select where each is available and whether delivery is virtual, in-clinic, or both. |
 | SVC-02 | Separate specialty classification, clinical offerings, care programs, and shared operational functions. Do not require a separate organization for each. |
 | PRV-01 | Maintain one clinician identity with potentially multiple organizational/service roles and eligible jurisdictions. Physical provider location is separate from jurisdiction eligibility. |
@@ -50,7 +50,7 @@ Practice administrators maintain the structure and offerings. Clinical operation
 
 1. **Rheumatology and infusion:** A Dallas North patient retains their Helix identity and optional PCP while receiving rheumatology consultations and ordered infusion treatment. Each visit records its delivering provider and location; treatment results remain available to authorized care participants.
 2. **Transition and complex care:** A patient can have a discharge-transition episode and a complex-care episode concurrently, with separately identified responsibility and teams. Closing one does not close the other.
-3. **Permanent move:** Moving from North Bay CA to Dallas North changes the current market, preserves prior history, and triggers review of open work. The patient identifier remains unchanged.
+3. **Permanent move:** Moving from North Bay CA to Dallas North preserves the patient identifier while address and affected care arrangements are reviewed. No patient-level market-history field is required.
 4. **Virtual eligibility:** A multistate provider can be offered work only for the relevant service and visit jurisdiction where eligible. Home-market membership alone does not qualify the provider.
 5. **Referral:** An authorized coordinator tracks a cardiology referral through completion without becoming the patient's PCP or specialist.
 6. **Access:** An unauthorized user cannot retrieve restricted patient data directly through the API, even when they know resource IDs. Authorized cross-market continuity follows an explicit policy.
@@ -62,7 +62,7 @@ Production launch, real patient data, billing implementation, automated legal cr
 ## Decisions still required
 
 - Whether Helix represents one legal medical group or a brand above multiple groups.
-- Exact geographic boundaries and market-assignment rules.
+- Exact operational geographic boundaries. Patient market-assignment rules are deferred to #19.
 - Initial offering-to-market and virtual/clinic availability matrix.
 - Credential evidence, review, expiration, and suspension workflows.
 - Detailed access matrix, including sensitive records and cross-market continuity.
@@ -103,3 +103,7 @@ Clinic setup must support adding sites and planned, active, suspended and closed
 ## Stage 2 caregiver and guardian scope
 
 Add explicit adult-caregiver, parent of under-12 child, and parent/guardian of a 14–17-year-old scenarios. Handle ages 12 and 13 explicitly as a conservative review band. Relationships must not automatically create portal permission or imply adult incapacity. Support authority/identity review, scoped authorization, expiration/revocation and age-boundary reassessment in the eventual access service. See patient-enrollment.md for the initial contract and approval gate.
+
+## Patient market ownership deferred — October 20, 2026
+
+Issue #8 excludes a patient-level home-market field and history. Use standard address, actual encounter location and explicit market-specific care-team/program context. Revisit durable ownership only when a workflow requires it, under issue #19. This supersedes earlier home-market requirements and proposal text; no custom patient-market extension is selected or deployed.

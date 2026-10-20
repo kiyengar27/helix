@@ -1,26 +1,63 @@
 {
   "status": "proposed-for-review",
-  "marketHistoryExtension": "urn:helix:extension:home-market-history",
-  "marketIntervals": "start-inclusive-end-exclusive",
   "recordIdentity": "one-patient-per-person-within-helix",
-  "unassignedDuringIntake": true,
   "ageBands": [
-    { "key": "under-12", "minimum": 0, "maximumExclusive": 12 },
-    { "key": "12-13", "minimum": 12, "maximumExclusive": 14 },
-    { "key": "14-17", "minimum": 14, "maximumExclusive": 18 },
-    { "key": "adult", "minimum": 18, "maximumExclusive": null }
+    {
+      "key": "under-12",
+      "minimum": 0,
+      "maximumExclusive": 12
+    },
+    {
+      "key": "12-13",
+      "minimum": 12,
+      "maximumExclusive": 14
+    },
+    {
+      "key": "14-17",
+      "minimum": 14,
+      "maximumExclusive": 18
+    },
+    {
+      "key": "adult",
+      "minimum": 18,
+      "maximumExclusive": null
+    }
   ],
-  "relationships": ["caregiver", "parent", "guardian"],
+  "relationships": [
+    "caregiver",
+    "parent",
+    "guardian"
+  ],
   "relationshipResource": "RelatedPerson",
   "proxyAccessDefault": "deny-until-separate-authorization",
   "ageBoundaryAccess": "re-review-never-auto-grant",
   "capacityDeterminedByAge": false,
   "livePatientFixturesEnabled": false,
   "staffAccessProposal": [
-    { "role": "foundation-provisioning", "patient": "none", "relatedPerson": "none" },
-    { "role": "enrollment-service", "patient": "scoped-enrollment-writes", "relatedPerson": "scoped-relationship-writes" },
-    { "role": "registration-staff", "patient": "reviewed-demographics-only", "relatedPerson": "reviewed-demographics-only" },
-    { "role": "clinical-staff", "patient": "explicit-practice-scope-read", "relatedPerson": "explicit-practice-scope-read" },
-    { "role": "patient-or-proxy", "patient": "no-access-enabled-in-this-change", "relatedPerson": "no-access-enabled-in-this-change" }
+    {
+      "role": "foundation-provisioning",
+      "patient": "none",
+      "relatedPerson": "none"
+    },
+    {
+      "role": "enrollment-service",
+      "patient": "scoped-enrollment-writes",
+      "relatedPerson": "scoped-relationship-writes"
+    },
+    {
+      "role": "registration-staff",
+      "patient": "reviewed-demographics-only",
+      "relatedPerson": "reviewed-demographics-only"
+    },
+    {
+      "role": "clinical-staff",
+      "patient": "explicit-practice-scope-read",
+      "relatedPerson": "explicit-practice-scope-read"
+    },
+    {
+      "role": "patient-or-proxy",
+      "patient": "no-access-enabled-in-this-change",
+      "relatedPerson": "no-access-enabled-in-this-change"
+    }
   ]
 }

@@ -11,8 +11,8 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 
 ## Product boundaries
 
-- Helix is a multispecialty group with one patient identity, optional PCP, one current home market, and independent services, care episodes, and teams.
-- Follow docs/PRD-001 and ADR-001. Home-market persistence, program mapping, and detailed authorization remain implementation decisions.
+- Helix is a multispecialty group with one patient identity, optional PCP, and independent services, care episodes, and teams. Patient-level home-market assignment/history is deferred to issue #19.
+- Follow docs/PRD-001 and ADR-001. Program mapping and detailed authorization remain implementation decisions; do not reintroduce patient market fields in issue #8.
 - Use synthetic data only. Hosted free-plan staging uses local workflow logic; recheck plan capabilities before relying on hosted automation.
 - Do not navigate the browser automatically. Give concise manual instructions when needed.
 
