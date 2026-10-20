@@ -111,3 +111,9 @@ The reviewed organization/location/service/provider structure is deployed in sta
 Use standard Patient fields for practice record custody, optional PCP and address; actual visit location is captured by the visit workflow. Do not introduce a patient-level market field or custom history extension in issue #8. The original extension approach was withdrawn before deployment; evaluate it or alternatives only under backlog issue #19 when durable ownership is needed.
 
 Use RelatedPerson for adult caregivers and parent/guardian relationships. Separate relationship data from verified identity/authority, consent evidence and enforced access. Product age bands under-12, 12–13, 14–17 and adult identify review scenarios; they do not define legal consent thresholds or grant access. Older age does not infer incapacity. No proxy access is enabled by the initial assessment helper. See ../patient-enrollment.md for the proposed matrix and review gate.
+
+## Stage 2 lifecycle and mediated access
+
+Use a headless enrollment service to enforce scoped registration edits and demographic-only proxy reads. Clinical acceptance identities have direct read/search only; registration writes are mediated by a dedicated backend runtime identity, separate from provisioning. Runtime policies initially cover only the named synthetic acceptance patient and relationship, never all Helix patients by implication.
+
+Proxy relationships do not grant access. A trusted review creates an explicit patient/principal/action/time-bound grant with separate identity/authority evidence. Revocation, relationship inactivity, DOB correction and crossing a product review-age band invalidate access on subsequent reads. Production authentication, durable grant storage and consent/legal review remain separate integration work; the synthetic acceptance adapter does not prove them. See patient-enrollment.md for exact scope and live gates.

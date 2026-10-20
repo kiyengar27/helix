@@ -32,3 +32,14 @@ verify: build
 
 deploy: build
 	npm run apply
+
+# Local authenticated acceptance. Apply requires explicit reviewed-plan authorization.
+.PHONY: enrollment-access-policy enrollment-acceptance-plan enrollment-acceptance-apply
+enrollment-access-policy: build
+	npm run prepare:enrollment-access
+
+enrollment-acceptance-plan: build
+	npm run acceptance:enrollment -- --plan
+
+enrollment-acceptance-apply: build
+	npm run acceptance:enrollment -- --apply

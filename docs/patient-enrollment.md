@@ -80,3 +80,30 @@ The Medplum policy grants resource-level update on the 11 exact identifiers; the
 After PR review and merge, the owner updates the existing **Helix Staging Enrollment Service** policy from code/config/security/enrollment-service-policy.json, preserving its resource ID and the current client assignment. Do not create a second client or replace the foundation policy. Then run the enrollment PLAN, review its counts/fields, authorize DEPLOY dispatch and approve the staging environment. Expect 11 updates, zero creates and zero deletes if current state matches. Verification must retain all 11.
 
 Initial deployment evidence: PLAN 39445548745 and DEPLOY 39445743926 succeeded on commit 01b495651b1766308e0ca4968ae6c1cdf43e7e98. Staff authorization, demographic-edit workflows and proxy access acceptance remain open under issue #8.
+
+## Enrollment lifecycle and access acceptance
+
+Issue #8 follow-up introduces EnrollmentService and a Medplum store adapter. Registration can change name, address and optional PractitionerRole PCP, or deactivate a related person. Clinical principals can read the demographic projection. Every operation checks a trusted principal's explicit patient scope; writes preserve identity/custody and require the current resource version. The broader declarative fixture reconciler intentionally fails on changed fixture demographics; restore the acceptance fixture after testing rather than silently accepting drift.
+
+Proxies receive only id/name/birthDate through the service. A grant requires verified-identity and reviewed-authority evidence references, an identified reviewer, patient/principal/relationship scope, explicit action and effective interval. These evidence references describe an already completed review; code cannot establish legal authority. Each read reloads the grant and relationship, checks activity, revocation, expiry, date-of-birth changes and review-age band. Crossing 12, 14 or 18 requires another review; crossing 13 remains in the agreed 12–13 band. Caregiver age never implies incapacity. No direct FHIR credentials or policy are issued to a proxy.
+
+The trusted authentication and durable grant-store adapters remain integration boundaries. The acceptance runner uses explicitly synthetic principals and process-local grants to exercise the service; this is not a deployed authentication endpoint, durable consent registry or production authorization service. A future application must supply authenticated principals and a trusted grant/revocation store, never accept them from request JSON. No clinical resource or sibling access is exposed by this service.
+
+### Separate acceptance identities — owner setup after PR merge
+
+Generate/validate policies with `make enrollment-access-policy` from code/. Both policies are checked into config/security/. Never attach either to an administrator or reuse existing provisioning clients.
+
+| Client and policy name | Checked-in policy | Permission |
+|---|---|---|
+| Helix Staging Enrollment Runtime | enrollment-runtime-policy.json | Read/search/update Eleanor and Laura only; read the pinned group/PCP; no create/delete |
+| Helix Staging Clinical Acceptance Reader | enrollment-clinical-policy.json | Read/search Eleanor and Laura only; no writes |
+
+Create each policy from its JSON, then create a non-admin ClientApplication assigned that policy. Store credentials locally in .env using MEDPLUM_ENROLLMENT_RUNTIME_CLIENT_ID/SECRET and MEDPLUM_ENROLLMENT_CLINICAL_CLIENT_ID/SECRET. Existing MEDPLUM_ENROLLMENT credentials are used solely by the acceptance auditor to discover stable IDs and snapshot versions, including an existing excluded patient. Do not paste credentials into chat. Bootstrap changes require owner review; no policies or clients are created automatically. These local acceptance credentials are not exposed to public CI; current GitHub deployment workflows do not run this test.
+
+### Reviewed local acceptance
+
+1. Merge reviewed code and synchronize a clean main. `make enrollment-acceptance-plan` type-checks/tests, verifies project and effective policies, checks allowed reads and exclusion of the existing independent adult by direct read and search. No resource writes occur. It saves hashes/IDs/versions only under ignored reports/enrollment/acceptance-plan.json, bound to the commit/config/snapshots with a 24-hour expiry.
+2. Present the plan and obtain owner authorization before `make enrollment-acceptance-apply`. Expected: five successful writes, zero creates/deletes. Three Patient writes change address, remove PCP, then restore original fields; two RelatedPerson writes deactivate then restore. Every PUT uses If-Match. A denied clinical PUT submits the unchanged resource. A stale registrar write must fail. Revoked and inactive proxy reads must fail. Existing Patient IDs, identifiers, custody, demographics and relationship links must match after restoration; version metadata advances.
+3. Run `npm run verify:enrollment` independently and record results on #8. Repeated planning resolves the same IDs and never creates resources. Local tests cover the minor/adult review boundaries and other grant checks.
+
+An interrupted apply may leave an intentional test change; there is no automatic rollback. Inspect the two synthetic resources and prepare a reviewed restoration using the authoritative fixture JSON and current versions before retrying. Snapshots and errors must not expose raw demographics. Do not close #8 merely because local tests pass: the owner must complete these live acceptance gates. Distinguish these scoped synthetic machine identities from future authenticated human staff/proxy accounts.
