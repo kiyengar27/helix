@@ -127,3 +127,7 @@ Staging uses an identifier-scoped client policy, staging environment secrets, ma
 ## Artifact-bound workflow update — October 20, 2026
 
 Staging DEPLOY now takes plan_run_id, verifies a successful main PLAN run for the same commit/workflow, downloads its immutable artifact through actions/download-artifact, and validates its content/digest against current state. The workflow token adds actions:read for this read-only artifact lookup; no repository-write permission is added. Only successful PLAN runs publish the named plan artifact. Explicit run/job labels and owner environment approval remain.
+
+## Separate encounter workflow
+
+Reuse protected main, owner staging approval, shared concurrency and reviewed successful plan artifacts in encounters.yml. Only its separate MEDPLUM_ENCOUNTER credential pair is exposed to that job; enrollment/foundation identities are unchanged. Bootstrap is hosted CI/CD; the separately reviewed synthetic lifecycle runner remains local. Effective-policy comparison now checks writeConstraint, readonly and field restrictions as well as criteria/interactions, so lost constraints cannot silently pass preflight.

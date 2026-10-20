@@ -117,3 +117,9 @@ Declare invented names in enrollment JSON and classify fixtures using a Helix ad
 ## Reviewed acceptance mutations
 
 Acceptance scenario intent and identity policies remain declarative JSON. A dedicated local plan/apply runner binds a five-write synthetic lifecycle test to commit, configuration, project and current resource hashes, expiring after 24 hours. Owner authorization is required for apply. Writes use version checks and restore original business fields on success; interrupted execution requires reviewed recovery. Public build runs only local tests. This test runner is separate from desired-state reconciliation and does not broaden its field allowlists.
+
+## Encounter bootstrap and runtime state
+
+Keep identifier-conditional bootstrap separate from runtime Encounter transitions. Bootstrap may create planned visits and draft medication proposals/review tasks, but must retain legitimate progressed visits instead of resetting them. Reconciliation checks all declared content and owned synthetic tags while preserving server metadata. Runtime state adoption is limited to planned/in-progress/finished/cancelled; unexpected state/content blocks writes.
+
+Use a separate snapshot-bound four-write lifecycle plan for two planned visits. Each update is version checked, policy-constrained and verified with native history. Never reopen/reset a terminal encounter to repeat a test. MedicationRequest/Task update permission is absent. Expected-denied API requests are negative checks, not successful writes. Actual server enforcement and conditional retry behavior require staging acceptance before issue closure.

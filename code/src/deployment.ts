@@ -110,7 +110,7 @@ export function assertPolicy(expected: AccessPolicy, actual: AccessPolicy): void
     (r.readonly===true || !!r.interaction?.length) &&
     (!r.interaction || r.interaction.every(i=>readInteractions.includes(i)))
   ));
-  const norm=(rules:AccessPolicy['resource'])=>rules?.map(r=>({resourceType:r.resourceType,criteria:r.criteria,interaction:[...(r.interaction??[])].sort()})).sort((a,b)=>canonical(a).localeCompare(canonical(b)));
+  const norm=(rules:AccessPolicy['resource'])=>rules?.map(r=>({resourceType:r.resourceType,criteria:r.criteria,interaction:[...(r.interaction??[])].sort(),writeConstraint:r.writeConstraint??[],readonly:r.readonly===true,readonlyFields:r.readonlyFields??[],hiddenFields:r.hiddenFields??[]})).sort((a,b)=>canonical(a).localeCompare(canonical(b)));
   if(canonical(norm(expected.resource))!==canonical(norm(filtered))) throw new Error('Effective policy differs from generated scoped policy; owner policy review required');
 }
 function rewrite<T>(value:T, references:Map<string,string>):T {
