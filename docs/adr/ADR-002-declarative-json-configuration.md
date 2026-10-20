@@ -113,3 +113,7 @@ Generate the identifier-scoped AccessPolicy from the same desired resource set. 
 ## Enrollment display updates
 
 Declare invented names in enrollment JSON and classify fixtures using a Helix administrative meta.tag. Preserve deployed identity rather than replacing records. A separate enrollment-display plan scope permits name and Helix-owned classification tags only; preserve unrelated metadata and reject other managed-field drift. Scope is bound into the reviewed plan. Medplum grants resource-level update on exact synthetic identifiers; deployment code enforces the narrower field allowlist. This does not establish field-level server authorization. The owner must review the generated policy expansion before deployment.
+
+## Reviewed acceptance mutations
+
+Acceptance scenario intent and identity policies remain declarative JSON. A dedicated local plan/apply runner binds a five-write synthetic lifecycle test to commit, configuration, project and current resource hashes, expiring after 24 hours. Owner authorization is required for apply. Writes use version checks and restore original business fields on success; interrupted execution requires reviewed recovery. Public build runs only local tests. This test runner is separate from desired-state reconciliation and does not broaden its field allowlists.

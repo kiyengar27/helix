@@ -1,0 +1,22 @@
+{
+  "resourceType": "AccessPolicy",
+  "name": "Helix Staging Clinical Acceptance Reader",
+  "resource": [
+    {
+      "resourceType": "Patient",
+      "interaction": [
+        "read",
+        "search"
+      ],
+      "criteria": "Patient?identifier=urn:helix:staging:synthetic-patient|older-adult-caregiver"
+    },
+    {
+      "resourceType": "RelatedPerson",
+      "interaction": [
+        "read",
+        "search"
+      ],
+      "criteria": "RelatedPerson?identifier=urn:helix:staging:related-person|older-adult-caregiver"
+    }
+  ]
+}

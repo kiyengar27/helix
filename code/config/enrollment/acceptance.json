@@ -1,0 +1,8 @@
+{
+  "classification": "synthetic-test-only",
+  "managedCase": "older-adult-caregiver",
+  "excludedCase": "independent-adult",
+  "addressChange": [{"state": "TX", "country": "US"}],
+  "restoreAfterSuccess": true,
+  "proxyActions": ["read-demographics"]
+}

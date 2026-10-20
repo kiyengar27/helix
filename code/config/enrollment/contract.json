@@ -1,5 +1,5 @@
 {
-  "status": "proposed-for-review",
+  "status": "implemented-contract-live-access-acceptance-pending",
   "recordIdentity": "one-patient-per-person-within-helix",
   "ageBands": [
     {
@@ -32,7 +32,7 @@
   "proxyAccessDefault": "deny-until-separate-authorization",
   "ageBoundaryAccess": "re-review-never-auto-grant",
   "capacityDeterminedByAge": false,
-  "livePatientFixturesEnabled": false,
+  "livePatientFixturesEnabled": true,
   "staffAccessProposal": [
     {
       "role": "foundation-provisioning",
