@@ -58,3 +58,7 @@ Branch feat/10-patient-sync-demographics prepares standard birthsex extensions f
 ## Required sex update
 
 Owner requires sex mandatory. Branch feat/10-required-birth-sex expands explicit birth-sex configuration to all six Patients and requires it in fixture compilation/mapping validation. The earlier two-patient PLAN 39488477407 was cancelled while waiting; no live updates. Prepare a fresh enrollment PLAN after review/merge, expected six extension updates/five retains. No Medplum base-schema/UI/global-write constraint or policy expansion introduced. Owner chose a private personal test phone, saved only as PHOTON_TEST_PHONE in ignored .env; never copy it into docs, Git or logs. No Photon sync or SMS yet.
+
+## Photon feedback clarification
+
+Owner's request for a cross-EHR field-mapping guide is feedback for Photon, not a Helix guide implementation. Captured in photon-feedback.md with examples requested for Medplum/Epic/athenahealth. Do not contact Photon without explicit authorization. Neutron schema inspection showed nullable patient phone despite required phone in public examples; no runtime/notification behavior inferred. Birth-sex deployment 39489323792 and independent 11-record verification succeeded. Next slow step: establish duplicate-safe patient sync and messaging side effects before reviewing/authorizing Daniel's single-patient creation. No Photon records/messages created.
