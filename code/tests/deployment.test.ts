@@ -118,3 +118,9 @@ import checkedPolicy from '../config/security/care-delivery-policy.json' with { 
 test('committed generated policy cannot fall behind compiled identifiers',()=>{
   assert.equal(canonical(generatePolicy(compileDelivery(at))),canonical(checkedPolicy));
 });
+
+test('policy preflight permits read-only platform schema defaults but rejects schema writes',()=>{
+  const policy=generatePolicy(compileDelivery(at));
+  assertPolicy(policy,{...policy,resource:[...policy.resource!,{resourceType:'StructureDefinition',readonly:true}]});
+  assert.throws(()=>assertPolicy(policy,{...policy,resource:[...policy.resource!,{resourceType:'SearchParameter',interaction:['read','create']}]}));
+});

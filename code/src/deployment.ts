@@ -101,7 +101,12 @@ export function generatePolicy(entries: ManagedEntry[]): AccessPolicy {
   return {resourceType:'AccessPolicy',name:'Helix Staging Foundation Provisioning',resource:[...groups.values()].map(g=>({resourceType:g.resourceType,interaction:g.update?['read','search','create','update']:['read','search','create'],criteria:`${g.resourceType}?identifier=${g.ids.sort().join(',')}`}))};
 }
 export function assertPolicy(expected: AccessPolicy, actual: AccessPolicy): void {
-  const filtered=actual.resource?.filter(r=>!['SearchParameter','StructureDefinition'].includes(r.resourceType));
+  const readInteractions=['read','search','vread','history'];
+  const filtered=actual.resource?.filter(r=>!(
+    ['SearchParameter','StructureDefinition'].includes(r.resourceType) &&
+    (r.readonly===true || !!r.interaction?.length) &&
+    (!r.interaction || r.interaction.every(i=>readInteractions.includes(i)))
+  ));
   const norm=(rules:AccessPolicy['resource'])=>rules?.map(r=>({resourceType:r.resourceType,criteria:r.criteria,interaction:[...(r.interaction??[])].sort()})).sort((a,b)=>canonical(a).localeCompare(canonical(b)));
   if(canonical(norm(expected.resource))!==canonical(norm(filtered))) throw new Error('Effective policy differs from generated scoped policy; owner policy review required');
 }
