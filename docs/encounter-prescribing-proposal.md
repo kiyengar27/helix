@@ -1,6 +1,6 @@
 # Headless encounters and prescribing intent
 
-Status: issue #9 model approved; compiler merged in PR #23. Persistence and live acceptance are prepared in the follow-up described in encounter-deployment.md. No encounter resources or prescribing permissions have been deployed.
+Status: issue #9 is complete. Model/compiler PR #23 and deployment PR #24 are merged; all six resources are deployed, both Encounters finished and live acceptance passed. See encounter-deployment.md for evidence.
 
 ## Two initial cases
 
@@ -64,3 +64,7 @@ Photon's documented coverage UI requires patient benefit data, and exposes cover
 - [CDC group A strep guidance](https://www.cdc.gov/group-a-strep/hcp/clinical-guidance/strep-throat.html).
 - [Manufacturer Wegovy savings guide](https://www.novomedlink.com/content/dam/novonordisk/novomedlink/new/obesity/product-information/resources/library/wegovy/resource-documents/wegovy-savings-guide.pdf); review current terms in #10, not an eligibility guarantee.
 - [Photon integration guide](https://docs.photon.health/docs/integration-guide), [Elements](https://docs.photon.health/docs/elements), [order placement](https://docs.photon.health/docs/place-orders), [documented SMS patient experience](https://blog.photon.health/how-sesame-launched-new-treatment-programs-without-increasing-support-costs-with-photon/).
+
+## Acceptance checkpoint
+
+Stage 3 completed with six deployed resources, four successful lifecycle updates, six rejected invalid/stale/reopen requests, native history verification and 24 passing access-isolation checks. All 52 tests passed. The model/state sections above describe the initial planned state; the two deployed visits are now finished. Medication proposals remain draft and review Tasks remain draft. Proceed to #10 for the verified Photon handoff and sandbox experience; no external order or phone message exists yet.

@@ -1,6 +1,6 @@
 # Encounter staging deployment and flow acceptance
 
-Issue #9. Model/scenario pairing approved; initial compiler merged in PR #23. This follow-up prepares persistence; no encounter resources or permissions are deployed yet.
+Issue #9. Model/scenario pairing approved; initial compiler merged in PR #23. Persistence and live acceptance are complete; #9 is closed. The owner configured the scoped identity and all six resources are deployed.
 
 ## Owner setup after merge
 
@@ -40,3 +40,9 @@ The flow runner is local, not part of the bootstrap GitHub workflow. It uses the
 Record PLAN/DEPLOY run IDs, commit and count-only acceptance summaries on #9. Run fresh encounter, enrollment and care-delivery verification before closing. Native version history proves visit status writes; it does not attest clinical review, signature or legal prescribing authority. Local transition tests, schema validation and effective-policy checks alone do not satisfy live acceptance.
 
 The current state is intentionally planned visits and incomplete medication proposals until the separate flow gate runs. Product selection/coding, clinical evaluation, dose/regimen, authenticated human prescriber authorization, real benefits/PA/savings, pharmacy routing and Photon SMS/app experience remain #10 or later integration gates. No owner phone number is stored or used here.
+
+## Completed live evidence — October 20, 2026
+
+PLAN [39485163062](https://github.com/kiyengar27/helix/actions/runs/39485163062) and DEPLOY [39485504459](https://github.com/kiyengar27/helix/actions/runs/39485504459) succeeded on c1fcbf7ce18d4064d99681991819c137191868dd. Initial six resources were created and verified. The separately owner-approved four-write lifecycle acceptance finished both visits, rejected six invalid/stale/reopen operations and verified native status history. All 24 cross-identity access checks passed. Independent post-flow verification confirmed six encounter, eleven enrollment and forty-five care-delivery resources. All 52 tests passed.
+
+MedicationRequests remain draft/proposal and Tasks draft/plan. No prescription transmitted or SMS sent. #10 owns the Photon sandbox and private test-phone follow-up. Both visits are finished: never reset them or reuse the consumed flow plan. Existing encounters can be viewed in Medplum; a fresh bootstrap PLAN should retain all six.
