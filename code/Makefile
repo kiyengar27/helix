@@ -43,3 +43,10 @@ enrollment-acceptance-plan: build
 
 enrollment-acceptance-apply: build
 	npm run acceptance:enrollment -- --apply
+
+.PHONY: encounter-preview encounter-validate
+encounter-preview: build
+	npm run preview:encounters
+
+encounter-validate: build
+	npm run validate:encounters
