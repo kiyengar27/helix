@@ -1,3 +1,4 @@
+import { ownedTags, mergeSyntheticMeta } from './synthetic-data.js';
 import { createHash } from 'node:crypto';
 import type { AccessPolicy, Bundle, Resource, Schedule, HealthcareService } from '@medplum/fhirtypes';
 import { previewCareDelivery, isDeliveryEligible } from './care-delivery.js';
@@ -6,6 +7,7 @@ import operations from '../config/proposals/care-delivery.operations.json' with 
 import coverage from '../config/proposals/care-delivery.coverage.json' with { type: 'json' };
 import { clinicReferences, clinicLifecycle } from './clinic-lifecycle.js';
 
+export type UpdateScope = 'care-delivery' | 'enrollment-display';
 export interface ManagedEntry { fullUrl: string; resource: Resource }
 export interface PlannedChange {
   fullUrl: string; resourceType: Resource['resourceType']; identifier: string;
@@ -13,7 +15,7 @@ export interface PlannedChange {
   id?: string; version?: string; currentDigest?: string;
 }
 export interface DeploymentPlan {
-  schemaVersion: 1; projectId: string; commit: string; asOf: string; createdAt: string;
+  schemaVersion: 1; updateScope: UpdateScope; projectId: string; commit: string; asOf: string; createdAt: string;
   configurationDigest: string; changes: PlannedChange[]; digest: string;
 }
 export function canonical(value: unknown): string {
@@ -84,7 +86,8 @@ export function compileDelivery(asOf: string): ManagedEntry[] {
   entries.forEach(e=>check(e.resource));
   return entries;
 }
-export function updateFields(entry: ManagedEntry): string[] {
+export function updateFields(entry: ManagedEntry, scope:UpdateScope='care-delivery'): string[] {
+  if(scope==='enrollment-display') return ['Patient','RelatedPerson'].includes(entry.resource.resourceType)?['name','meta.tag']:[];
   if(entry.resource.resourceType==='HealthcareService') return ['location','coverageArea'];
   if(entry.resource.resourceType==='Location' && clinicReferences.includes(entry.fullUrl)) return ['status'];
   if(entry.resource.resourceType==='Schedule') return ['active'];
@@ -115,19 +118,20 @@ function rewrite<T>(value:T, references:Map<string,string>):T {
   if(value && typeof value==='object') return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,k==='reference' && typeof v==='string' ? references.get(v)??v : rewrite(v,references)])) as T;
   return value;
 }
-export function buildPlan(entries:ManagedEntry[], current:Map<string,Resource>, commit:string, asOf:string, now=new Date().toISOString()):DeploymentPlan {
+export function buildPlan(entries:ManagedEntry[], current:Map<string,Resource>, commit:string, asOf:string, now=new Date().toISOString(), updateScope:UpdateScope='care-delivery'):DeploymentPlan {
   const refs=new Map([...current].map(([url,r])=>[url,`${r.resourceType}/${r.id}`]));
   const changes:PlannedChange[]=entries.map(entry=>{
     const existing=current.get(entry.fullUrl);
     const desired=rewrite(entry.resource,refs);
-    const fields=existing?Object.keys(desired).filter(k=>canonical((desired as unknown as Record<string,unknown>)[k])!==canonical((existing as unknown as Record<string,unknown>)[k])):[];
-    const allowed=updateFields(entry);
+    const fields=existing?Object.keys(desired).filter(k=>!(updateScope==='enrollment-display'&&k==='meta')).filter(k=>canonical((desired as unknown as Record<string,unknown>)[k])!==canonical((existing as unknown as Record<string,unknown>)[k])):[];
+    if(existing && updateScope==='enrollment-display' && canonical(ownedTags(desired.meta))!==canonical(ownedTags(existing.meta)))fields.push('meta.tag');
+    const allowed=updateFields(entry,updateScope);
     if(fields.some(f=>!allowed.includes(f))) throw new Error(`Unmanaged drift on ${entry.resource.resourceType}: ${fields.join(',')}`);
     if(existing && (!existing.id || !existing.meta?.versionId)) throw new Error('Versioned current resource required');
     if(existing && entry.resource.resourceType==='Location' && fields.includes('status') && entry.resource.status!=='active') throw new Error('Clinic suspension/closure needs a live dependency audit; not enabled in this deployment');
     return {fullUrl:entry.fullUrl,resourceType:entry.resource.resourceType,identifier:identifier(entry.resource),action:!existing?'create':fields.length?'update':'retain',fields,...(existing?{id:existing.id!,version:existing.meta!.versionId!,currentDigest:digest(existing)}:{})};
   });
-  const data={schemaVersion:1 as const,projectId:expectedProjectId,commit,asOf,createdAt:now,configurationDigest:digest({entries,operations,coverage,clinicLifecycle}),changes};
+  const data={schemaVersion:1 as const,updateScope,projectId:expectedProjectId,commit,asOf,createdAt:now,configurationDigest:digest({entries,operations,coverage,clinicLifecycle}),changes};
   return {...data,digest:digest(data)};
 }
 export function assertReviewedPlan(saved:DeploymentPlan, fresh:DeploymentPlan, commit:string,now=Date.now()):void {
@@ -137,7 +141,7 @@ export function assertReviewedPlan(saved:DeploymentPlan, fresh:DeploymentPlan, c
   const snapshotAge=now-Date.parse(saved.asOf);
   if(!Number.isFinite(snapshotAge)||snapshotAge<0||snapshotAge>24*60*60*1000) throw new Error('Plan expired or snapshot is future-dated; replan');
   if(!Number.isFinite(age)||age<0||age>24*60*60*1000) throw new Error('Plan expired; create and review a new plan');
-  if(saved.configurationDigest!==fresh.configurationDigest || canonical(saved.changes)!==canonical(fresh.changes) || saved.asOf!==fresh.asOf) throw new Error('Configuration or server state changed since reviewed plan');
+  if(saved.updateScope!==fresh.updateScope || saved.configurationDigest!==fresh.configurationDigest || canonical(saved.changes)!==canonical(fresh.changes) || saved.asOf!==fresh.asOf) throw new Error('Configuration or server state changed since reviewed plan');
   // A future lifecycle transition requires replanning rather than applying an outdated status snapshot.
   if(clinicLifecycle.clinics.some(c=>c.events.some(e=>Date.parse(e.effectiveAt)>Date.parse(saved.asOf)&&Date.parse(e.effectiveAt)<=now))) throw new Error('Lifecycle boundary crossed; replan');
 }
@@ -150,7 +154,11 @@ export function transactionFor(entries:ManagedEntry[],current:Map<string,Resourc
     const resource=structuredClone(current.get(change.fullUrl)!) as Resource;
     const target=resource as unknown as Record<string,unknown>;
     const desired=rewrite(entry.resource,refs) as unknown as Record<string,unknown>;
-    for(const field of change.fields) target[field]=desired[field];
+    for(const field of change.fields){
+      if(!updateFields(entry,plan.updateScope).includes(field))throw new Error('Field outside reviewed update scope');
+      if(field==='meta.tag')resource.meta=mergeSyntheticMeta(resource.meta,entry.resource.meta);
+      else target[field]=desired[field];
+    }
     return {fullUrl:entry.fullUrl,resource,request:{method:'PUT' as const,url:`${resource.resourceType}/${resource.id}`,ifMatch:`W/"${change.version}"`}};
   })};
 }
