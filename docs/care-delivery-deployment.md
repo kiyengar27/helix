@@ -54,3 +54,10 @@ An initially missing resource could appear after the final search; conditional P
 Clinic suspension/closure status changes are blocked in this deployment version because live bookings/tasks have not been audited. The local lifecycle capability still previews impacts and suppresses new routing. No automatic status timer, clinic closure execution or physician offboarding is implemented. Schedule.active may be toggled by reviewed updates, but provider-session edits, credential changes and role offboarding require further update contracts. Same-day rotation templates for one practitioner are rejected if overlapping; differing timezones on that day fail closed until DST-aware interval validation is implemented. The four current examples use different days.
 
 Only the four example rotations have concrete schedules; other catalog coverage does not imply bookable availability. Generated resources still need real-server validation and the first approved transaction. Current type and mock tests do not establish live API authorization, credential validity or scheduling outcomes.
+
+## Reference implementations
+
+- [Medplum scheduling availability](https://www.medplum.com/docs/scheduling/defining-availability).
+- [Medplum transaction version checks](https://www.medplum.com/docs/fhir-datastore/fhir-batch-requests).
+- [GitHub artifact download](https://github.com/actions/download-artifact), including run-id and github-token for a prior run.
+- [GitHub workflow run metadata](https://docs.github.com/en/rest/actions/workflow-runs#get-a-workflow-run).

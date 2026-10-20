@@ -21,10 +21,10 @@ jobs:
           cache-dependency-path: code/package-lock.json
       - run: npm ci
       - run: make build
-      - name: Render foundation preview
-        run: mkdir -p reports && npm run preview > reports/foundation-preview.json
+      - name: Render compiled care-delivery preview
+        run: mkdir -p reports && npm --silent run preview > reports/care-delivery-preview.json
       - uses: actions/upload-artifact@v4
         with:
-          name: foundation-preview-${{ github.sha }}
-          path: code/reports/foundation-preview.json
+          name: care-delivery-preview-${{ github.sha }}
+          path: code/reports/care-delivery-preview.json
           retention-days: 14

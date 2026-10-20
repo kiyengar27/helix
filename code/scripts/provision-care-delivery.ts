@@ -44,8 +44,8 @@ async function main() {
         if(errors?.length){console.error(JSON.stringify({resourceType:resource.resourceType,errors:errors.map(i=>({code:i.code,expression:i.expression,text:i.details?.text}))}));throw new Error('FHIR validation failed');}
       }
     }
-    await validate(entries.map(e=>e.resource));
-    if(mode==='--validate-only'){output({projectId:expectedProjectId,validatedResources:entries.length,persisted:false});return;}
+    await validate([...entries.map(e=>e.resource),policy]);
+    if(mode==='--validate-only'){output({projectId:expectedProjectId,validatedResources:entries.length,validatedPolicy:true,persisted:false});return;}
     async function snapshot(items:ManagedEntry[]) {
       const current=new Map<string,Resource>();
       for(const entry of items){
