@@ -79,3 +79,13 @@ Reviewed against the local official Medplum checkout, revision `19911b7`:
 - [State-by-State Licensure](https://www.medplum.com/docs/scheduling/state-by-state-licensure)
 - [Access Policies](https://www.medplum.com/docs/access/access-policies)
 - [Building with AI Coding Assistants](https://www.medplum.com/docs/building-with-ai-coding-assistants)
+
+## Stage 1 design clarification — October 20, 2026 (proposed)
+
+See [the care-delivery proposal](../care-delivery-proposal.md). Use separate Location identities for operational markets, clinic sites, logical virtual delivery locations, and state eligibility areas. Clinic.partOf references its market. PractitionerRole.location uses state areas per Medplum's service-specific licensure pattern; it does not encode the clinician's physical location or clinic assignment.
+
+Use HealthcareService.location for sites and coverageArea for geographic coverage. Because those arrays do not capture a mode/site/market relation, define that relation in an explicit versioned application coverage manifest. It is not a custom FHIR resource or native Medplum enforcement feature. The later routing consumer and generated FHIR projections must be tested against it. This avoids a premature service-per-market/mode resource explosion.
+
+Virtual Location.mode is instance; delivery mode is not an invented FHIR enum. Text-only physical types and specialty descriptions are provisional and require profile/terminology review. Synthetic eligibility is scenario data, not evidence of actual licensing or prescribing authority.
+
+The proposal references existing stable fullUrls and must be compiled with the foundation or resolved against verified IDs before submission. Existing service resources require controlled field updates, which create-only provisioning does not support. Keep this material outside deployed configuration until the update/permission plan is accepted. ADR-002 governs reconciliation changes.

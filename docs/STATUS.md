@@ -1,6 +1,6 @@
 # Helix project handoff
 
-Updated: October 16, 2026. This file describes current state; verify live GitHub settings before relying on them.
+Updated: October 20, 2026. This file describes current state; verify live GitHub settings before relying on them.
 
 ## Resume
 
@@ -18,7 +18,7 @@ Read AGENTS.md, README.md, this file, and relevant PRD/ADRs. Inspect Git status,
 
 ## Completed staging milestone
 
-Issue #3 implementation is operational; documentation closeout is on docs/3-staging-closeout pending review/merge. PRs #4 and #5 are merged, their branches were removed with owner approval, and main was synchronized before closeout work.
+Issue #3 is closed. Documentation closeout PR #7 is merged, its branch was removed locally and remotely, and main was synchronized. PRs #4 and #5 are merged, their branches were removed with owner approval, and main was synchronized before closeout work.
 
 - Restricted policy applied to client membership; effective identifier-scoped read/search/create rules verified.
 - Patient, ProjectMembership and ClientApplication searches denied with 403. No destructive denial tests performed.
@@ -28,11 +28,22 @@ Issue #3 implementation is operational; documentation closeout is on docs/3-stag
 - Verified main commit: eabc55833c1aabd0232a14d0304fd11f4c1204ad.
 - First-time creation under restricted policy remains untested; existing-resource transaction path is proven. See docs/deployment.md.
 
-## Next milestone
+## Current work and next gate
 
-[Issue #6](https://github.com/kiyengar27/helix/issues/6): clinics, virtual care, service coverage, and eligible provider roles. Begin by reading official location/provider/scheduling docs, then propose a small sample roster and coverage matrix for owner review. Do not immediately provision new resources or extend permissions.
+Issue #6 on feat/6-care-delivery-design: proposed 27 additional resources and coverage matrix under code/config/proposals/, with docs/care-delivery-proposal.md and PRD/ADR-001 updates. These are review drafts, not consumed by deployment. No Medplum resources or permissions changed.
 
-After closeout PR merge, synchronize main and present a merged-branch cleanup plan before deletion. Do not enable automatic branch deletion without approval.
+Next: owner reviews roster and coverage, then implement validated declarative compilation and controlled updates for existing HealthcareService location/coverage fields. Present the resource and permission plan before apply. Do not route proposal JSON through the current create-only deployer.
+
+## Agreed milestone order
+
+1. #6: care-delivery structure.
+2. #8: patient enrollment, market history, and access.
+3. #9: minimal headless encounter and prescribing intent.
+4. #10: Photon/pharmacy sandbox integration; investigate prerequisites during stages 1–2.
+5. #11: broader specialty and coordinated-care workflows.
+6. #12: application experience.
+
+Stages 1–5 stay headless. Work through one implementation milestone at a time. All setup is code/declarative, with documented bootstrap/secret-entry/approval exceptions.
 
 ## Constraints and unresolved decisions
 

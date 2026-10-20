@@ -71,3 +71,16 @@ Production launch, real patient data, billing implementation, automated legal cr
 ## Success measures
 
 Initial staging demonstrates the six journeys above; no duplicate patient/provider identities are introduced by rerunning provisioning; all five markets and initial services are discoverable; unresolved representation choices are resolved before dependent implementation.
+
+## Stage 1 implementation proposal — October 20, 2026
+
+[Issue #6 proposal](care-delivery-proposal.md) provides the reviewable clinic roster, service/mode/market matrix, synthetic clinicians, and jurisdiction-role examples. Proposed inputs are versioned under code/config/proposals/; they are isolated from the live foundation deployment.
+
+- Five clinics, two virtual delivery locations and two jurisdiction areas.
+- Eight synthetic clinicians with ten service-specific roles, including CA/TX and single-state examples.
+- Primary/acute care at every clinic; specialty and infusion clinic examples in North Bay and Austin; virtual services as specified in the coverage matrix.
+- No schedules, patient records or verified credentials are included.
+
+All setup must be reproducible from declarative files and deployment code, including reference linking and permission definitions. Credentials remain external. Manual actions are limited to unavoidable account/bootstrap, secret entry, and owner approvals; they must be documented rather than become undocumented setup dependencies.
+
+The proposal is not accepted coverage or a deployment authorization. Next gate is owner review, then a controlled-update design for existing service fields and a resource-level deployment/permission plan.

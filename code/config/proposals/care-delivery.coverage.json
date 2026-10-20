@@ -1,0 +1,299 @@
+{
+  "status": "proposed",
+  "description": "Helix application configuration, not a FHIR resource. Exact service-mode-market mapping; compiler and controlled service updates pending review.",
+  "offerings": [
+    {
+      "service": "urn:uuid:c3371114-9ff6-4dec-9b90-bad198aea208",
+      "name": "Primary Care",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+          "markets": [
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+          "markets": [
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+          "markets": [
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:7c2324ea-ed1d-4202-913d-7ec4b2a68633",
+      "name": "Acute Care",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:07380409-a943-52db-bdb3-3a046a2ca3bb",
+          "markets": [
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:5f8782a5-27fd-5aff-93da-000bb787adfa",
+          "markets": [
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:3dcb1c43-c38e-53cb-a1d5-1b1cc59b899c",
+          "markets": [
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:a5ce8a4b-0de6-4150-9a89-5162a9fa04e7",
+      "name": "Cardiology",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:06daf608-0bb8-442b-a47c-c13aa7e82f9f",
+      "name": "Urology",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:fe6fb9f1-6600-4abd-a0d7-3feb6d46731d",
+      "name": "Rheumatology",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:48a6dd57-2821-4c74-8fae-af9148ac6326",
+      "name": "Infusion Therapy",
+      "delivery": [
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:c185b049-36c0-5641-baf1-7d3d63b47844",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6"
+          ]
+        },
+        {
+          "mode": "in-clinic",
+          "location": "urn:uuid:550b6d9b-8bdd-56fc-a683-93536ef028c6",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:8a6120e3-f615-4fd5-b795-a0b737bb9b72",
+      "name": "Transitions of Care",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "urn:uuid:70753ff4-d2cd-48df-88ce-d01fcff7acba",
+      "name": "Complex Care",
+      "delivery": [
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:a1658cd2-1d54-5968-8901-4f34d264745b",
+          "markets": [
+            "urn:uuid:dac99da2-eed4-4248-9b3c-0bc6271301b6",
+            "urn:uuid:e32b71c6-36b5-4ba6-9f4d-866d733a796d"
+          ]
+        },
+        {
+          "mode": "virtual",
+          "location": "urn:uuid:8d50dda0-5b1a-502d-b5f0-9412a47cc1ab",
+          "markets": [
+            "urn:uuid:b10dce76-b623-449a-bb72-af71d90004ce",
+            "urn:uuid:0e0a6186-2caf-4ca5-b6ee-0b008db9b006",
+            "urn:uuid:f3e45fba-56d2-47ca-8291-1cd8690c7bbb"
+          ]
+        }
+      ]
+    }
+  ]
+}
