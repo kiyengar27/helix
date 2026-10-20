@@ -13,7 +13,7 @@ All setup is defined in versioned configuration and code. These files are a prop
 
 ## Proposed clinics and delivery
 
-One synthetic clinic in each market; virtual delivery locations for CA and TX. Two separate jurisdiction Locations express state eligibility. Do not place clinics beneath jurisdiction records: clinic.partOf references its operational market. No street addresses, license numbers, NPI, scheduling hours, or real endpoints are fabricated.
+One synthetic clinic in each market; virtual delivery locations for CA and TX. Two separate jurisdiction Locations express state eligibility. Do not place clinics beneath jurisdiction records: clinic.partOf references its operational market. No real street addresses, license numbers, NPI, or endpoints are claimed. Synthetic rotation hours are explicitly marked as examples.
 
 | Offering | Virtual | In-clinic |
 |---|---|---|

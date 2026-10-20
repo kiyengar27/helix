@@ -78,7 +78,7 @@ Initial staging demonstrates the six journeys above; no duplicate patient/provid
 
 - Five clinics, two virtual delivery locations and two jurisdiction areas.
 - Eight synthetic clinicians with ten service-specific roles, including CA/TX and single-state examples.
-- Primary/acute care at every clinic; specialty and infusion clinic examples in North Bay and Austin; virtual services as specified in the coverage matrix.
+- Primary/acute and specialty care at all five clinics by scheduled session; infusion examples in North Bay and Austin; virtual services as specified in the coverage matrix.
 - No schedules, patient records or verified credentials are included.
 
 All setup must be reproducible from declarative files and deployment code, including reference linking and permission definitions. Credentials remain external. Manual actions are limited to unavoidable account/bootstrap, secret entry, and owner approvals; they must be documented rather than become undocumented setup dependencies.
