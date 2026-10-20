@@ -50,3 +50,19 @@ encounter-preview: build
 
 encounter-validate: build
 	npm run validate:encounters
+
+.PHONY: encounter-prepare encounter-plan encounter-deploy encounter-verify encounter-flow-plan encounter-flow-apply encounter-access
+encounter-prepare: build
+	npm run prepare:encounter-deployment
+encounter-plan: build
+	npm run plan:encounters
+encounter-deploy: build
+	npm run apply:encounters
+encounter-verify: build
+	npm run verify:encounters
+encounter-flow-plan: build
+	npm run flow-plan:encounters
+encounter-flow-apply: build
+	npm run flow-apply:encounters
+encounter-access: build
+	npm run verify:encounter-access

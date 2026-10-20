@@ -22,7 +22,14 @@
     "prepare:enrollment-access": "node --env-file-if-exists=.env --import tsx scripts/prepare-enrollment-access.ts",
     "acceptance:enrollment": "node --env-file-if-exists=.env --import tsx scripts/acceptance-enrollment.ts",
     "preview:encounters": "tsx scripts/preview-encounters.ts",
-    "validate:encounters": "node --env-file-if-exists=.env --import tsx scripts/validate-encounters.ts"
+    "validate:encounters": "node --env-file-if-exists=.env --import tsx scripts/validate-encounters.ts",
+    "prepare:encounter-deployment": "node --env-file-if-exists=.env --import tsx scripts/prepare-encounter-deployment.ts",
+    "plan:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --plan",
+    "apply:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --apply",
+    "verify:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --verify",
+    "flow-plan:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --flow-plan",
+    "flow-apply:encounters": "node --env-file-if-exists=.env --import tsx scripts/provision-encounters.ts --flow-apply",
+    "verify:encounter-access": "node --env-file-if-exists=.env --import tsx scripts/verify-encounter-access.ts"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",

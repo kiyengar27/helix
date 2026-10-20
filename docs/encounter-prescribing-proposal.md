@@ -1,6 +1,6 @@
 # Headless encounters and prescribing intent
 
-Status: issue #9 initial proposal and local compiler; owner review pending. No encounter resources or prescribing permissions have been deployed. PR #22 is merged; no earlier PR remains open.
+Status: issue #9 model approved; compiler merged in PR #23. Persistence and live acceptance are prepared in the follow-up described in encounter-deployment.md. No encounter resources or prescribing permissions have been deployed.
 
 ## Two initial cases
 

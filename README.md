@@ -8,6 +8,7 @@ The repository is public. It contains no patient data or deployment credentials.
 
 - [Developer setup](docs/development.md): clone, install, build, and preview without credentials.
 - [Deployment runbook](docs/deployment.md): staging checks, GitHub controls, and recovery.
+- [Encounter deployment](docs/encounter-deployment.md): scoped setup, plan/deploy and live lifecycle acceptance.
 - [Project handoff](docs/STATUS.md): current state, next work, and session-resume instructions.
 - [Product requirements](docs/PRD-001-organization-and-care-delivery.md).
 - [Architecture decisions](docs/adr/): domain model, declarative configuration, and system/tooling choices.
@@ -42,6 +43,6 @@ These steps require no Medplum credentials and make no Medplum API calls. npm do
 
 JSON describes resources; TypeScript compiles and deploys them through the Medplum SDK. Stable identifiers prevent duplicate creation. Declared care-delivery fields and enrollment display fields support version-checked updates; unmanaged drift blocks writes. No automatic deletion or rollback exists. Apply requires a reviewed same-commit plan. See [ADR-002](docs/adr/ADR-002-declarative-json-configuration.md) and the [care-delivery deployment runbook](docs/care-delivery-deployment.md).
 
-**Staging is deployed and verified:** 45 managed resources, including five clinics, two virtual sites, eight synthetic clinicians, ten roles and four rotation Schedules. The owner-approved pipeline has executed the expanded deployment successfully. Six synthetic Patients and five RelatedPersons are also deployed and verified. Enrollment lifecycle/access acceptance passed under [issue #8](https://github.com/kiyengar27/helix/issues/8). Headless encounter/prescribing-intent work is proposed under [issue #9](https://github.com/kiyengar27/helix/issues/9); see [the model](docs/encounter-prescribing-proposal.md). Other developers need their own synthetic project and intentionally updated target configuration.
+**Staging is deployed and verified:** 45 managed resources, including five clinics, two virtual sites, eight synthetic clinicians, ten roles and four rotation Schedules. The owner-approved pipeline has executed the expanded deployment successfully. Six synthetic Patients and five RelatedPersons are also deployed and verified. Enrollment lifecycle/access acceptance passed under [issue #8](https://github.com/kiyengar27/helix/issues/8). Headless encounter/prescribing-intent implementation continues under [issue #9](https://github.com/kiyengar27/helix/issues/9); see [the model](docs/encounter-prescribing-proposal.md). Other developers need their own synthetic project and intentionally updated target configuration.
 
 Public visibility permits inspection and forks; it does not grant deployment access. No software license has been selected yet.
