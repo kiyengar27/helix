@@ -66,3 +66,12 @@ encounter-flow-apply: build
 	npm run flow-apply:encounters
 encounter-access: build
 	npm run verify:encounter-access
+
+.PHONY: photon-patient-plan photon-patient-apply photon-patient-verify
+photon-patient-plan: build
+	npm run plan:photon-patient
+# Requires a separately reviewed current plan and explicit owner create authorization.
+photon-patient-apply: build
+	npm run apply:photon-patient
+photon-patient-verify: build
+	npm run verify:photon-patient

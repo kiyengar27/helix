@@ -127,3 +127,7 @@ Use a separate snapshot-bound four-write lifecycle plan for two planned visits. 
 ## Enrollment profile preparation for Photon
 
 Add a separately bound enrollment-profile update scope for names, Helix classification tags and the single standard birthsex extension on Patient only. Apply merges only that extension URL, preserving unrelated extensions/metadata and identity with If-Match. Reject duplicate birthsex values and other desired extension definitions. The prior enrollment-display scope remains unchanged; the enrollment command now selects the profile scope. The Medplum policy is unchanged; this is a narrowly enforced deployment-code allowlist, not a new server field-level permission.
+
+## External Photon patient creation
+
+FHIR resources continue to use server-conditional writes. No Photon conditional-create or externalId uniqueness guarantee has been verified. The initial sandbox adapter instead uses a complete exact-ID reconciliation scan, a local exclusive lock, a reviewed snapshot-bound plan and a durable pending marker before one create attempt. An uncertain outcome blocks another create until reconciled. This prevents blind retries within this local workflow but does not provide a cross-writer atomic guarantee. Returned Photon IDs stay in private local receipts initially; Medplum writeback and durable shared mappings are later scope. See photon-patient-sync.md for reviewed recovery and communication boundaries.

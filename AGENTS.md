@@ -46,3 +46,9 @@ Official Medplum source is optionally linked at `medplum-link/`; setup is in doc
 - Update the issue with meaningful progress, blockers, and verification evidence. Close it when the work is actually complete, preferably through the merged PR.
 - Preserve active issue/PR references in docs/STATUS.md so another developer or resumed agent can continue without chat history.
 - User requests authorize creating the corresponding issues; do not ask for repeated confirmation for ordinary issue tracking within this repository.
+
+## Photon evaluation
+
+- Move slowly, one reviewed integration step at a time. Do not create Photon patients/orders or send messages without review of the concrete action and owner authorization.
+- Vendor feedback is a raw collection of thoughts on the owner's Notion page (Photon Doc Feedback, page 3ffe80e021aa80ef8a63c4aa96f6dcea), not a feedback PR or a cross-EHR implementation guide. Append short notes when the user flags feedback; synthesis comes later. Do not contact Photon directly.
+- Preserve ignored Photon receipts/pending markers. Never blindly retry a create or reset local state to bypass uncertainty. No server-atomic Photon idempotency/uniqueness or notification-free patient creation has been verified. Read docs/photon-patient-sync.md before changing this flow.

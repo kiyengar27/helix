@@ -131,3 +131,7 @@ Staging DEPLOY now takes plan_run_id, verifies a successful main PLAN run for th
 ## Separate encounter workflow
 
 Reuse protected main, owner staging approval, shared concurrency and reviewed successful plan artifacts in encounters.yml. Only its separate MEDPLUM_ENCOUNTER credential pair is exposed to that job; enrollment/foundation identities are unchanged. Bootstrap is hosted CI/CD; the separately reviewed synthetic lifecycle runner remains local. Effective-policy comparison now checks writeConstraint, readonly and field restrictions as well as criteria/interactions, so lost constraints cannot silently pass preflight.
+
+## Photon sandbox adapter
+
+Use native Node fetch behind a small injectable TypeScript adapter for the verified OAuth/GraphQL patient operations. Fixed Neutron endpoints, no automatic mutation retries, scoped methods and mocked contract tests keep the first one-patient slice reviewable without adding a framework or enabling production. Run plan/apply/verify locally with separate owner authorization; no new hosted credential exposure.

@@ -58,3 +58,9 @@ Branch feat/10-patient-sync-demographics prepares standard birthsex extensions f
 ## Required sex update
 
 Owner requires sex mandatory. Branch feat/10-required-birth-sex expands explicit birth-sex configuration to all six Patients and requires it in fixture compilation/mapping validation. The earlier two-patient PLAN 39488477407 was cancelled while waiting; no live updates. Prepare a fresh enrollment PLAN after review/merge, expected six extension updates/five retains. No Medplum base-schema/UI/global-write constraint or policy expansion introduced. Owner chose a private personal test phone, saved only as PHOTON_TEST_PHONE in ignored .env; never copy it into docs, Git or logs. No Photon sync or SMS yet.
+
+## Single-patient Photon sync preparation
+
+Owner approved implementing the reviewed sync command, not executing creation. Branch feat/10-photon-patient-sync adds declarative Daniel-only Neutron configuration, a scoped OAuth/GraphQL adapter, local plan/apply/verify and durable ignored pending/link receipts. Uses existing encounter identity for read-only Medplum source access and local PHOTON credentials/test recipient. No API mutations have run. Next: review/merge, generate fresh count-only PLAN, review possible patient-creation SMS behavior with the included private test phone, then obtain explicit create authorization. Do not automatically retry ambiguous outcomes or clear pending state. Refer to photon-patient-sync.md.
+
+Vendor feedback lives as raw thoughts in the owner-selected Notion page 3ffe80e021aa80ef8a63c4aa96f6dcea. Feedback-only PR #28 was closed unmerged. Do not create a cross-EHR guide or feedback PR; operational implementation docs remain in Git. Six birthsex updates deployed via 39489323792; no Photon records/orders/messages yet.
