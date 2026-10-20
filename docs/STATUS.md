@@ -64,3 +64,7 @@ PR #13 now includes whole-market provider participation, preferred clinics, role
 ## Lifecycle follow-up
 
 Issue #14 is deferred physician offboarding (not implemented). Issue #15 covers clinic lifecycle added to draft PR #13: declarative effective-dated history, status projection, nonactive-clinic new-routing denial and configuration impact preview. Fourteen local tests pass. No live updates, hard deletion, appointment cancellation, policy expansion or background status synchronization. Next implementation still needs the controlled-update path and owner-reviewed resource/permission plan.
+
+## PR #13 review closeout
+
+Owner requested review and merge of the declarative structure/lifecycle proposal. Review checks passed: local type-check and 14 tests, timestamped 41-resource collection preview, operating-model references, documentation links, and unchanged active foundation configuration/deployer/workflow. No blocking findings for this isolated proposal capability. Issue #15 closes with merge; issue #6 remains open for the deployment compiler, controlled updates, policy diff and live validation/deployment. No proposal resources have been deployed. Branch deletion requires a separate cleanup plan/approval.
