@@ -95,3 +95,7 @@ The proposal is not accepted coverage or a deployment authorization. Next gate i
 - Future dietitian/behavioral-health resources may span markets; a mental-health clinic partnership is external referral coordination with explicitly scoped sharing.
 
 The detailed declarative operating model and current fixture limitations are in care-delivery-proposal.md.
+
+## Clinic lifecycle requirements
+
+Clinic setup must support adding sites and planned, active, suspended and closed states with effective dates and reasons. Nonactive sites cannot accept new routed care. Preserve historical identity and references; inspect future appointments/open work and produce an impact plan before live closure. Configuration removal must not silently delete or offboard a clinic. Details and current deployment limits are in clinic-lifecycle.md (issue #15). Physician offboarding remains deferred in issue #14.

@@ -95,3 +95,9 @@ The proposal references existing stable fullUrls and must be compiled with the f
 The operating-model manifest records market participation independently of PractitionerRole service/jurisdiction eligibility. Preferred clinics are nonexclusive hints; planned sessions name their role, site, market, mode and timezone. Do not mix state areas and clinic sites in PractitionerRole.location for this convention. Compile accepted rotation templates to the supported Medplum Schedule/SchedulingParameters model before calling scheduling operations; no precreated open Slots.
 
 Nationwide is an onboarding target, not a licensed-jurisdiction shortcut. CA/TX fixtures remain the only explicitly eligible states. Market-specific transitions and complex-care assignments reuse service definitions but preserve separate responsibility; future cross-market offerings and external mental-health referrals must not collapse these boundaries or confer data access. No extra FHIR extension or implicit authorization is introduced by the application manifests.
+
+## Clinic lifecycle projection — October 20, 2026
+
+Use an application lifecycle manifest for effective-dated planned/active/suspended/closed clinic history. Project to FHIR R4 Location.status: inactive/active/suspended/inactive respectively; retain the richer business history in configuration rather than inventing Location status codes. Closed is terminal initially; temporary closures use suspended. Runtime scope checks must consult effective history for new care. Static Location.status alone will not apply future events; no background synchronization is implemented yet.
+
+Keep inactive clinic references and expose configuration impacts before changes. Do not auto-delete coverage, appointments or historical resources. Removal from the manifest is rejected. A live controlled update requires a reviewed dependency audit and owner approval; the local impact report does not query live bookings. See ../clinic-lifecycle.md.

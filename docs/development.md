@@ -56,3 +56,7 @@ Skip creation if files already exist. Fill credentials locally; never paste them
 - Project mismatch: verify intended credentials/configuration; do not remove the guard.
 - Managed-field differences: deployment intentionally blocks. Review differences; editing JSON does not update existing records.
 - Existing foundation verification failure: check access permissions and identifiers before assuming resources were deleted.
+
+## Care-delivery and lifecycle preview
+
+`npm run preview:care-delivery -- 2026-10-20T00:00:00Z` (from code/) renders the proposed resource collection and operating/lifecycle manifests at an explicit UTC timestamp, including configuration impacts. It is local-only and is not consumed by foundation deployment. See [clinic lifecycle](clinic-lifecycle.md) before changing physical site status.

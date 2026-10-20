@@ -74,3 +74,9 @@ Rotation templates are included for design review, but compiling them to Medplum
 This checker is an executable design scenario, not verified credential evaluation, access control, or appointment availability. Its market input is the market delivering the service, not an automatic substitution for the patient's home market. Travel/home-market routing needs a separate policy. Production use also requires credential validity, exceptions and live session/booking checks. JSON graph tests and typed field projections do not replace full FHIR validation.
 
 The four sample recurring sessions rotate Casey Patel between North Bay clinic (Monday), South Bay clinic (Tuesday), CA virtual care (Thursday) and TX virtual care (Friday), 09:00–12:00 in each session's explicit IANA timezone. These are synthetic templates, not appointments or asserted clinician working hours. They have no effective dates and are not deployed.
+
+## Clinic lifecycle capability
+
+[Clinic lifecycle](clinic-lifecycle.md) is now a declarative application capability under issue #15: planned/active/suspended/closed history, FHIR status projection, new-routing checks and a configuration-dependency report. See code/config/proposals/clinic-lifecycle.json and src/clinic-lifecycle.ts. No hard deletion, automatic reassignment, live appointment inspection or Medplum status updates are performed. Preview includes lifecycle impact at an explicit UTC timestamp.
+
+Physician offboarding is deferred in issue #14 and is not implemented here.

@@ -1,3 +1,4 @@
+import { clinicLifecycle, clinicReferences, clinicStateAt, clinicStatusAt, clinicImpact, type ClinicLifecycle } from './clinic-lifecycle.js';
 import type { Bundle, Location, PractitionerRole } from '@medplum/fhirtypes';
 import foundation from '../config/foundation.json' with { type: 'json' };
 import proposal from '../config/proposals/care-delivery.resources.json' with { type: 'json' };
@@ -20,7 +21,8 @@ const roleLinks: Pick<PractitionerRole, 'practitioner' | 'organization' | 'healt
 void locations; void roleLinks;
 
 /** Checks declarative delivery scope only; not authorization, verified credentials or availability. */
-export function isDeliveryEligible(request: DeliveryRequest): boolean {
+export function isDeliveryEligible(request: DeliveryRequest, at = new Date().toISOString(), lifecycle: ClinicLifecycle = clinicLifecycle): boolean {
+  if (clinicReferences.includes(request.location) && clinicStateAt(request.location, at, lifecycle) !== 'active') return false;
   const provider = operations.providers.find(p => p.roles.some(r => r.role === request.role));
   const role = provider?.roles.find(r => r.role === request.role);
   const market = operations.markets.find(m => m.market === request.market);
@@ -39,10 +41,17 @@ export function isDeliveryEligible(request: DeliveryRequest): boolean {
 }
 
 /** Local view for design review. It has no deployment requests and never contacts Medplum. */
-export function previewCareDelivery(): { resources: Bundle; operations: typeof operations; coverage: typeof coverage } {
+export function previewCareDelivery(at = new Date().toISOString()) {
   const resources: Bundle = {
     resourceType: 'Bundle', type: 'collection',
-    entry: [...foundation.entry, ...proposal.entry] as Bundle['entry'],
+    entry: structuredClone([...foundation.entry, ...proposal.entry]) as Bundle['entry'],
   };
-  return { resources, operations, coverage };
+  for (const entry of resources.entry ?? []) {
+    if (entry.resource?.resourceType === 'Location' && entry.fullUrl && clinicReferences.includes(entry.fullUrl)) {
+      entry.resource.status = clinicStatusAt(entry.fullUrl, at);
+    }
+  }
+  return { asOf: at, resources, operations, coverage, clinicLifecycle,
+    clinicLifecycleImpact: clinicReferences.map(location => clinicImpact(location, at)),
+  };
 }
