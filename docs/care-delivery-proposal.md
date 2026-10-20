@@ -1,8 +1,8 @@
 # Stage 1 care-delivery proposal
 
-Status: Proposed for review; issue #6. Date: October 20, 2026.
+Status: Stage 1 implemented and deployed; issue #6. Updated: October 20, 2026. This document retains design-stage rationale; current execution evidence is in care-delivery-deployment.md.
 
-All setup is defined in versioned configuration and code. These files are a proposed input contract, not an approved deployment. No live setup or permission changes have occurred.
+All setup is defined in versioned configuration and code. The inputs were reviewed, compiled and deployed through the owner-approved workflow. References to pending implementation below describe original design gates, now superseded by the deployment runbook.
 
 ## Declarative inputs
 
@@ -45,7 +45,7 @@ One Practitioner per person, one PractitionerRole per offered service: 8 Practit
 - HealthcareService.location describes delivery sites; coverageArea describes geography. Their separate arrays cannot express every mode-by-market combination, so retain the explicit coverage manifest as the intended routing configuration. A future consumer must enforce that mapping.
 - The two virtual locations are logical service-delivery identities. No R5 virtualService fields or invented virtual mode enum are used. Location.mode remains instance. Physical type and role terminology use human-readable text until verified codes are selected.
 - Existing services need added location/coverage fields. The create-only deployer must not silently update them or use new identifiers to bypass drift. Resolve controlled updates under ADR-002 before applying coverage.
-- Proposal files are isolated from foundation.json and not loaded by CI/CD deployment. A deployment compiler, transaction reference resolution, target validation, restricted-policy update, and full server checks remain required after model review.
+- The care-delivery compiler now loads these inputs alongside foundation.json, resolves transaction references, validates the target/policy and performs bounded updates. All passed initial staged deployment; see the runbook for remaining lifecycle/booking limitations.
 - Generate scoped policy definitions from managed configuration in code; keep bootstrap/security identity separate from runtime provisioning. No policy changes are authorized by this proposal.
 
 ## Review and acceptance sequence

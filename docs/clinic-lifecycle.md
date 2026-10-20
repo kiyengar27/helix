@@ -1,6 +1,6 @@
 # Clinic lifecycle
 
-Tracking: issue #15, implemented locally in draft PR #13. No live update path is enabled by this feature.
+Tracking: issue #15, closed through merged PR #13. The care-delivery compiler deploys active initial locations, but suspension/closure execution remains blocked pending live dependency audits. No automatic future lifecycle synchronization exists.
 
 ## Declarative history
 

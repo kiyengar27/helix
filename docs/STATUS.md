@@ -1,80 +1,62 @@
 # Helix project handoff
 
-Updated: October 20, 2026. This file describes current state; verify live GitHub settings before relying on them.
+Updated: October 20, 2026. Verify live GitHub/Medplum state before relying on this checkpoint.
 
 ## Resume
 
-Read AGENTS.md, README.md, this file, and relevant PRD/ADRs. Inspect Git status, open issues/PRs and CI before editing. Use official Medplum docs/source; do not depend on chat history.
+Read AGENTS.md, README.md, this file and relevant PRD/ADRs. Inspect current branch, working tree, issues, PRs and CI. Use official Medplum source via optional medplum-link; do not depend on chat history.
 
 ## Established state
 
-- Public repository: https://github.com/kiyengar27/helix.
-- Owner checkout: ~/development/helix; code under code/.
-- Official reference: ~/development/medplum via ignored medplum-link.
-- Medplum project Helix is synthetic staging; target ID is in code/config/staging.json. No production environment exists.
-- Deployed foundation: Helix Medical Group; North Bay CA, South Bay CA, Austin Metro, Dallas North, Dallas South; Primary Care, Acute Care, Cardiology, Urology, Rheumatology, Infusion Therapy, Transitions of Care, Complex Care.
-- One practice-level patient identity, optional PCP, one home market and separate visit location are agreed concepts. Patient persistence/workflows are not implemented.
-- Declarative FHIR R4 JSON; TypeScript deployment; Node 24; npm lockfile; Make local and server-aware checks.
+- Repository: https://github.com/kiyengar27/helix. Owner checkout: ~/development/helix; implementation under code/.
+- Medplum project Helix is synthetic staging; target is pinned in code/config/staging.json. No production environment, patients or provider logins are provisioned.
+- FHIR R4 JSON + application manifests, TypeScript compiler/deployment, Node 24, npm lockfile and Make checks.
+- One patient identity, optional PCP, one home market and separate visit jurisdiction remain agreed future concepts, not implemented patient workflows.
 
-## Completed staging milestone
+## Completed milestones
 
-Issue #3 is closed. Documentation closeout PR #7 is merged, its branch was removed locally and remotely, and main was synchronized. PRs #4 and #5 are merged, their branches were removed with owner approval, and main was synchronized before closeout work.
+Issue #3: restricted, owner-approved staging CI/CD. PRs #1/#4/#5/#7 merged.
 
-- Restricted policy applied to client membership; effective identifier-scoped read/search/create rules verified.
-- Patient, ProjectMembership and ClientApplication searches denied with 403. No destructive denial tests performed.
-- Staging environment secrets configured, STAGING_ENABLED=true, main-only access, owner reviewer, no admin bypass.
-- [Hosted PLAN](https://github.com/kiyengar27/helix/actions/runs/38928287615) passed: 14 retained, no drift.
-- [Hosted DEPLOY/verify](https://github.com/kiyengar27/helix/actions/runs/38928472739) passed: 14 transaction statuses of 200, no duplicates, no drift.
-- Verified main commit: eabc55833c1aabd0232a14d0304fd11f4c1204ad.
-- First-time creation under restricted policy remains untested; existing-resource transaction path is proven. See docs/deployment.md.
+Issue #6: care-delivery configuration and deployment implemented in merged PRs #13/#16; documentation closeout on docs/6-care-delivery-closeout. Issue closes on closeout PR merge. Clinic lifecycle local capability #15 is closed; physician offboarding #14 remains deferred.
 
-## Current work and next gate
+Live managed inventory (45 resources):
 
-Issue #6 on feat/6-care-delivery-design: proposed 27 additional resources, coverage matrix and operating-model manifest under code/config/proposals/, with docs/care-delivery-proposal.md and PRD/ADR-001 updates. These are review drafts, not consumed by deployment. No Medplum resources or permissions changed.
+| Type | Count |
+|---|---:|
+| Organization | 1 |
+| Location | 14 (5 markets, 5 clinics, 2 virtual sites, 2 jurisdiction areas) |
+| HealthcareService | 8 |
+| Practitioner | 8 synthetic clinicians |
+| PractitionerRole | 10 service-specific roles |
+| Schedule | 4 sample rotations |
 
-Next: owner reviews roster and coverage, then implement validated declarative compilation and controlled updates for existing HealthcareService location/coverage fields. Present the resource and permission plan before apply. Do not route proposal JSON through the current create-only deployer.
+Markets: North Bay CA, South Bay CA, Austin Metro, Dallas North, Dallas South. Offerings: Primary Care, Acute Care, Cardiology, Urology, Rheumatology, Infusion Therapy, Transitions of Care, Complex Care.
 
-## Agreed milestone order
+## Live evidence
 
-1. #6: care-delivery structure.
-2. #8: patient enrollment, market history, and access.
-3. #9: minimal headless encounter and prescribing intent.
-4. #10: Photon/pharmacy sandbox integration; investigate prerequisites during stages 1–2.
-5. #11: broader specialty and coordinated-care workflows.
-6. #12: application experience.
+- Owner applied generated care-delivery policy; effective scope matched code. Patient, ProjectMembership and ClientApplication searches denied.
+- [PLAN 39434179867](https://github.com/kiyengar27/helix/actions/runs/39434179867): 31 creates, eight coverage updates, six retained.
+- [DEPLOY 39438818281](https://github.com/kiyengar27/helix/actions/runs/39438818281): success after owner approval; 31 responses 201, eight responses 200; all 45 verified.
+- Deployed commit: 670b9767e1ca6a2081b05d75143ba9819f6b2a21.
+- Independent fresh local npm run verify passed for all 45 at 2026-10-20T14:25:57.806Z. No duplicates or managed drift.
+- Build has 23 tests covering configuration, routing scope, lifecycle and deployment integrity/concurrency. Tests and compiled resource/policy server validation passed. Hosted reviewed-artifact transfer and first expanded transaction are now proven.
 
-Stages 1–5 stay headless. Work through one implementation milestone at a time. All setup is code/declarative, with documented bootstrap/secret-entry/approval exceptions.
+## Deployment rules and limits
 
-## Constraints and unresolved decisions
+Main-only staging with owner environment approval, no admin bypass, restricted environment secrets and explicit PLAN/DEPLOY names. PLAN artifacts bind commit/project/configuration and server snapshots; DEPLOY requires its successful same-commit plan_run_id and rejects expired/stale plans. See docs/care-delivery-deployment.md.
 
-Create-only deployment: differences block writes, no updates/deletes/automatic rollback. Adding identifiers or resource types requires reviewed policy updates. Authorization is independent of licensure, geography, team membership and routing. Market-assignment history, episode/program mapping, legal structure, detailed patient access and team/queue design remain unresolved under ADR-001. Software license is not selected.
+Controlled updates only: service location/coverage, clinic status and Schedule.active. Live clinic suspension/closure is blocked pending dependency audits. No deletion, rollback, automatic future status synchronization, runtime clinical authorization or verified licensing. Configured schedules do not prove booking outcomes; only four examples have concrete availability. Market programs/preferences/participation remain application configuration in Git. Nationwide virtual is a target; fixtures explicitly support only CA/TX.
+
+## Next milestone
+
+[Issue #8](https://github.com/kiyengar27/helix/issues/8): patient enrollment, market history and access. Start with a concise proposed enrollment representation and access matrix for owner review. Do not add patient fixtures or change permissions before that review. Early Photon sandbox prerequisites can be investigated under #10 without starting integration implementation.
+
+Then #9 minimal headless encounter/prescribing intent; #10 Photon/pharmacy sandbox; #11 broader care workflows; #12 application experience. Stages through #11 remain headless. #14 physician offboarding is backlog, not a blocker.
 
 ## Working preferences
 
-Concise communication. No autonomous browser navigation. One sizeable issue per milestone; use branch → checks → PR → owner merge. Maintain ADR-002 for deployment semantics and ADR-003 for technology/tooling decisions. Show a plan before apply; obtain authorization to launch deployment and let the owner approve GitHub's environment gate. Keep credentials and patient data out of chat, Git and artifacts.
+Concise communication; no autonomous browser navigation. One sizeable GitHub issue per milestone; branch → tests → PR → reviewed merge. All setup is code/declarative except documented bootstrap, secrets and approvals. Show resource/permission plans before writes; obtain dispatch authorization and leave GitHub environment approval to the owner. Present branch cleanup before deleting branches; merged #13/#16 branches may still remain. Maintain ADR-002 for deployment and ADR-003 for tooling. Keep secrets/patient payloads out of Git/chat/artifacts. Software license is not selected.
 
 ## Resume prompt
 
-> Read AGENTS.md and docs/STATUS.md. Inspect repository and CI state. Continue the next incomplete milestone from its issue, starting with a concise plan. Do not navigate the browser or print credentials. Show the plan before any deployment.
-
-## Current proposal revision
-
-PR #13 now includes whole-market provider participation, preferred clinics, role-specific modes/jurisdictions, nationwide virtual targets without blanket eligibility, ten market-program responsibility entries, and sample Bay Area rotation templates. Specialists support clinic delivery in all five markets; infusion remains physical-only at the two initial sites. Disabled future shared offerings and an external mental-health referral partnership are explicitly recorded. Local delivery-scope logic and preview are available; this is not scheduling or authorization enforcement. Run make build (nine tests) and npm run preview:care-delivery from code/. No deployment or permission changes. Next gate remains review before compiler/controlled-update implementation and server-side checks.
-
-## Lifecycle follow-up
-
-Issue #14 is deferred physician offboarding (not implemented). Issue #15 covers clinic lifecycle added to draft PR #13: declarative effective-dated history, status projection, nonactive-clinic new-routing denial and configuration impact preview. Fourteen local tests pass. No live updates, hard deletion, appointment cancellation, policy expansion or background status synchronization. Next implementation still needs the controlled-update path and owner-reviewed resource/permission plan.
-
-## PR #13 review closeout
-
-Owner requested review and merge of the declarative structure/lifecycle proposal. Review checks passed: local type-check and 14 tests, timestamped 41-resource collection preview, operating-model references, documentation links, and unchanged active foundation configuration/deployer/workflow. No blocking findings for this isolated proposal capability. Issue #15 closes with merge; issue #6 remains open for the deployment compiler, controlled updates, policy diff and live validation/deployment. No proposal resources have been deployed. Branch deletion requires a separate cleanup plan/approval.
-
-## Care-delivery deployment implementation in progress
-
-Issue #6 continues on feat/6-reviewed-deployment after merged PR #13. The compiler prepares 45 resources including four Schedules; expected baseline is 31 creates, eight coverage updates and six retained. New entry point provisions care delivery with exact policy preflight, server validation, saved-plan integrity/version checks, allowlisted optimistic updates and post-transaction verification. GitHub deploy requires a successful same-commit PLAN run ID. Generated policy is code/config/security/care-delivery-policy.json. No policy changes or resource writes occurred.
-
-Next: finish code/CI review and real-server validation, merge implementation, then owner reviews/applies generated policy. Run authoritative PLAN, review it, and only then request DEPLOY approval. The old policy cannot search new resource types, so a complete authoritative plan is blocked until owner updates access. Do not mistake a baseline estimate for a live plan.
-
-Deployment compiler validation checkpoint: Medplum $validate accepted all 45 compiled resources without persistence. Authenticated authoritative PLAN intentionally stops at effective-policy mismatch under the old policy. Local concurrency/integrity/round-trip tests and workflow YAML parsing pass. Owner has not changed policy yet; initial 31/8/6 counts remain a baseline estimate until full authorized search.
-
-Implementation PR #16: https://github.com/kiyengar27/helix/pull/16. All 45 compiled resources plus generated AccessPolicy passed Medplum $validate with no persistence. Next owner checkpoint is reviewing PR and expanded generated policy; do not apply either automatically. Saved-plan artifact transfer and first expanded transaction still require main merge and owner-approved runs.
+> Read AGENTS.md and docs/STATUS.md. Check live Git/CI state. Continue issue #8 with a concise design plan before implementation. Do not navigate the browser, print credentials or apply changes without reviewed plans and owner approval.

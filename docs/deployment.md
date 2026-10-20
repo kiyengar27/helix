@@ -2,7 +2,7 @@
 
 ## Current boundaries
 
-There is one owner-controlled Medplum project named Helix, used as staging. It is not a production environment. The foundation contains 14 synthetic configuration resources. No patients, providers, schedules, or production integrations are provisioned.
+There is one owner-controlled Medplum project named Helix, used as staging. It is not a production environment. The expanded care-delivery structure contains 45 managed resources, including synthetic clinicians and four schedules. No patients, provider user accounts, or production integrations are provisioned.
 
 ## CI
 
@@ -72,3 +72,5 @@ For every future change: show the plan first, obtain approval before dispatching
 ## Care-delivery expansion
 
 The care-delivery deployment supersedes the original foundation-only invocation described above. Read [the reviewed-plan contract](care-delivery-deployment.md): PLAN generates a same-commit artifact; DEPLOY requires its run ID and checks versions/digests before bounded updates. The generated expanded AccessPolicy must be reviewed and applied by the owner before authoritative planning. Foundation validation evidence above remains historical, not proof of the expanded deployment.
+
+Expanded care-delivery deployment is now verified; follow care-delivery-deployment.md for current saved-plan and bounded-update operation. Earlier foundation-only evidence is retained as history.

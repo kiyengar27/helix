@@ -6,7 +6,7 @@ Issue #6. Implementation is reviewable in code; no resources or permissions are 
 
 The compiler combines foundation.json, proposed resource definitions, coverage, operating-model rotation templates and effective clinic lifecycle. It adds HealthcareService.location/coverageArea and four FHIR R4 Schedules with Medplum SchedulingParameters (service, timezone, configurable duration and recurring windows). No open Slots are created. Market participation, program assignments, preferences and future service/partner configuration remain application manifests in Git, not invented FHIR resources or access-control rules.
 
-Expected initial scope, assuming only the verified foundation exists: 45 resources total — 31 creates (27 structure + 4 Schedules), eight HealthcareService coverage updates, six retained resources. This is an estimate until the expanded client policy permits authoritative search of every identifier.
+Initial authoritative PLAN and approved DEPLOY confirmed 45 resources total: 31 creates (27 structure + 4 Schedules), eight HealthcareService coverage updates, six retained resources. Independent verification passed. Future plans compare live state; do not assume these initial changes recur.
 
 ## Local commands (from code/)
 
@@ -53,7 +53,7 @@ An initially missing resource could appear after the final search; conditional P
 
 Clinic suspension/closure status changes are blocked in this deployment version because live bookings/tasks have not been audited. The local lifecycle capability still previews impacts and suppresses new routing. No automatic status timer, clinic closure execution or physician offboarding is implemented. Schedule.active may be toggled by reviewed updates, but provider-session edits, credential changes and role offboarding require further update contracts. Same-day rotation templates for one practitioner are rejected if overlapping; differing timezones on that day fail closed until DST-aware interval validation is implemented. The four current examples use different days.
 
-Only the four example rotations have concrete schedules; other catalog coverage does not imply bookable availability. Generated resources still need real-server validation and the first approved transaction. Current type and mock tests do not establish live API authorization, credential validity or scheduling outcomes.
+Only the four example rotations have concrete schedules; other catalog coverage does not imply bookable availability. All 45 resources and the generated policy passed real-server validation; the first expanded transaction and reviewed-artifact handoff succeeded. Type/mock tests and deployment success do not establish credential validity, clinical access correctness or end-to-end booking outcomes.
 
 ## Reference implementations
 
@@ -61,3 +61,12 @@ Only the four example rotations have concrete schedules; other catalog coverage 
 - [Medplum transaction version checks](https://www.medplum.com/docs/fhir-datastore/fhir-batch-requests).
 - [GitHub artifact download](https://github.com/actions/download-artifact), including run-id and github-token for a prior run.
 - [GitHub workflow run metadata](https://docs.github.com/en/rest/actions/workflow-runs#get-a-workflow-run).
+
+## Completed deployment evidence — October 20, 2026
+
+- [Authoritative PLAN](https://github.com/kiyengar27/helix/actions/runs/39434179867): 31 creates, eight location/coverage updates, six retained.
+- [Owner-approved DEPLOY](https://github.com/kiyengar27/helix/actions/runs/39438818281): success; 31 transaction statuses 201 and eight 200; all 45 verified.
+- Commit: 670b9767e1ca6a2081b05d75143ba9819f6b2a21. Saved plan digest: 66f6c7bdbc8eeae33489233b90c7ccb005171b811272553662a08cda0c17b1e9.
+- Independent fresh local verification passed at 2026-10-20T14:25:57.806Z. No duplicates or managed drift. Owner-applied effective policy matched generated scope; unrelated patient/admin searches were denied.
+
+Artifacts have 14-day retention. This durable summary records outcomes without credentials or raw patient payloads. Updates under this closeout PR are documentation-only and need no Medplum deployment. A new main commit requires a new plan for any future live change.
