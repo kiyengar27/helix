@@ -58,3 +58,22 @@ Tests in this PR are anonymous local contract tests only, not actual patient sce
 - Local Medplum FHIR Patient/RelatedPerson types.
 - [Medplum profiles](https://www.medplum.com/docs/fhir-datastore/profiles).
 - [Medplum access policies](https://www.medplum.com/docs/access/access-policies), including writeConstraint and related-resource compartment guidance.
+
+## Prepared synthetic cohort and execution path
+
+The agreed contract now has six deterministic anonymous scenarios: older adult + caregiver, under-12 child + parent, age 12 + parent, age 13 + guardian, 15-year-old + parent, and independent adult. They compile to six Patients and five RelatedPersons. Dates are generated from a fixed scenario baseline, not the run date, so birthdays do not change identity or deployment definitions. Some cases have no PCP. No market extension is included.
+
+All 11 payloads and the separate policy passed Medplum validation without persistence. `npm run preview:enrollment` displays counts only. `npm run prepare:enrollment` uses foundation credentials only to resolve the deployed group/PCP references and perform nonpersistent validation; it writes only reference configuration and the enrollment policy. Raw patient/relationship payloads are never saved by that command.
+
+`plan:enrollment`, `apply:enrollment` and `verify:enrollment` use separate MEDPLUM_ENROLLMENT_CLIENT_ID/SECRET credentials. They use the same reviewed-plan/version checks as care-delivery deployment but only manage the 11 synthetic enrollment resources. Initial policy allows explicit-identifier read/search/create; updates, deletes, clinical records and credential administration remain denied. This initial deployment does not yet implement demographic edits, staff clinical permissions or proxy grants; those acceptance checks remain under #8.
+
+The separate enrollment.yml workflow requires both STAGING_ENABLED and ENROLLMENT_ENABLED and the staging owner gate. It exposes only enrollment secrets, checks the successful same-commit enrollment PLAN run, and uses separate enrollment artifacts. Logs contain counts/status only; saved plans contain synthetic identifiers/version hashes, not demographics or raw resource snapshots. The foundation workflow and identity remain patient-denied.
+
+### Next owner checkpoint, after PR review
+
+1. Create the separate AccessPolicy **Helix Staging Enrollment Service** using code/config/security/enrollment-service-policy.json. Do not replace the foundation policy.
+2. Create client **Helix Staging Enrollment Service**, selecting that policy during creation; do not give administrator privileges.
+3. Store its credentials as MEDPLUM_ENROLLMENT_CLIENT_ID and MEDPLUM_ENROLLMENT_CLIENT_SECRET, separately from existing credentials (local .env and later staging environment secrets). Do not paste values into chat.
+4. Notify the implementation agent. Verify effective permissions and prepare PLAN before enabling/dispatching enrollment deployment. No patient/proxy accounts are created by the service client.
+
+Account/bootstrap and secret steps are owner actions; all resource/policy definitions remain code-driven. ENROLLMENT_ENABLED has not been set and no identity or live fixture has been created by the agent.

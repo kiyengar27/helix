@@ -66,3 +66,7 @@ Concise communication; no autonomous browser navigation. One sizeable GitHub iss
 Issue #8 on feat/8-enrollment-contract, draft PR #18: standard practice affiliation/optional PCP and typed RelatedPerson/proxy-review helpers. Scope includes older-adult caregiver, under-12 parent, ages 12/13 and 14–17, with no automatic access or capacity assumption. Patient home-market extension/history was removed before deployment and is deferred to issue #19. Do not reintroduce a custom patient market field during enrollment work.
 
 Local anonymous contract tests only; no patient fixtures, writes, profiles, policies or identities created. Existing provisioning client remains patient-denied. Next gate: review the reduced enrollment and caregiver access matrix, then implement separate enrollment identity/policies and synthetic headless scenarios.
+
+## Stage 2 fixture preparation
+
+Draft PR #18 now prepares six synthetic Patients and five RelatedPersons, with a separate generated enrollment policy and pinned deployed group/PCP references. All payloads/policy passed server validation without saving resources. Separate plan/apply/verify commands and gated enrollment.yml use only new MEDPLUM_ENROLLMENT credentials; ENROLLMENT_ENABLED remains unset. Foundation permissions unchanged. Next checkpoint: owner reviews PR, then creates the new scoped enrollment policy/client (instructions in docs/patient-enrollment.md). No Patient/RelatedPerson records, staff logins or proxy grants exist yet. Demographic updates and real authorization acceptance tests remain open under #8.

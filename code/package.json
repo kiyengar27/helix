@@ -13,7 +13,12 @@
     "verify": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --verify",
     "preview:care-delivery": "tsx scripts/preview-care-delivery.ts",
     "policy": "tsx scripts/provision-care-delivery.ts --policy",
-    "validate:server": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --validate-only"
+    "validate:server": "node --env-file-if-exists=.env --import tsx scripts/provision-care-delivery.ts --validate-only",
+    "preview:enrollment": "tsx scripts/preview-enrollment.ts",
+    "prepare:enrollment": "node --env-file-if-exists=.env --import tsx scripts/prepare-enrollment.ts",
+    "plan:enrollment": "node --env-file-if-exists=.env --import tsx scripts/provision-enrollment.ts --plan",
+    "apply:enrollment": "node --env-file-if-exists=.env --import tsx scripts/provision-enrollment.ts --apply",
+    "verify:enrollment": "node --env-file-if-exists=.env --import tsx scripts/provision-enrollment.ts --verify"
   },
   "dependencies": {
     "@medplum/core": "^5.2.5",
