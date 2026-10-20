@@ -1,6 +1,6 @@
 # Patient enrollment and related people
 
-Status: Proposed contract for review, issue #8. No patient fixtures, relationships, logins, permissions or live resources are deployed by this change.
+Status: Six synthetic Patients and five RelatedPersons are deployed in staging under issue #8. No patient/proxy logins or access grants exist. A display-name update is prepared for review; it has not been applied.
 
 ## Initial design
 
@@ -37,7 +37,7 @@ Keep each caregiver–patient relationship independently scoped. A parent with m
 | Identity | Proposed scope | Current implementation |
 |---|---|---|
 | Existing foundation provisioner | No Patient/RelatedPerson access | Remains denied |
-| Separate enrollment service | Explicit staging patient/relationship identifiers; enrollment-only writes | Not created or authorized |
+| Separate enrollment service | Explicit staging patient/relationship identifiers; enrollment-only writes | Separate identity deployed; exact synthetic identifier scope |
 | Registration staff | Reviewed demographics/enrollment operations only | No policy assigned |
 | Clinical staff | Deliberately scoped Helix record reads; treatment eligibility separate | No clinical access enabled |
 | Patient / caregiver / parent | Explicit patient-specific reviewed grants | No account, grant or policy enabled |
@@ -65,15 +65,18 @@ The agreed contract now has six deterministic anonymous scenarios: older adult +
 
 All 11 payloads and the separate policy passed Medplum validation without persistence. `npm run preview:enrollment` displays counts only. `npm run prepare:enrollment` uses foundation credentials only to resolve the deployed group/PCP references and perform nonpersistent validation; it writes only reference configuration and the enrollment policy. Raw patient/relationship payloads are never saved by that command.
 
-`plan:enrollment`, `apply:enrollment` and `verify:enrollment` use separate MEDPLUM_ENROLLMENT_CLIENT_ID/SECRET credentials. They use the same reviewed-plan/version checks as care-delivery deployment but only manage the 11 synthetic enrollment resources. Initial policy allows explicit-identifier read/search/create; updates, deletes, clinical records and credential administration remain denied. This initial deployment does not yet implement demographic edits, staff clinical permissions or proxy grants; those acceptance checks remain under #8.
+`plan:enrollment`, `apply:enrollment` and `verify:enrollment` use separate MEDPLUM_ENROLLMENT_CLIENT_ID/SECRET credentials. They use the same reviewed-plan/version checks as care-delivery deployment but only manage the 11 synthetic enrollment resources. Initial deployed policy allows explicit-identifier read/search/create. The proposed policy adds update on those same 11 records for the display-name migration; deletes, clinical records and credential administration remain denied. This initial deployment does not yet implement demographic edits, staff clinical permissions or proxy grants; those acceptance checks remain under #8.
 
 The separate enrollment.yml workflow requires both STAGING_ENABLED and ENROLLMENT_ENABLED and the staging owner gate. It exposes only enrollment secrets, checks the successful same-commit enrollment PLAN run, and uses separate enrollment artifacts. Logs contain counts/status only; saved plans contain synthetic identifiers/version hashes, not demographics or raw resource snapshots. The foundation workflow and identity remain patient-denied.
 
-### Next owner checkpoint, after PR review
+### Display-name update and owner checkpoint
 
-1. Create the separate AccessPolicy **Helix Staging Enrollment Service** using code/config/security/enrollment-service-policy.json. Do not replace the foundation policy.
-2. Create client **Helix Staging Enrollment Service**, selecting that policy during creation; do not give administrator privileges.
-3. Store its credentials as MEDPLUM_ENROLLMENT_CLIENT_ID and MEDPLUM_ENROLLMENT_CLIENT_SECRET, separately from existing credentials (local .env and later staging environment secrets). Do not paste values into chat.
-4. Notify the implementation agent. Verify effective permissions and prepare PLAN before enabling/dispatching enrollment deployment. No patient/proxy accounts are created by the service client.
+Names are declared in scenarios.json. Patient names: Eleanor Bennett, Oliver Chen, Maya Patel, Ethan Brooks, Sofia Martinez and Daniel Wilson. Related people: Laura Bennett, Grace Chen, Anita Patel, Rachel Turner and Elena Martinez. These are invented synthetic identities. Every fixture carries meta.tag with system urn:helix:data-classification and code synthetic; this administrative label is not an access control and may not appear in every UI view.
 
-Account/bootstrap and secret steps are owner actions; all resource/policy definitions remain code-driven. ENROLLMENT_ENABLED has not been set and no identity or live fixture has been created by the agent.
+The enrollment deployment scope permits updates only to name and Helix-owned classification tags. It preserves IDs, identifiers, birth dates, addresses, PCPs, relationships, unrelated tags and other metadata. Unmanaged drift blocks deployment. Updates use version-checked PUTs; retry after success retains all 11 records. No delete or recreation is needed.
+
+The Medplum policy grants resource-level update on the 11 exact identifiers; the field allowlist is enforced by our deployment code, not a server-enforced field restriction. Foundation credentials remain patient-denied.
+
+After PR review and merge, the owner updates the existing **Helix Staging Enrollment Service** policy from code/config/security/enrollment-service-policy.json, preserving its resource ID and the current client assignment. Do not create a second client or replace the foundation policy. Then run the enrollment PLAN, review its counts/fields, authorize DEPLOY dispatch and approve the staging environment. Expect 11 updates, zero creates and zero deletes if current state matches. Verification must retain all 11.
+
+Initial deployment evidence: PLAN 39445548745 and DEPLOY 39445743926 succeeded on commit 01b495651b1766308e0ca4968ae6c1cdf43e7e98. Staff authorization, demographic-edit workflows and proxy access acceptance remain open under issue #8.

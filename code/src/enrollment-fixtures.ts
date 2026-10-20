@@ -1,5 +1,6 @@
 import type { AccessPolicy, Patient, RelatedPerson } from '@medplum/fhirtypes';
 import scenarios from '../config/enrollment/scenarios.json' with { type: 'json' };
+import { syntheticMeta } from './synthetic-data.js';
 import { ageBand, ageOn, relationshipDraft } from './enrollment.js';
 
 export interface EnrollmentReferences { organization: string; pcpRole: string }
@@ -20,14 +21,16 @@ export function compileEnrollmentFixtures(context:EnrollmentReferences):Enrollme
     if(ageOn(birthDate,scenarios.referenceDate)!==scenario.ageAtBaseline)throw new Error('Unstable age fixture');
     const patient:Patient={
       resourceType:'Patient',identifier:[{system:patientIdentifierSystem,value:scenario.key}],active:true,
-      name:[{family:'HelixSynthetic',given:[scenario.key]}],birthDate,
+      name:[scenario.patientName],birthDate,meta:syntheticMeta(),
       address:[{state:scenario.residenceState,country:'US'}],managingOrganization:{reference:context.organization},
       ...(scenario.assignPcp?{generalPractitioner:[{reference:context.pcpRole}]}:{}),
     };
     fixtures.push({fullUrl:scenario.patientFullUrl,resource:patient});
     if(scenario.relationship){
       const relationship=relationshipDraft(scenario.patientFullUrl,scenario.key,scenario.relationship as 'caregiver'|'parent'|'guardian');
-      relationship.name=[{family:'HelixSynthetic',given:[`${scenario.relationship}-${scenario.key}`]}];
+      if(!scenario.relatedPersonName)throw new Error('Missing related-person display name');
+      relationship.name=[scenario.relatedPersonName];
+      relationship.meta=syntheticMeta();
       if(!scenario.relationshipFullUrl)throw new Error('Missing relationship fullUrl');
       fixtures.push({fullUrl:scenario.relationshipFullUrl,resource:relationship});
     }
@@ -44,8 +47,8 @@ export function enrollmentServicePolicy(context:EnrollmentReferences):AccessPoli
   return {resourceType:'AccessPolicy',name:'Helix Staging Enrollment Service',resource:[
     {resourceType:'Organization',interaction:['read','search'],criteria:`Organization?_id=${context.organization.split('/')[1]}`},
     {resourceType:'PractitionerRole',interaction:['read','search'],criteria:`PractitionerRole?_id=${context.pcpRole.split('/')[1]}`},
-    {resourceType:'Patient',interaction:['read','search','create'],criteria:`Patient?identifier=${identifiers('Patient')}`},
-    {resourceType:'RelatedPerson',interaction:['read','search','create'],criteria:`RelatedPerson?identifier=${identifiers('RelatedPerson')}`},
+    {resourceType:'Patient',interaction:['read','search','create','update'],criteria:`Patient?identifier=${identifiers('Patient')}`},
+    {resourceType:'RelatedPerson',interaction:['read','search','create','update'],criteria:`RelatedPerson?identifier=${identifiers('RelatedPerson')}`},
   ]};
 }
 export function enrollmentSummary(){

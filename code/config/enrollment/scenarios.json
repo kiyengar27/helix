@@ -9,7 +9,19 @@
       "relationship": "caregiver",
       "assignPcp": true,
       "patientFullUrl": "urn:uuid:f77fa9b2-ad9b-5a05-bcd4-992074cb6a09",
-      "relationshipFullUrl": "urn:uuid:264c41c2-e25d-5c05-9daa-b7573b9685b0"
+      "relationshipFullUrl": "urn:uuid:264c41c2-e25d-5c05-9daa-b7573b9685b0",
+      "patientName": {
+        "given": [
+          "Eleanor"
+        ],
+        "family": "Bennett"
+      },
+      "relatedPersonName": {
+        "given": [
+          "Laura"
+        ],
+        "family": "Bennett"
+      }
     },
     {
       "key": "child-parent",
@@ -18,7 +30,19 @@
       "relationship": "parent",
       "assignPcp": true,
       "patientFullUrl": "urn:uuid:434d7d40-0ef9-5b4c-a1c9-d91069ca363d",
-      "relationshipFullUrl": "urn:uuid:08972b3c-6bcb-5cbe-adfc-11f4f06ce058"
+      "relationshipFullUrl": "urn:uuid:08972b3c-6bcb-5cbe-adfc-11f4f06ce058",
+      "patientName": {
+        "given": [
+          "Oliver"
+        ],
+        "family": "Chen"
+      },
+      "relatedPersonName": {
+        "given": [
+          "Grace"
+        ],
+        "family": "Chen"
+      }
     },
     {
       "key": "age-12-parent",
@@ -27,7 +51,19 @@
       "relationship": "parent",
       "assignPcp": false,
       "patientFullUrl": "urn:uuid:d98b69a8-506e-58f4-9e90-f999640b0254",
-      "relationshipFullUrl": "urn:uuid:8fdc6287-29f9-5267-84f2-86b54b6d8eec"
+      "relationshipFullUrl": "urn:uuid:8fdc6287-29f9-5267-84f2-86b54b6d8eec",
+      "patientName": {
+        "given": [
+          "Maya"
+        ],
+        "family": "Patel"
+      },
+      "relatedPersonName": {
+        "given": [
+          "Anita"
+        ],
+        "family": "Patel"
+      }
     },
     {
       "key": "age-13-guardian",
@@ -36,7 +72,19 @@
       "relationship": "guardian",
       "assignPcp": false,
       "patientFullUrl": "urn:uuid:9c51d064-d3ce-582f-ae55-784d01e8c70a",
-      "relationshipFullUrl": "urn:uuid:0350df66-b45a-5533-910a-34b096f7c4e0"
+      "relationshipFullUrl": "urn:uuid:0350df66-b45a-5533-910a-34b096f7c4e0",
+      "patientName": {
+        "given": [
+          "Ethan"
+        ],
+        "family": "Brooks"
+      },
+      "relatedPersonName": {
+        "given": [
+          "Rachel"
+        ],
+        "family": "Turner"
+      }
     },
     {
       "key": "adolescent-parent",
@@ -45,7 +93,19 @@
       "relationship": "parent",
       "assignPcp": true,
       "patientFullUrl": "urn:uuid:461cffed-095f-56e0-851d-ea36526a986f",
-      "relationshipFullUrl": "urn:uuid:6c2dd509-570f-58f5-a391-280b02b39544"
+      "relationshipFullUrl": "urn:uuid:6c2dd509-570f-58f5-a391-280b02b39544",
+      "patientName": {
+        "given": [
+          "Sofia"
+        ],
+        "family": "Martinez"
+      },
+      "relatedPersonName": {
+        "given": [
+          "Elena"
+        ],
+        "family": "Martinez"
+      }
     },
     {
       "key": "independent-adult",
@@ -53,7 +113,13 @@
       "residenceState": "TX",
       "relationship": null,
       "assignPcp": false,
-      "patientFullUrl": "urn:uuid:107219a5-789a-5605-ae01-41c78da98f9f"
+      "patientFullUrl": "urn:uuid:107219a5-789a-5605-ae01-41c78da98f9f",
+      "patientName": {
+        "given": [
+          "Daniel"
+        ],
+        "family": "Wilson"
+      }
     }
   ]
 }

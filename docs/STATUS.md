@@ -70,3 +70,9 @@ Local anonymous contract tests only; no patient fixtures, writes, profiles, poli
 ## Stage 2 fixture preparation
 
 Draft PR #18 now prepares six synthetic Patients and five RelatedPersons, with a separate generated enrollment policy and pinned deployed group/PCP references. All payloads/policy passed server validation without saving resources. Separate plan/apply/verify commands and gated enrollment.yml use only new MEDPLUM_ENROLLMENT credentials; ENROLLMENT_ENABLED remains unset. Foundation permissions unchanged. Next checkpoint: owner reviews PR, then creates the new scoped enrollment policy/client (instructions in docs/patient-enrollment.md). No Patient/RelatedPerson records, staff logins or proxy grants exist yet. Demographic updates and real authorization acceptance tests remain open under #8.
+
+## Current checkpoint: realistic enrollment names
+
+PR #18 merged; initial enrollment PLAN 39445548745 and DEPLOY 39445743926 succeeded on main 01b495651b1766308e0ca4968ae6c1cdf43e7e98. Staging has six Patients and five RelatedPersons, independently verified. Separate enrollment credentials and ENROLLMENT_ENABLED are configured. Earlier preparation-only notes above are historical. Issue #8 remains open for access acceptance and remaining enrollment flows.
+
+Active branch feat/8-realistic-enrollment-names prepares invented names plus synthetic classification tags, retaining identity and relationships. All 11 payloads and generated policy passed nonpersistent server validation. No name/tag updates or policy expansion have been applied. Next: review/merge this PR, owner updates existing enrollment policy to allow scoped resource updates, run/review enrollment PLAN, then authorize DEPLOY and leave environment approval to owner. Never expand foundation permissions. See patient-enrollment.md for exact boundaries.
