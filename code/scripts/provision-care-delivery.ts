@@ -15,6 +15,7 @@ async function main() {
   for(let i=1;i<args.length;i+=2) if(!known.has(args[i]) || !args[i+1] || args[i+1].startsWith('--')) throw new Error('Invalid arguments');
   const saved=mode==='--apply'?JSON.parse(readFileSync(option(args,'--plan-file')??'reports/plan.json','utf8')) as DeploymentPlan:undefined;
   const asOf=saved?.asOf??option(args,'--as-of')??new Date().toISOString();
+  if(!['--preview','--policy'].includes(mode) && (Date.parse(asOf)>Date.now() || Date.now()-Date.parse(asOf)>24*3600000)) throw new Error('Plan expired or snapshot is future-dated; replan');
   const entries=compileDelivery(asOf);
   const policy=generatePolicy(entries);
   const output=(data:unknown,defaultPath?:string)=>{

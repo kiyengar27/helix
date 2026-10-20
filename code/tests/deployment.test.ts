@@ -113,3 +113,8 @@ test('simulated transaction round-trip resolves mixed references and repeat plan
   assert.ok(repeated.changes.every(c=>c.action==='retain'));
   assert.equal(transactionFor(entries,after,repeated).entry!.length,0);
 });
+
+import checkedPolicy from '../config/security/care-delivery-policy.json' with { type: 'json' };
+test('committed generated policy cannot fall behind compiled identifiers',()=>{
+  assert.equal(canonical(generatePolicy(compileDelivery(at))),canonical(checkedPolicy));
+});

@@ -129,6 +129,8 @@ export function assertReviewedPlan(saved:DeploymentPlan, fresh:DeploymentPlan, c
   const {digest:hash,...data}=saved;
   if(digest(data)!==hash || saved.projectId!==expectedProjectId || saved.commit!==commit || fresh.commit!==commit || saved.schemaVersion!==1) throw new Error('Reviewed plan integrity/project/commit mismatch');
   const age=now-Date.parse(saved.createdAt);
+  const snapshotAge=now-Date.parse(saved.asOf);
+  if(!Number.isFinite(snapshotAge)||snapshotAge<0||snapshotAge>24*60*60*1000) throw new Error('Plan expired or snapshot is future-dated; replan');
   if(!Number.isFinite(age)||age<0||age>24*60*60*1000) throw new Error('Plan expired; create and review a new plan');
   if(saved.configurationDigest!==fresh.configurationDigest || canonical(saved.changes)!==canonical(fresh.changes) || saved.asOf!==fresh.asOf) throw new Error('Configuration or server state changed since reviewed plan');
   // A future lifecycle transition requires replanning rather than applying an outdated status snapshot.
